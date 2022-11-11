@@ -8,11 +8,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("dirocco")
-public class PrintInfoController {
+public class DiroccoController {
     private DiroccoConfig config;
 
     @Autowired
-    public PrintInfoController(DiroccoConfig config){
+    public DiroccoController(DiroccoConfig config){
         super();
         this.config = config;
     }

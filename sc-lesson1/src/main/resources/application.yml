@@ -1,6 +1,6 @@
 spring:
   profiles:
-    active: devel
+    active: test
 
 app:
   lesson: LESSON 1
