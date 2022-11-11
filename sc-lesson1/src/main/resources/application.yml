@@ -22,7 +22,7 @@ dilorito:
     version: 1.0.0
     description: Endpoint printing info made by Seccia
 
-dgreg:
+digregorio:
   config:
     appName: Lessone One Print Info
     version: 1.0.0
@@ -33,7 +33,6 @@ fornaro:
     appName: Lesson One Print Info
     version: 1.0.0
     description: Endpoint printing info
-
 
 
 vizzarro:
@@ -65,6 +64,12 @@ maiolini:
     version: 1.0.0
     appName: Lesson One Print
     description: Endpoint printing info Valerio Maiolini
+
+brandolini:
+  config:
+    version: 1.0.0
+    appName: Aesys Exercise 1
+    description: This is the print exercise. Luca Brandolini
 
 vervenna:
   config:

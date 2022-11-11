@@ -9,20 +9,22 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/vervenna")
-@Profile("devel")
-public class VervennaController {
+@Profile("production")
+public class VervennaProdController {
 
     private VervennaConfig config;
 
     @Autowired
-    public VervennaController(VervennaConfig config){
+    public VervennaProdController(VervennaConfig config){
         this.config = config;
     }
 
     @RequestMapping(method = RequestMethod.GET)
     public String lesson() {
         StringBuilder builder = new StringBuilder();
-        builder.append("<H2>HELLO WORLD !!!</H2>");
+        builder.append("<H1>SPRING BOOT "+config.getAppName()+" </H1>");
+        builder.append("<H2>"+config.getDescription()+"</H2>");
+        builder.append("<H3>"+config.getVersion()+"</H3>");
         return builder.toString();
     }
 }

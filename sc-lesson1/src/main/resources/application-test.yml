@@ -1,8 +1,15 @@
-vizzarro:
+caterina:
     config:
         version: 1.0.1
+<<<<<<< HEAD
 
 seccia:
     config:
         description: Endpoint made by Antonio Seccia
         version: 1.0.2-SNAPSHOT
+=======
+vervenna:
+    config:
+        version: 1.0.1
+        appName: Test Environment lesson by Vervenna
+>>>>>>> e8e0d8377a7a7e4f8cd614be68e029801ac5a513
