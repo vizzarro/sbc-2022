@@ -5,6 +5,15 @@ lesson:
   author: matteo.fornaro@aesys.tech
   welcome-message: Welcome to ${app.lesson} !!!
 
+<<<<<<< HEAD
+dgreg:
+  config:
+    appName: Lessone One Print Info
+    version: 1.0.0
+    description: Endpoint printing info.
+
+
+=======
 fornaro:
   config:
     appName: Lesson One Print Info
@@ -19,3 +28,4 @@ caterina:
   version: 1.0.0
   description: Endpoint printing info
 
+>>>>>>> efa541dee4c82ed44a30925138138856031e809a
