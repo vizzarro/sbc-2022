@@ -5,3 +5,8 @@ lesson:
   author: alessandro.vizzarro@aesys.tech
   welcome-message: Welcome to ${app.lesson}
 
+dirocco:
+  config:
+    AppName: Lesson One Print Info
+    version: 1.0.0
+    description: Endpoint print info
