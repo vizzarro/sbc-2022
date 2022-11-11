@@ -6,6 +6,10 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+<<<<<<< HEAD
+import org.springframework.boot.context.properties.ConfigurationProperties;
+=======
+>>>>>>> f6fc696728cb06dbfc9dfa91100a1e17e6b24a4e
 import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
@@ -23,11 +27,16 @@ public class Lesson1Application {
 
 	//private static final Logger logger = LoggerFactory.getLogger(Lesson1Application.class);
 	@Value("${app.lesson}")
+<<<<<<< HEAD
 	private String lessonNumber = "1";
+=======
+	private String lessonNumber;
+	
+>>>>>>> 1501c2d506c965f39bec9243923d53e9ec2950f5
 	@Value("${lesson.welcome-message}")
 	private String lessonMessage;
 	@Value("${lesson.author}")
-	private String lessonAuthor = "Alessandro";
+	private String lessonAuthor;
 
 	private ConfigService configService;
 	public static void main(String[] args) {
@@ -40,7 +49,6 @@ public class Lesson1Application {
 		StringBuilder builder = new StringBuilder();
 		builder.append("<H1>SPRING BOOT "+lessonNumber+" </H1>");
 		builder.append("<H2>"+lessonAuthor+"</H2>");
-		builder.append("<H3>"+lessonMessage+"</H3>");
 		return builder.toString();
 	}
 
