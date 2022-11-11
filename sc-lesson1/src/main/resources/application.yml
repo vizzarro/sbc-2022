@@ -2,20 +2,79 @@ app:
   lesson: LESSON 1
 
 lesson:
-  author: alessandro.vizzarro@aesys.tech
-  welcome-message: Welcome to ${app.lesson}
+  author: matteo.fornaro@aesys.tech
+  welcome-message: Welcome to ${app.lesson} !!!
 
 <<<<<<< HEAD
-seccia:
-  config:
-    appName: Lesson Print Info
-    version: 1.0.0
-    description: Endpoint printing info made by Seccia
-=======
-maiolini:
-  config:
-    version: 1.0.0
-    appName: Lesson One Print
-    description: Endpoint printing info Valerio Maiolini
+<<<<<<< HEAD
 
+dirocco:
+  config:
+    AppName: Lesson One Print Info
+    version: 1.0.0
+    description: Endpoint print info
+
+
+seccia:
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+dilorito:
+>>>>>>> 1501c2d506c965f39bec9243923d53e9ec2950f5
+  config:
+    appName: Lesson One Print Info
+    version: 1.0.0
+<<<<<<< HEAD
+    description: Endpoint printing info made by Seccia
+
+maiolini:
+=======
+    description: Endpoint printing info.
+
+=======
+<<<<<<< HEAD
+seccia:
+=======
+dgreg:
+>>>>>>> 1501c2d506c965f39bec9243923d53e9ec2950f5
+  config:
+    appName: Lessone One Print Info
+    version: 1.0.0
+    description: Endpoint printing info.
+
+
+>>>>>>> 88768b49a8bb290055f02bab10d2806b920e44ab
+=======
+=======
+>>>>>>> 9758c0c9317600ae0962a86b73417091b2538ab7
+fornaro:
+  config:
+    appName: Lesson One Print Info
+    version: 1.0.0
+    description: Endpoint printing info
+
+
+
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> efa541dee4c82ed44a30925138138856031e809a
+>>>>>>> bc2fbdcd5dd68432f135f7233a51241fab65fe44
+=======
+>>>>>>> 613d12fb56ee3d1fa01b5bbfb210316bd5b2bd99
+=======
+caterina:
+ config:
+  appName: Lesson One Print Info
+  version: 1.0.0
+  description: Endpoint printing info
+
+<<<<<<< HEAD
+
+=======
+>>>>>>> efa541dee4c82ed44a30925138138856031e809a
+>>>>>>> 88768b49a8bb290055f02bab10d2806b920e44ab
+>>>>>>> 1501c2d506c965f39bec9243923d53e9ec2950f5
+=======
+>>>>>>> 9758c0c9317600ae0962a86b73417091b2538ab7
