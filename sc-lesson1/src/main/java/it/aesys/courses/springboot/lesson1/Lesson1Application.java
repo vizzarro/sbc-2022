@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +18,7 @@ import java.util.Arrays;
 @RestController
 @RequestMapping(path = "/")
 @SpringBootApplication
+@ConfigurationPropertiesScan("it.aesys.courses.springboot.lesson1.config")
 public class Lesson1Application {
 
 	//private static final Logger logger = LoggerFactory.getLogger(Lesson1Application.class);
