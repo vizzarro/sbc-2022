@@ -5,3 +5,8 @@ lesson:
   author: alessandro.vizzarro@aesys.tech
   welcome-message: Welcome to ${app.lesson}
 
+seccia:
+  config:
+    appName: Lesson Print Info
+    version: 1.0.0
+    description: Endpoint printing info made by Seccia
