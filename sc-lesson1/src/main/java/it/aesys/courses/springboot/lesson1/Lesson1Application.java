@@ -22,21 +22,24 @@ import java.util.Arrays;
 @RestController
 @RequestMapping(path = "/")
 @SpringBootApplication
-@ConfigurationPropertiesScan("it.aesys.courses.springboot.lesson1.config")
 public class Lesson1Application {
 
 	//private static final Logger logger = LoggerFactory.getLogger(Lesson1Application.class);
 	@Value("${app.lesson}")
 <<<<<<< HEAD
+<<<<<<< HEAD
 	private String lessonNumber = "1";
 =======
 	private String lessonNumber;
+=======
+	private String lessonNumber = "1";
+>>>>>>> 9758c0c9317600ae0962a86b73417091b2538ab7
 	
 >>>>>>> 1501c2d506c965f39bec9243923d53e9ec2950f5
 	@Value("${lesson.welcome-message}")
 	private String lessonMessage;
 	@Value("${lesson.author}")
-	private String lessonAuthor;
+	private String lessonAuthor = "Alessandro";
 
 	private ConfigService configService;
 	public static void main(String[] args) {

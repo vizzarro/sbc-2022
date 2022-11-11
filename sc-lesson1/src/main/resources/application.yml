@@ -6,6 +6,7 @@ lesson:
   welcome-message: Welcome to ${app.lesson} !!!
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 dirocco:
   config:
@@ -45,8 +46,9 @@ dgreg:
 
 >>>>>>> 88768b49a8bb290055f02bab10d2806b920e44ab
 =======
+=======
+>>>>>>> 9758c0c9317600ae0962a86b73417091b2538ab7
 fornaro:
->>>>>>> 613d12fb56ee3d1fa01b5bbfb210316bd5b2bd99
   config:
     appName: Lesson One Print Info
     version: 1.0.0
@@ -54,6 +56,7 @@ fornaro:
 
 
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 >>>>>>> efa541dee4c82ed44a30925138138856031e809a
@@ -73,3 +76,5 @@ caterina:
 >>>>>>> efa541dee4c82ed44a30925138138856031e809a
 >>>>>>> 88768b49a8bb290055f02bab10d2806b920e44ab
 >>>>>>> 1501c2d506c965f39bec9243923d53e9ec2950f5
+=======
+>>>>>>> 9758c0c9317600ae0962a86b73417091b2538ab7
