@@ -1,3 +1,8 @@
 vizzarro:
     config:
         version: 1.0.1
+
+seccia:
+    config:
+        description: Endpoint made by Antonio Seccia
+        version: 1.0.2-SNAPSHOT

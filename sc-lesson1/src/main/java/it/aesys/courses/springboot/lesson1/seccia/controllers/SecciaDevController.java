@@ -10,27 +10,23 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("seccia")
-@Profile("production")
-public class SecciaController {
+@Profile("devel")
+public class SecciaDevController {
 
 
     private SecciaConfig config;
 
     @Autowired
-    public SecciaController(SecciaConfig config) {
+    public SecciaDevController(SecciaConfig config) {
         super();
         this.config = config;
     }
 
 
-
-
     @GetMapping
     public String lesson() {
         StringBuilder builder = new StringBuilder();
-        builder.append("<H1>SPRING BOOT "+config.getAppName()+" </H1>");
-        builder.append("<H2>"+config.getDescription()+"</H2>");
-        builder.append("<H3>Version : "+config.getVersion()+"</H3>");
+        builder.append("<H1> Antonio Seccia Web App </H1>");
         return builder.toString();
     }
 
