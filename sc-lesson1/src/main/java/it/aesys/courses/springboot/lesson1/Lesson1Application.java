@@ -24,13 +24,13 @@ public class Lesson1Application {
 	//private static final Logger logger = LoggerFactory.getLogger(Lesson1Application.class);
 	
 	@Value("${app.lesson}")
-	private String lessonNumber = "1";
+	private String lessonNumber;
 	
 	@Value("${lesson.welcome-message}")
 	private String lessonMessage;
 
 	@Value("${lesson.author}")
-	private String lessonAuthor = "Alessandro";
+	private String lessonAuthor;
 
 	private ConfigService configService;
 	
