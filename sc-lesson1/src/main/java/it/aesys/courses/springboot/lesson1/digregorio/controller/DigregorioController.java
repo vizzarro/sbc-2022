@@ -1,6 +1,6 @@
 package it.aesys.courses.springboot.lesson1.digregorio.controller;
 
-import it.aesys.courses.springboot.lesson1.config.DgregConfig;
+import it.aesys.courses.springboot.lesson1.config.DigregorioConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.RestController;
 public class DigregorioController {
 
 
-    private DgregConfig config;
+    private DigregorioConfig config;
 
     @Autowired
-    public DigregorioController(DgregConfig config){
+    public DigregorioController(DigregorioConfig config){
         super();
         this.config = config;
     }
