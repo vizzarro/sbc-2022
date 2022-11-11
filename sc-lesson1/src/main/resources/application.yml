@@ -5,8 +5,3 @@ lesson:
   author: alessandro.vizzarro@aesys.tech
   welcome-message: Welcome to ${app.lesson}
 
-vervenna:
-  config:
-    version: 1.0.0
-    appName: Lesson One Print info by Vervenna
-    description: Endpoint printing info
