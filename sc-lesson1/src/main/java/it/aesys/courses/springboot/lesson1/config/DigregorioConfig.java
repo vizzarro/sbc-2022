@@ -2,13 +2,13 @@ package it.aesys.courses.springboot.lesson1.config;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
-@ConfigurationProperties("dgreg.config")
-public class DgregConfig {
+@ConfigurationProperties("digregorio.config")
+public class DigregorioConfig {
     private String appName;
     private String version;
     private String description;
 
-    public DgregConfig() {
+    public DigregorioConfig() {
         super();
     }
 
