@@ -5,3 +5,8 @@ lesson:
   author: alessandro.vizzarro@aesys.tech
   welcome-message: Welcome to ${app.lesson}
 
+mastrocola:
+  config:
+    appName: Lesson One Print info
+    version: 1.0.0
+    description: Something to do
