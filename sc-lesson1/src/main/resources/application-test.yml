@@ -1,3 +1,7 @@
-vizzarro:
+caterina:
     config:
         version: 1.0.1
+vervenna:
+    config:
+        version: 1.0.1
+        appName: Test Environment lesson by Vervenna
