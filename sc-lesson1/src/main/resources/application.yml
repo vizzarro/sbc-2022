@@ -40,7 +40,7 @@ vizzarro:
 
 seccia:
   config:
-    appName: Lesson Print Info
+    appName: Lesson Print Info by Seccia
     version: 1.0.0
     description: Endpoint printing info.
 
