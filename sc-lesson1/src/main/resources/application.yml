@@ -13,8 +13,3 @@ fornaro:
 
 
 
-dicesare:
-  config:
-    appName: Lesson one Print info
-    version: 1.0.0
-    description: Endpoint printing info.
