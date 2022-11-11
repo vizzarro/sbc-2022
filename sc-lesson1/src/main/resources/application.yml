@@ -48,6 +48,10 @@ francesca:
     version: 1.0.0
     description: Endpoint printing info
 
+brandolini:
+  version: 1.0.0
+  appName: Aesys Spring Academy
+  description: This is a description
 maiolini:
   config:
     appName: Lesson One Print Info
