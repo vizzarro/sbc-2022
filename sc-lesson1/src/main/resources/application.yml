@@ -2,6 +2,12 @@ app:
   lesson: LESSON 1
 
 lesson:
-  author: alessandro.vizzarro@aesys.tech
+  author: caterina.derosa@aesys.tech
   welcome-message: Welcome to ${app.lesson}
+
+caterina:
+ config:
+  appName: Lesson One Print Info
+  version: 1.0.0
+  description: Endpoint printing info
 
