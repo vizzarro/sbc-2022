@@ -33,7 +33,6 @@ public class Lesson1Application {
 
 	private ConfigService configService;
 
-
 	public static void main(String[] args) {
 
 		SpringApplication.run(Lesson1Application.class, args);
