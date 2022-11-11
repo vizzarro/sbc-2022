@@ -24,7 +24,7 @@ public class Lesson1Application {
 	@Value("${app.lesson}")
 	private String lessonNumber = "1";
 	
-//	@Value("${lesson.welcome-message}")
+	@Value("${lesson.welcome-message}")
 	private String lessonMessage;
 
 	@Value("${lesson.author}")
@@ -42,6 +42,7 @@ public class Lesson1Application {
 		StringBuilder builder = new StringBuilder();
 		builder.append("<H1>SPRING BOOT "+lessonNumber+" </H1>");
 		builder.append("<H2>"+lessonAuthor+"</H2>");
+		builder.append("<H3>"+lessonMessage+"</H3>");
 		return builder.toString();
 	}
 

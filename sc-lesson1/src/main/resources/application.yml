@@ -3,6 +3,5 @@ app:
 
 lesson:
   author: alessandro.vizzarro@aesys.tech
-
-
+  welcome-message: Welcome to ${app.lesson}
 
