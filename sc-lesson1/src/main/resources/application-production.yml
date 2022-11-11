@@ -1,3 +1,15 @@
 dirocco:
     config:
         version: 1.0.1
+<<<<<<< HEAD
+=======
+
+vervenna:
+    config:
+        version: 1.0.1
+        appName: Production Environment lesson by Vervenna
+
+brandolini:
+    config:
+        description: This is production
+>>>>>>> e8e0d8377a7a7e4f8cd614be68e029801ac5a513
