@@ -2,6 +2,11 @@ vizzarro:
     config:
         version: 1.0.1
 
+vervenna:
+    config:
+        version: 1.0.1
+        appName: Production Environment lesson by Vervenna
+
 brandolini:
     config:
         description: This is production
