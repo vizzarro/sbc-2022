@@ -18,6 +18,7 @@ import java.util.Arrays;
 @RestController
 @RequestMapping(path = "/")
 @SpringBootApplication
+@ConfigurationPropertiesScan("it.aesys.courses.springboot.lesson1.config")
 public class Lesson1Application {
 
 	//private static final Logger logger = LoggerFactory.getLogger(Lesson1Application.class);
@@ -31,6 +32,7 @@ public class Lesson1Application {
 	private String lessonAuthor = "Alessandro";
 
 	private ConfigService configService;
+
 
 	public static void main(String[] args) {
 
