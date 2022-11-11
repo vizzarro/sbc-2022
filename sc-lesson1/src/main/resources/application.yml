@@ -66,3 +66,8 @@ maiolini:
     appName: Lesson One Print
     description: Endpoint printing info Valerio Maiolini
 
+vervenna:
+  config:
+    appName: Lesson Print Info by Vervenna
+    version: 1.0.0
+    description: Endpoint printing info.
