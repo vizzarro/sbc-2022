@@ -5,3 +5,11 @@ lesson:
   author: alessandro.vizzarro@aesys.tech
   welcome-message: Welcome to ${app.lesson}
 
+brandolini:
+  config:
+    version: 1.0.0
+    appName: Lesson One Print Info
+    description: Printing description
+
+
+
