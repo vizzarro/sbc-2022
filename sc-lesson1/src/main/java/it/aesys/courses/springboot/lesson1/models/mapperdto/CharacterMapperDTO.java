@@ -30,7 +30,7 @@ public class CharacterMapperDTO {
         c.setUuid(dto.getUuid());
         c.setName(dto.getName());
         c.setLevel(dto.getLevel());
-        c.setType(ClassType.WARRIOR);
+        c.setType(ClassType.valueOf(dto.getType()));
         c.setCostituion(dto.getCostituion());
         c.setDextery(dto.getDextery());
         c.setIntellect(dto.getIntellect());

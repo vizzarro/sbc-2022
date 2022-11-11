@@ -22,9 +22,16 @@ public class CharacterController {
     }
 
     @PostMapping
-    public CharacterDTO create( @RequestBody CharacterDTO dto) throws ServiceException {
+    public CharacterDTO create( @RequestBody CharacterRequest request) throws ServiceException {
 
-        return service.create(dto);
+        return service.create(request.getCharacter());
+
+    }
+
+    @GetMapping("{uuid}")
+    public CharacterDTO get( @PathVariable("uuid") String uuid) throws ServiceException {
+
+        return service.get(uuid);
 
     }
 
