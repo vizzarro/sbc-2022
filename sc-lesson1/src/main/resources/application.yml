@@ -62,3 +62,9 @@ maiolini:
     appName: Lesson One Print
     description: Endpoint printing info Valerio Maiolini
 
+
+brandolini:
+  config:
+    version: 1.0.0
+    appName: Print Information
+    description: Aesys Academy Luca Brandolini
