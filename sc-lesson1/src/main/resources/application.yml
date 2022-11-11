@@ -2,9 +2,10 @@ app:
   lesson: LESSON 1
 
 lesson:
-  author: alessandro.vizzarro@aesys.tech
-  welcome-message: Welcome to ${app.lesson}
+  author: matteo.fornaro@aesys.tech
+  welcome-message: Welcome to ${app.lesson} !!!
 
+<<<<<<< HEAD
 dgreg:
   config:
     appName: Lessone One Print Info
@@ -12,3 +13,27 @@ dgreg:
     description: Endpoint printing info.
 
 
+=======
+fornaro:
+  config:
+    appName: Lesson One Print Info
+    version: 1.0.0
+    description: Endpoint printing info
+
+
+
+<<<<<<< HEAD
+seccia:
+  config:
+    appName: Lesson Print Info
+    version: 1.0.0
+    description: Endpoint printing info made by Seccia
+=======
+maiolini:
+  config:
+    version: 1.0.0
+    appName: Lesson One Print
+    description: Endpoint printing info Valerio Maiolini
+
+>>>>>>> efa541dee4c82ed44a30925138138856031e809a
+>>>>>>> f6fc696728cb06dbfc9dfa91100a1e17e6b24a4e
