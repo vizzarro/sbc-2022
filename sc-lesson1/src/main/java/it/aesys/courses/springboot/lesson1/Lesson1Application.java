@@ -6,6 +6,10 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+<<<<<<< HEAD
+import org.springframework.boot.context.properties.ConfigurationProperties;
+=======
+>>>>>>> f6fc696728cb06dbfc9dfa91100a1e17e6b24a4e
 import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
@@ -44,7 +48,6 @@ public class Lesson1Application {
 		StringBuilder builder = new StringBuilder();
 		builder.append("<H1>SPRING BOOT "+lessonNumber+" </H1>");
 		builder.append("<H2>"+lessonAuthor+"</H2>");
-		builder.append("<H3>"+lessonMessage+"</H3>");
 		return builder.toString();
 	}
 

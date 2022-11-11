@@ -7,6 +7,7 @@ lesson:
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 dilorito:
   config:
     appName: Lesson One Print Info
@@ -16,6 +17,15 @@ dilorito:
 =======
 <<<<<<< HEAD
 seccia:
+=======
+dgreg:
+  config:
+    appName: Lessone One Print Info
+    version: 1.0.0
+    description: Endpoint printing info.
+
+
+>>>>>>> 88768b49a8bb290055f02bab10d2806b920e44ab
 =======
 fornaro:
 >>>>>>> 613d12fb56ee3d1fa01b5bbfb210316bd5b2bd99
@@ -27,7 +37,17 @@ fornaro:
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> efa541dee4c82ed44a30925138138856031e809a
 >>>>>>> bc2fbdcd5dd68432f135f7233a51241fab65fe44
 =======
 >>>>>>> 613d12fb56ee3d1fa01b5bbfb210316bd5b2bd99
+=======
+caterina:
+ config:
+  appName: Lesson One Print Info
+  version: 1.0.0
+  description: Endpoint printing info
+
+>>>>>>> efa541dee4c82ed44a30925138138856031e809a
+>>>>>>> 88768b49a8bb290055f02bab10d2806b920e44ab
