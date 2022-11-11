@@ -2,8 +2,61 @@ app:
   lesson: LESSON 1
 
 lesson:
-  author: alessandro.vizzarro@aesys.tech
-  welcome-message: Welcome to ${app.lesson}
+  author: matteo.fornaro@aesys.tech
+  welcome-message: Welcome to ${app.lesson} !!!
+
+
+dirocco:
+  config:
+    AppName: Lesson One Print Info
+    version: 1.0.0
+    description: Endpoint print info
+
+
+dilorito:
+  config:
+    appName: Lesson One Print Info
+    version: 1.0.0
+    description: Endpoint printing info made by Seccia
+
+
+
+dgreg:
+  config:
+    appName: Lessone One Print Info
+    version: 1.0.0
+    description: Endpoint printing info.
+
+
+
+fornaro:
+  config:
+    appName: Lesson One Print Info
+    version: 1.0.0
+    description: Endpoint printing info
+
+
+caterina:
+ config:
+  appName: Lesson One Print Info
+  version: 1.0.0
+  description: Endpoint printing info
+
+francesca:
+  config:
+    appName: Lesson One Print Info
+    version: 1.0.0
+    description: Endpoint printing info
+
+brandolini:
+  version: 1.0.0
+  appName: Aesys Spring Academy
+  description: This is a description
+maiolini:
+  config:
+    appName: Lesson One Print Info
+    version: 1.0.0
+    description: Endpoint printing info by Valerio Maiolini
 
 mastrocola:
   config:
