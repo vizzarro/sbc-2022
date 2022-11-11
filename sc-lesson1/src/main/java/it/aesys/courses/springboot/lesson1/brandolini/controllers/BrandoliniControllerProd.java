@@ -1,4 +1,5 @@
 package it.aesys.courses.springboot.lesson1.brandolini.controllers;
+
 import it.aesys.courses.springboot.lesson1.config.BrandoliniConfig;
 import org.springframework.context.annotation.Profile;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -7,11 +8,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("brandolini")
-@Profile("devel")
-public class BrandoliniController {
+@Profile("production")
+public class BrandoliniControllerProd {
+
     private BrandoliniConfig config;
 
-    public BrandoliniController(BrandoliniConfig config){
+    public BrandoliniControllerProd(BrandoliniConfig config){
         super();
         this.config = config;
     }
@@ -19,10 +21,7 @@ public class BrandoliniController {
     @RequestMapping(method = RequestMethod.GET)
     public String lesson() {
         StringBuilder builder = new StringBuilder();
-        builder.append("<H1>App name :"+config.getAppName()+" </H1>");
-        builder.append("<H2>Description :"+config.getDescription()+"</H2>");
-        builder.append("<H3>Version :"+config.getVersion()+"</H3>");
+        builder.append("<H2> HELLO WORLD!!! THIS IS PRODUCTION</H2>");
         return builder.toString();
     }
-
 }
