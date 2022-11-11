@@ -48,3 +48,9 @@ francesca:
     version: 1.0.0
     description: Endpoint printing info
 
+maiolini:
+  config:
+    appName: Lesson One Print Info
+    version: 1.0.0
+    description: Endpoint printing info by Valerio Maiolini
+
