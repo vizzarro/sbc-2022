@@ -9,11 +9,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("dilorito")
-public class PrintInfoController {
+public class DiLoritoController {
     private DiLoritoConfig config;
 
     @Autowired
-    public PrintInfoController(DiLoritoConfig config){
+    public DiLoritoController(DiLoritoConfig config){
         this.config = config;
     }
 
