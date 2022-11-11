@@ -5,9 +5,26 @@ lesson:
   author: alessandro.vizzarro@aesys.tech
   welcome-message: Welcome to ${app.lesson}
 
+<<<<<<< HEAD
 dilorito:
   config:
     appName: Lesson One Print Info
     version: 1.0.0
     description: Endpoint printing info.
 
+=======
+<<<<<<< HEAD
+seccia:
+  config:
+    appName: Lesson Print Info
+    version: 1.0.0
+    description: Endpoint printing info made by Seccia
+=======
+maiolini:
+  config:
+    version: 1.0.0
+    appName: Lesson One Print
+    description: Endpoint printing info Valerio Maiolini
+
+>>>>>>> efa541dee4c82ed44a30925138138856031e809a
+>>>>>>> bc2fbdcd5dd68432f135f7233a51241fab65fe44
