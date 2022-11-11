@@ -19,16 +19,16 @@ import java.util.Arrays;
 @SpringBootApplication
 public class Lesson1Application {
 
-	private static final Logger logger = LoggerFactory.getLogger(Lesson1Application.class);
+	//private static final Logger logger = LoggerFactory.getLogger(Lesson1Application.class);
 	
-	@Value("${app.lesson}")
-	private String lessonNumber;
+	//@Value("${app.lesson}")
+	private String lessonNumber = "1";
 	
-	@Value("${lesson.welcome-message}")
+//	@Value("${lesson.welcome-message}")
 	private String lessonMessage;
 
-	@Value("${lesson.author}")
-	private String lessonAuthor;
+//	@Value("${lesson.author}")
+	private String lessonAuthor = "Alessandro";
 
 	private ConfigService configService;
 	
@@ -40,7 +40,7 @@ public class Lesson1Application {
 	@RequestMapping(method = RequestMethod.GET)
 	public String lesson() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("<H1>SPRING BOOT "+lessonNumber+" </H!>");
+		builder.append("<H1>SPRING BOOT "+lessonNumber+" </H1>");
 		builder.append("<H2>"+lessonAuthor+"</H2>");
 		return builder.toString();
 	}
