@@ -1,4 +1,14 @@
+<<<<<<< HEAD
 dirocco:
+=======
+server:
+    port: 8081
+    error:
+        whitelabel:
+            enabled: false
+
+vizzarro:
+>>>>>>> bd44ebd6d8e17a7cfa070e62e7e266a23d5cfc09
     config:
         version: 1.0.1
 <<<<<<< HEAD
