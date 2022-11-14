@@ -29,14 +29,10 @@ public class PersonController {
         return service.create(personRequest.getPersonDTO());
     }
 
-    @GetMapping("/{id}")
-    public PersonDTO getPersonById(@PathVariable("id") Integer id) throws ServiceException, ComponentException {
-        return service.get(id);
-    }
 
     @DeleteMapping("/{id}")
-    public String deletePerson(@PathVariable("id") Integer id ) throws ServiceException, ComponentException{
-        return service.delete(id);
+    public void deletePerson(@PathVariable("id") Integer id ) throws ServiceException, ComponentException{
+         service.delete(id);
     }
 
     @GetMapping("all")
@@ -46,4 +42,3 @@ public class PersonController {
 
 
 }
-
