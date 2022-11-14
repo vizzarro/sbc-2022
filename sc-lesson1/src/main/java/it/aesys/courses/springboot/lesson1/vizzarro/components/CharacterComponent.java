@@ -33,9 +33,7 @@ public class CharacterComponent {
         throw ex;
     }
 
-<<<<<<< HEAD
 
-=======
     public void delete(String uuid) throws ComponentException {
 
         if (mapCharacter.containsKey(uuid)) {
@@ -62,5 +60,5 @@ public class CharacterComponent {
         return mapCharacter.values();
 
     }
->>>>>>> bd44ebd6d8e17a7cfa070e62e7e266a23d5cfc09
+
 }
