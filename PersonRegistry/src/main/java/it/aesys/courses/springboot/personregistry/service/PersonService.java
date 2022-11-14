@@ -50,15 +50,11 @@ public class PersonService {
 
     public Collection<PersonDTO> getAll() throws ComponentException, ServiceException {
 
-
         Collection<PersonDTO> allHeroCharactersDto = new ArrayList<>();
-
         Collection<Person> allHeroCharacters = personDao.getAllPersons();
-
         allHeroCharacters.forEach(x -> allHeroCharactersDto.add(personMapperDTO.toDto(x)));
 
         return allHeroCharactersDto;
-
     }
 
 
