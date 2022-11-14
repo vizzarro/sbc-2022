@@ -17,7 +17,7 @@ public class PersonDao {
 
         if (person != null && !personMapDao.containsKey(person.getId())){
             personMapDao.put(person.getId(), person);
-            return personMapDao.get(person.getId);
+            return personMapDao.get(person.getId());
         }
         else {
             ComponentException ex = new ComponentException();
@@ -46,7 +46,7 @@ public class PersonDao {
 
             Person personToUpdate = new Person();
             personToUpdate = person;
-            personMapDao.put(Integer id, personToUpdate);
+            personMapDao.put(id, personToUpdate);
             return personToUpdate;
         }
         else {

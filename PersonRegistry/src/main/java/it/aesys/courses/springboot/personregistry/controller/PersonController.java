@@ -9,6 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 //@Profile("")
 public class PersonController {
 
-    private PersonService service;
+  //  private PersonService service;
 
 }

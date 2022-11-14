@@ -8,11 +8,12 @@ public class PersonDTO {
 
     private String name;
     private String surname;
-    private Integer fiscalCode;
+    private String fiscalCode;
     private EnumGender gender;
     private String address;
     private Date birthDate;
-    private String callNumber;
+
+    private String cellNumber;
 
 
     public PersonDTO() {
@@ -35,11 +36,11 @@ public class PersonDTO {
         this.surname = surname;
     }
 
-    public Integer getFiscalCode() {
+    public String getFiscalCode() {
         return fiscalCode;
     }
 
-    public void setFiscalCode(Integer fiscalCode) {
+    public void setFiscalCode(String fiscalCode) {
         this.fiscalCode = fiscalCode;
     }
 
@@ -68,11 +69,11 @@ public class PersonDTO {
     }
 
     public String getCallNumber() {
-        return callNumber;
+        return cellNumber;
     }
 
-    public void setCallNumber(String callNumber) {
-        this.callNumber = callNumber;
+    public void setCellNumber(String callNumber) {
+        this.cellNumber = cellNumber;
     }
 
     @Override
@@ -84,7 +85,7 @@ public class PersonDTO {
                 ", gender=" + gender +
                 ", address='" + address + '\'' +
                 ", birthDate=" + birthDate +
-                ", callNumber='" + callNumber + '\'' +
+                ", callNumber='" + cellNumber + '\'' +
                 '}';
     }
 }
