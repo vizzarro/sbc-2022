@@ -30,7 +30,4 @@ public class PersonController {
 
         return service.create(personRequest.getPersonDTO());
     }
-
-
-
 }

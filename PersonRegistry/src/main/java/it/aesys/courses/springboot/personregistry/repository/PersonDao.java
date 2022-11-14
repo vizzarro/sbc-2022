@@ -11,9 +11,18 @@ import java.util.Map;
 @Component
 public class PersonDao {
 
-    Map<Integer, Person> personMapDao = new HashMap<>();
+    private Map<Integer, Person> personMapDao = new HashMap<>();
+    private Integer sequence;
+
+
+    public PersonDao(){
+        this.sequence = 0;
+        this.personMapDao = new HashMap<>();
+    }
 
     public Person createPerson (Person person) throws ComponentException {
+
+        Integer newId = this.sequence++;
 
         if (person != null && !personMapDao.containsKey(person.getId())){
             personMapDao.put(person.getId(), person);

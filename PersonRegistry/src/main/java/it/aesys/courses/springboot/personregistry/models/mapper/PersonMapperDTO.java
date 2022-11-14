@@ -3,7 +3,9 @@ package it.aesys.courses.springboot.personregistry.models.mapper;
 import it.aesys.courses.springboot.personregistry.models.EnumAddress;
 import it.aesys.courses.springboot.personregistry.models.Person;
 import it.aesys.courses.springboot.personregistry.models.PersonDTO;
+import org.springframework.stereotype.Component;
 
+@Component
 public class PersonMapperDTO {
 
     public PersonDTO toDto(Person person) {
