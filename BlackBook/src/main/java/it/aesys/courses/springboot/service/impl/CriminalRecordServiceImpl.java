@@ -1,11 +1,11 @@
 package it.aesys.courses.springboot.service.impl;
 
 import it.aesys.courses.springboot.model.CriminalRecord;
-import it.aesys.courses.springboot.service.BlackBookService;
+import it.aesys.courses.springboot.service.CriminalRecordService;
 import org.springframework.stereotype.Service;
 
 @Service
-public class BlackBookServiceImpl implements BlackBookService {
+public class CriminalRecordServiceImpl implements CriminalRecordService {
 
     @Override
     public CriminalRecord getCriminalRecord(String fiscalCodeNumber) {
