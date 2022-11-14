@@ -18,7 +18,7 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="black-book" target="11" />
-      <module name="documents-repo" target="11" />
+      <module name="documents-repo" target="15" />
       <module name="person-registry" target="11" />
       <module name="sc-helloworld" target="1.8" />
       <module name="sc-lesson1" target="11" />
