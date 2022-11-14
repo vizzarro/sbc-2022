@@ -8,7 +8,6 @@ import it.aesys.courses.springboot.personregistry.repository.exception.Component
 import it.aesys.courses.springboot.personregistry.service.exceptions.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 import java.util.Collection;
 
