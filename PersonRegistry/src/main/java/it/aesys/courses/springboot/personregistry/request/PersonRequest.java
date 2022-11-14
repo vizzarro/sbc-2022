@@ -1,4 +1,4 @@
-package request;
+package it.aesys.courses.springboot.personregistry.request;
 
 import it.aesys.courses.springboot.personregistry.models.PersonDTO;
 
