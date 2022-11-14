@@ -19,6 +19,17 @@ public class Person {
         super();
     }
 
+    public Person(String n, String s, String fC, EnumGender g, Address a, Date bD, String cN, Integer id) {
+        this.name = n;
+        this.surname = s;
+        this.fiscalCode = fC;
+        this.gender = g;
+        this.address = a;
+        this.birthDate = bD;
+        this.cellNumber = cN;
+        this.id = id;
+    }
+
     public EnumGender getGender() {
         return gender;
     }

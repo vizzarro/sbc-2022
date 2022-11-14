@@ -33,11 +33,8 @@ public class PersonMapperDTO {
         p.setGender(dto.getGender());
         p.setAddress(dto.getAddress());
         p.setBirthDate(dto.getBirthDate());
-        p.setCellNumber(dto.getCallNumber());
+        p.setCellNumber(dto.getCellNumber());
 
         return p;
     }
-/**
- * perche' si'
- */
 }

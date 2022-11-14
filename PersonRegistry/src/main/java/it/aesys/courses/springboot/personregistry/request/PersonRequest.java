@@ -8,7 +8,9 @@ public class PersonRequest {
 
     private PersonDTO personDTO = new PersonDTO();
 
-    public PersonRequest(){ super();}
+    public PersonRequest() {
+        super();
+    }
 
     public PersonDTO getPersonDTO() {
         return personDTO;
