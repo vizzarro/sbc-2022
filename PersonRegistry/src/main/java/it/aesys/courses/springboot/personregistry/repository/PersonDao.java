@@ -19,10 +19,8 @@ public class PersonDao {
     private Map<Integer, Person> personMapDao = new HashMap<>();
     private Integer sequence;
 
-    @Autowired
-    public PersonDao(){
+    public PersonDao() {
         this.sequence = 0;
-        this.personMapDao = new HashMap<>();
 
         Address gennaroAddress = new Address();
         gennaroAddress.setCivic("69");
@@ -41,15 +39,15 @@ public class PersonDao {
         this.personMapDao.put(1, gennaro);
     }
 
-    public Person createPerson (Person person) throws ComponentException {
+    public Person createPerson(Person person) throws ComponentException {
 
         Integer newId = this.sequence++;
+        person.setId(newId);
 
-        if (person != null && !personMapDao.containsKey(person.getId())){
-            personMapDao.put(person.getId(), person);
+        if (person != null && !personMapDao.containsKey(person.getId())) {
+            this.personMapDao.put(person.getId(), person);
             return personMapDao.get(person.getId());
-        }
-        else {
+        } else {
             ComponentException ex = new ComponentException();
             ex.setStatusCode(400);
             throw ex;
@@ -57,53 +55,50 @@ public class PersonDao {
     }
 
 
+    public Person getPerson(Integer id) throws ComponentException {
 
-    public Person getPerson (Integer id) throws ComponentException {
-
-        if (id != null && personMapDao.containsKey(id)){
+        if (id != null && personMapDao.containsKey(id)) {
 
             return personMapDao.get(id);
-        }
-        else {
+        } else {
             ComponentException ex = new ComponentException();
             ex.setStatusCode(404);
             throw ex;
         }
     }
-    public Person updatePerson (Integer id, Person person) throws ComponentException {
 
-        if (id != null && !personMapDao.containsKey(id) && person != null){
+    public Person updatePerson(Integer id, Person person) throws ComponentException {
+
+        if (id != null && !personMapDao.containsKey(id) && person != null) {
 
             Person personToUpdate = new Person();
             personToUpdate = person;
             personMapDao.put(id, personToUpdate);
             return personToUpdate;
-        }
-        else {
+        } else {
             ComponentException ex = new ComponentException();
             ex.setStatusCode(404);
             throw ex;
         }
     }
 
-    public void deletePerson (Integer id) throws ComponentException {
+    public void deletePerson(Integer id) throws ComponentException {
 
-        if (id != null && personMapDao.containsKey(id)){
+        if (id != null && personMapDao.containsKey(id)) {
 
             Person personToDelete = new Person();
             //personToDelete = personMapDao.get(id);
             personMapDao.remove(id);
-        }
-        else {
+        } else {
             ComponentException ex = new ComponentException();
             ex.setStatusCode(404);
             throw ex;
         }
     }
 
-    public Collection<Person> getAllPersons () throws ComponentException {
+    public Collection<Person> getAllPersons() throws ComponentException {
 
-            return personMapDao.values();
-        }
+        return personMapDao.values();
+    }
 
 }

@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class PersonRegistryApplication {
 
 
-	public static void main(String[] args) {
+    public static void main(String[] args) {
 
-		SpringApplication.run(PersonRegistryApplication.class, args);
-	}
+        SpringApplication.run(PersonRegistryApplication.class, args);
+    }
 
 }

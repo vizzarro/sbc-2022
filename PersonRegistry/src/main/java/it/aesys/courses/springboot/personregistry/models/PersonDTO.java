@@ -18,6 +18,16 @@ public class PersonDTO {
         super();
     }
 
+    public PersonDTO(String n, String s, String fC, EnumGender g, Address a, Date bD, String cN) {
+        this.name = n;
+        this.surname = s;
+        this.fiscalCode = fC;
+        this.gender = g;
+        this.address = a;
+        this.birthDate = bD;
+        this.cellNumber = cN;
+    }
+
     public String getName() {
         return name;
     }
@@ -66,11 +76,11 @@ public class PersonDTO {
         this.birthDate = birthDate;
     }
 
-    public String getCallNumber() {
+    public String getCellNumber() {
         return cellNumber;
     }
 
-    public void setCellNumber(String callNumber) {
+    public void setCellNumber(String cellNumber) {
         this.cellNumber = cellNumber;
     }
 
@@ -83,7 +93,7 @@ public class PersonDTO {
                 ", gender=" + gender +
                 ", address='" + address + '\'' +
                 ", birthDate=" + birthDate +
-                ", callNumber='" + cellNumber + '\'' +
+                ", cellNumber='" + cellNumber + '\'' +
                 '}';
     }
 }
