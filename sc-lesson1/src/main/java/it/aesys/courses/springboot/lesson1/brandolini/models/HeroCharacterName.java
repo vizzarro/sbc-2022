@@ -1,0 +1,45 @@
+package it.aesys.courses.springboot.lesson1.brandolini.models;
+
+public enum HeroCharacterName {
+
+    ARAGORN,
+    GIMLI,
+    LEGOLAS,
+    FRODO,
+    PIPPIN,
+    MEDIADOC,
+    BOROMIR,
+    CELEBRIMBOR,
+    EÄRENDIL,
+    ELWING,
+    ELENDIL,
+    ELROND,
+    FËANOR,
+    FINGOLFIN,
+    FINROD,
+    FELAGUND,
+    FINWË,
+    MÍRIEL,
+    GALADRIEL,
+    GANDALF,
+    GILGALAD,
+    GLORFINDEL,
+    GOLDBERRY,
+    HÚRIN,
+    ISILDUR,
+    LÚTHIEN,
+    BEREN,
+    MAEDHROS,
+    MELIAN,
+    MORGOTH,
+    SARUMAN,
+    SAURON,
+    THINGOLTOM,
+    BOMBADIL,
+    TUOR,
+    IDRILTÚRIN,
+    TURAMBAR,
+    UNGOLIANT
+
+
+    }
