@@ -1,4 +1,4 @@
-package it.aesys.courses.springboot.component;
+package it.aesys.courses.springboot.model;
 
 import org.springframework.stereotype.Component;
 
