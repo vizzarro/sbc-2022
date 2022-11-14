@@ -59,11 +59,9 @@ public class Document {
     public void setFile(String file) {
         this.file = file;
     }
-
     public String getFiscalCode() {
         return fiscalCode;
     }
-
     public void setFiscalCode(String fiscalCode) {
         this.fiscalCode = fiscalCode;
     }

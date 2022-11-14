@@ -8,6 +8,9 @@
         <outputRelativeToContentRoot value="true" />
         <module name="DocumentsRepo" />
         <module name="sc-lesson1" />
+        <module name="black-book" />
+        <module name="person-registry" />
+        <module name="documents-repo" />
         <module name="BlackBook" />
         <module name="PersonRegistry" />
         <module name="sc-helloworld" />
@@ -19,6 +22,9 @@
       <module name="BlackBook" options="-parameters" />
       <module name="DocumentsRepo" options="-parameters" />
       <module name="PersonRegistry" options="-parameters" />
+      <module name="black-book" options="-parameters" />
+      <module name="documents-repo" options="-parameters" />
+      <module name="person-registry" options="-parameters" />
       <module name="sc-helloworld" options="-parameters" />
       <module name="sc-lesson1" options="-parameters" />
     </option>
