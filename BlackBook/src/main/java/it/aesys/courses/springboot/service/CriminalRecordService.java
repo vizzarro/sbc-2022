@@ -1,10 +1,10 @@
 package it.aesys.courses.springboot.service;
 
-import it.aesys.courses.springboot.model.CriminalRecord;
+import it.aesys.courses.springboot.component.CriminalRecordComponent;
 
 public interface CriminalRecordService {
 
-    CriminalRecord getCriminalRecord (String fiscalCodeNumber);
-    CriminalRecord addCriminalRecord(CriminalRecord newCriminalRecord);
-    CriminalRecord updateCriminalRecord(String fiscalCodeNumber, CriminalRecord updated);
+    CriminalRecordComponent getCriminalRecord (String fiscalCodeNumber);
+    CriminalRecordComponent addCriminalRecord(CriminalRecordComponent newCriminalRecord);
+    CriminalRecordComponent updateCriminalRecord(String fiscalCodeNumber, CriminalRecordComponent updated);
 }

@@ -1,6 +1,6 @@
 package it.aesys.courses.springboot.service.impl;
 
-import it.aesys.courses.springboot.model.CriminalRecord;
+import it.aesys.courses.springboot.component.CriminalRecordComponent;
 import it.aesys.courses.springboot.service.CriminalRecordService;
 import org.springframework.stereotype.Service;
 
@@ -8,17 +8,17 @@ import org.springframework.stereotype.Service;
 public class CriminalRecordServiceImpl implements CriminalRecordService {
 
     @Override
-    public CriminalRecord getCriminalRecord(String fiscalCodeNumber) {
+    public CriminalRecordComponent getCriminalRecord(String fiscalCodeNumber) {
         return null;
     }
 
     @Override
-    public CriminalRecord addCriminalRecord (CriminalRecord newCriminalRecord) {
+    public CriminalRecordComponent addCriminalRecord (CriminalRecordComponent newCriminalRecord) {
         return null;
     }
 
     @Override
-    public CriminalRecord updateCriminalRecord(String fiscalCodeNumber, CriminalRecord updated) {
+    public CriminalRecordComponent updateCriminalRecord(String fiscalCodeNumber, CriminalRecordComponent updated) {
         return null;
     }
 }
