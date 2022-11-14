@@ -1,3 +1,9 @@
+server:
+    port: 8081
+    error:
+        whitelabel:
+            enabled: false
+
 vizzarro:
     config:
         version: 1.0.1

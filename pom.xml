@@ -15,6 +15,9 @@
   <modules>
     <module>sc-helloworld</module>
 	<module>sc-lesson1</module>
+      <module>PersonRegistry</module>
+    <module>DocumentsRepo</module>
+    <module>BlackBook</module>
   </modules>
   
 </project>
