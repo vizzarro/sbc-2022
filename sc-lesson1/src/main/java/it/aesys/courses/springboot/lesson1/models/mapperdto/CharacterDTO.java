@@ -1,23 +1,23 @@
-package it.aesys.courses.springboot.lesson1.models;
+package it.aesys.courses.springboot.lesson1.models.mapperdto;
 
-public class Character {
+
+public class CharacterDTO {
+
 
     private String uuid;
     private String name;
     private Integer level;
+
+
     private Integer strength;
     private Integer costituion;
-    private SizeType size;
     private Integer dextery;
     private Integer wisdom;
-    private Integer charsim;
     private Integer Intellect;
 
-    private ClassType type;
+    private String type;
 
-
-    public Character() {
-        super();
+    public CharacterDTO() {
     }
 
     public String getUuid() {
@@ -60,14 +60,6 @@ public class Character {
         this.costituion = costituion;
     }
 
-    public SizeType getSize() {
-        return size;
-    }
-
-    public void setSize(SizeType size) {
-        this.size = size;
-    }
-
     public Integer getDextery() {
         return dextery;
     }
@@ -84,14 +76,6 @@ public class Character {
         this.wisdom = wisdom;
     }
 
-    public Integer getCharsim() {
-        return charsim;
-    }
-
-    public void setCharsim(Integer charsim) {
-        this.charsim = charsim;
-    }
-
     public Integer getIntellect() {
         return Intellect;
     }
@@ -99,29 +83,26 @@ public class Character {
     public void setIntellect(Integer intellect) {
         Intellect = intellect;
     }
-
-    public ClassType getType() {
+    public String getType() {
         return type;
     }
 
-    public void setType(ClassType type) {
+    public void setType(String type) {
         this.type = type;
     }
 
     @Override
     public String toString() {
-        return "Character{" +
+        return "CharacterDTO{" +
                 "uuid='" + uuid + '\'' +
                 ", name='" + name + '\'' +
                 ", level=" + level +
                 ", strength=" + strength +
                 ", costituion=" + costituion +
-                ", size=" + size +
                 ", dextery=" + dextery +
                 ", wisdom=" + wisdom +
-                ", charsim=" + charsim +
                 ", Intellect=" + Intellect +
-                ", type=" + type +
+                ", type='" + type + '\'' +
                 '}';
     }
 }
