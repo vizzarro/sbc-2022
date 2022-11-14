@@ -10,9 +10,15 @@ public class PersonDao {
 
     Map<Integer, models.Person> personMapDao = new HashMap<>();
 
-    public models.Person createPerson (PersonDto personDto){
+    public models.Person createPerson (models.Person person){
 
-
+        if (person != null && !personMapDao.containsKey(person.getId())){
+            personMapDao.put(person.getId(), person);
+            return personMapDao.get(person.getId);
+        }
+        ComponentException ex = new ComponentException();
+        ex.setStatusCode(400);
+        throw ex;
     }
 
 
