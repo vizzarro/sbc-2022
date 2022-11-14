@@ -4,9 +4,9 @@ import java.util.Date;
 
 public class Person {
 
-    private String;
-    private String;
-    private String;
+    private String name;
+    private String surname;
+    private String fiscalCode;
     private EnumGender gender;
     private EnumAddress address;
     private Date birthDate;
@@ -24,7 +24,7 @@ public class Person {
         this.gender = gender;
     }
 
-    public String getAddress() {
+    public EnumAddress getAddress() {
         return address;
     }
 
