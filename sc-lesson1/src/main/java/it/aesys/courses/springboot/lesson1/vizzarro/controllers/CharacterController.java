@@ -1,7 +1,5 @@
 package it.aesys.courses.springboot.lesson1.vizzarro.controllers;
 
-import it.aesys.courses.springboot.lesson1.models.Character;
-import it.aesys.courses.springboot.lesson1.models.ClassType;
 import it.aesys.courses.springboot.lesson1.models.mapperdto.CharacterDTO;
 import it.aesys.courses.springboot.lesson1.models.request.CharacterRequest;
 import it.aesys.courses.springboot.lesson1.vizzarro.services.CharacterService;
