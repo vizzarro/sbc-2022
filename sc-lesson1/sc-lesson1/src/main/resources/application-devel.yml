@@ -1,0 +1,12 @@
+vizzarro:
+    config:
+        version: 1.0.1
+        appName: Devel Environment lesson
+
+vervenna:
+    config:
+        version: 1.0.1
+        appName: Devel Environment lesson by Vervenna
+brandolini:
+    config:
+        description: This is developement
