@@ -9,6 +9,11 @@ public class Report {
 
     }
 
+    public Report(Problem problemType, String reportDescription) {
+        this.problemType = problemType;
+        this.reportDescription = reportDescription;
+    }
+
     public Problem getProblemType() {
         return problemType;
     }

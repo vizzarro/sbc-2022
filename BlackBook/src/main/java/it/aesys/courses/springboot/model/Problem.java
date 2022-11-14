@@ -2,16 +2,18 @@ package it.aesys.courses.springboot.model;
 
 public class Problem {
 
-    private String problemType;
+    private ProblemType problemType;
 
     public Problem(){
 
     }
-    public void setProblemType(String problemType) {
+
+    public ProblemType getProblemType() {
+        return problemType;
+    }
+
+    public void setProblemType(ProblemType problemType) {
         this.problemType = problemType;
     }
 
-    public String getProblemType() {
-        return problemType;
-    }
 }
