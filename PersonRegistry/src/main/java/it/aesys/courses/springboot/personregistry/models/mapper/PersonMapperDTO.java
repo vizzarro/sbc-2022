@@ -1,10 +1,39 @@
 package it.aesys.courses.springboot.personregistry.models.mapper;
 
+import it.aesys.courses.springboot.personregistry.models.EnumAddress;
+import it.aesys.courses.springboot.personregistry.models.EnumGender;
+import it.aesys.courses.springboot.personregistry.models.Person;
+
 public class PersonMapperDTO {
 
-<<<<<<< HEAD
+    public PersonDTO toDto(Person person) {
 
-=======
-public
->>>>>>> 519bf820515a43324e26db78956e4ca465c34b8d
+        PersonDTO dto = new PersonDTO();
+
+        dto.setName(person.getName());
+        dto.setSurname(person.getSurname());
+        dto.setFiscalCode(person.getFiscalCode());
+        dto.setGender(EnumGender.valueOf(person.getGender()));
+        dto.setAddress(EnumAddress.valueOf(person.getAddress()));
+        dto.setBirthDate(person.getBirthDate());
+        dto.setCallNumber(person.getCallNumber());
+
+        return dto;
+    }
+
+    public Person toModel(PersonDTO dto) {
+
+        Person p = new Person();
+
+        p.setName(dto.getName());
+        p.setSurname(dto.getSurname());
+        p.setFiscalCode(dto.getFiscalCode());
+        p.setGender(EnumGender.valueOf(dto.getGender()));
+        p.setAddress(EnumAddress.valueOf(dto.getAddress()));
+        p.setBirthDate(dto.setBirthDate());
+        p.setCellNUmber(dto.getCallNumber());
+
+        return p;
+    }
+
 }

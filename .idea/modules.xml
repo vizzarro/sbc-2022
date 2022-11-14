@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/BlackBook/black-book.iml" filepath="$PROJECT_DIR$/BlackBook/black-book.iml" />
+      <module fileurl="file://$PROJECT_DIR$/DocumentsRepo/documents-repo.iml" filepath="$PROJECT_DIR$/DocumentsRepo/documents-repo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/PersonRegistry/person-registry.iml" filepath="$PROJECT_DIR$/PersonRegistry/person-registry.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sc-helloworld/sc-helloworld.iml" filepath="$PROJECT_DIR$/sc-helloworld/sc-helloworld.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sc-lesson1/sc-lesson1.iml" filepath="$PROJECT_DIR$/sc-lesson1/sc-lesson1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sc-lessons-exercise.iml" filepath="$PROJECT_DIR$/sc-lessons-exercise.iml" />
+    </modules>
+  </component>
+</project>
