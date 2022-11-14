@@ -16,7 +16,7 @@ public class PersonMapperDTO {
         dto.setGender(person.getGender());
         dto.setAddress(person.getAddress().toString());
         dto.setBirthDate(person.getBirthDate());
-        dto.setCallNumber(person.getCellNumber());
+        dto.setCellNumber(person.getCellNumber());
 
         return dto;
     }
@@ -31,7 +31,7 @@ public class PersonMapperDTO {
         p.setGender(dto.getGender());
         p.setAddress(EnumAddress.valueOf(dto.getAddress()));
         p.setBirthDate(dto.getBirthDate());
-        p.setCellNUmber(dto.getCellNumber());
+        p.setCellNumber(dto.getCallNumber());
 
         return p;
     }

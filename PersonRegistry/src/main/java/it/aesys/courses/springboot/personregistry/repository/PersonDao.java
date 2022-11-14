@@ -1,7 +1,7 @@
 package it.aesys.courses.springboot.personregistry.repository;
 
+import it.aesys.courses.springboot.personregistry.models.Person;
 import it.aesys.courses.springboot.personregistry.repository.exception.ComponentException;
-import models.Person;
 import org.springframework.stereotype.Component;
 
 import java.util.Collection;
@@ -11,13 +11,13 @@ import java.util.Map;
 @Component
 public class PersonDao {
 
-    Map<Integer, models.Person> personMapDao = new HashMap<>();
+    Map<Integer, Person> personMapDao = new HashMap<>();
 
-    public models.Person createPerson (models.Person person) throws ComponentException {
+    public Person createPerson (Person person) throws ComponentException {
 
         if (person != null && !personMapDao.containsKey(person.getId())){
             personMapDao.put(person.getId(), person);
-            return personMapDao.get(person.getId);
+            return personMapDao.get(person.getId());
         }
         else {
             ComponentException ex = new ComponentException();
@@ -28,7 +28,7 @@ public class PersonDao {
 
 
 
-    public models.Person getPerson (Integer id) throws ComponentException {
+    public Person getPerson (Integer id) throws ComponentException {
 
         if (id != null && !personMapDao.containsKey(id)){
 
@@ -40,13 +40,13 @@ public class PersonDao {
             throw ex;
         }
     }
-    public models.Person updatePerson (Integer id, models.Person person) throws ComponentException {
+    public Person updatePerson (Integer id, Person person) throws ComponentException {
 
         if (id != null && !personMapDao.containsKey(id) && person != null){
 
             Person personToUpdate = new Person();
             personToUpdate = person;
-            personMapDao.put(Integer id, personToUpdate);
+            personMapDao.put(id, personToUpdate);
             return personToUpdate;
         }
         else {
