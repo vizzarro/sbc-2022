@@ -10,12 +10,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("dilorito")
-@Profile("devel")
-public class DiLoritoController {
+@Profile("production")
+public class DiLoritoOfController {
     private DiLoritoConfig config;
 
     @Autowired
-    public DiLoritoController(DiLoritoConfig config){
+    public DiLoritoOfController(DiLoritoConfig config){
         this.config = config;
     }
 
