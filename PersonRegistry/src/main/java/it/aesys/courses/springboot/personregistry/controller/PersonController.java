@@ -1,14 +1,15 @@
 package it.aesys.courses.springboot.personregistry.controller;
 
 import it.aesys.courses.springboot.personregistry.models.PersonDTO;
+import it.aesys.courses.springboot.personregistry.repository.exception.ComponentException;
+import it.aesys.courses.springboot.personregistry.request.PersonRequest;
 import it.aesys.courses.springboot.personregistry.service.PersonService;
 import it.aesys.courses.springboot.personregistry.service.exceptions.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import javax.websocket.server.PathParam;
 
 @RestController
 @RequestMapping("personregistry")
@@ -25,11 +26,12 @@ public class PersonController {
     }
 
     @PostMapping
-    public PersonDTO addPerson(@RequestBody request.PersonRequest personRequest) throws ServiceException {
-
+    public PersonDTO addPerson(@RequestBody PersonRequest personRequest) throws ServiceException {
         return service.create(personRequest.getPersonDTO());
     }
 
-
-
+    @GetMapping("/{id}")
+    public PersonDTO getPersonById(@PathVariable("id") Integer id) throws ServiceException, ComponentException {
+        return service.get(id);
+    }
 }

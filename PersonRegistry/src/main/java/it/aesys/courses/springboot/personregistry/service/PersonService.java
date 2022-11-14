@@ -7,10 +7,12 @@ import it.aesys.courses.springboot.personregistry.repository.PersonDao;
 import it.aesys.courses.springboot.personregistry.repository.exception.ComponentException;
 import it.aesys.courses.springboot.personregistry.service.exceptions.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Collection;
 
+@Service
 public class PersonService {
 
     private PersonMapperDTO personMapperDTO;
@@ -18,7 +20,7 @@ public class PersonService {
 
 
     @Autowired
-    public PersonService(PersonMapperDTO personMapperDTO, PersonDao personDao){
+    public PersonService(PersonMapperDTO personMapperDTO, PersonDao personDao) {
         this.personMapperDTO = personMapperDTO;
         this.personDao = personDao;
     }
@@ -26,21 +28,20 @@ public class PersonService {
     public PersonDTO create(PersonDTO personDto) throws ServiceException {
 
         try {
-            return personMapperDTO.toDto(personDao.createPerson(personMapperDTO.toModel(personDto)));
-        }
-        catch (ComponentException e){
+            return this.personMapperDTO.toDto(this.personDao.createPerson(this.personMapperDTO.toModel(personDto)));
+        } catch (ComponentException e) {
             ServiceException ex = new ServiceException();
             ex.setStatusCode(e.getStatusCode());
             throw ex;
         }
     }
+
     public PersonDTO get(Integer id) throws ComponentException, ServiceException {
 
         try {
-            return personMapperDTO.toDto(personDao.getPerson(id)) ;
+            return personMapperDTO.toDto(personDao.getPerson(id));
 
-        }
-        catch (ComponentException e){
+        } catch (ComponentException e) {
             ServiceException ex = new ServiceException();
             ex.setStatusCode(e.getStatusCode());
             throw ex;
@@ -49,34 +50,27 @@ public class PersonService {
 
     public Collection<PersonDTO> getAll() throws ComponentException, ServiceException {
 
-
-        Collection< PersonDTO> allHeroCharactersDto = new ArrayList<>();
-
+        Collection<PersonDTO> allHeroCharactersDto = new ArrayList<>();
         Collection<Person> allHeroCharacters = personDao.getAllPersons();
-
-        allHeroCharacters.forEach(x -> allHeroCharactersDto.add(personMapperDTO.toDto(x)) );
+        allHeroCharacters.forEach(x -> allHeroCharactersDto.add(personMapperDTO.toDto(x)));
 
         return allHeroCharactersDto;
-
     }
-
 
 
     public PersonDTO update(Integer id, PersonDTO personDTO) throws ComponentException, ServiceException {
 
         try {
-            if (personDao.getPerson(personMapperDTO.toModel(personDTO).getId()) !=null) {
+            if (personDao.getPerson(personMapperDTO.toModel(personDTO).getId()) != null) {
                 Person updatedPerson = personMapperDTO.toModel(personDTO);
                 personDao.updatePerson(id, updatedPerson);
                 return personMapperDTO.toDto(updatedPerson);
-            }
-            else {
+            } else {
                 ServiceException exc = new ServiceException();
                 exc.setStatusCode(404);
                 throw exc;
             }
-        }
-        catch (ComponentException e){
+        } catch (ComponentException e) {
             ServiceException ex = new ServiceException();
             ex.setStatusCode(e.getStatusCode());
             throw ex;
@@ -86,26 +80,21 @@ public class PersonService {
     public void delete(Integer id) throws ComponentException, ServiceException {
 
         try {
-            if (personMapperDTO.toDto(personDao.getPerson(id))   != null){
+            if (personMapperDTO.toDto(personDao.getPerson(id)) != null) {
                 Person personToDelete = new Person();
                 personToDelete = personDao.getPerson(id);
                 personDao.deletePerson(id);
-            }
-            else {
+            } else {
                 ServiceException exc = new ServiceException();
                 exc.setStatusCode(404);
                 throw exc;
             }
-        }
-        catch (ComponentException e){
+        } catch (ComponentException e) {
             ServiceException ex = new ServiceException();
             ex.setStatusCode(e.getStatusCode());
             throw ex;
         }
     }
-
-
-
 
 
 }

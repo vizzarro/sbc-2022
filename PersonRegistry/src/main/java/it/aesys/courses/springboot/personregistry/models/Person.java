@@ -8,12 +8,13 @@ public class Person {
     private String surname;
     private String fiscalCode;
     private EnumGender gender;
-    private EnumAddress address;
+    private Address address;
     private Date birthDate;
     private String cellNumber;
     private Integer id;
 
     public Person() {
+        super();
     }
 
     public EnumGender getGender() {
@@ -24,11 +25,11 @@ public class Person {
         this.gender = gender;
     }
 
-    public EnumAddress getAddress() {
+    public Address getAddress() {
         return address;
     }
 
-    public void setAddress(EnumAddress address) {
+    public void setAddress(Address address) {
         this.address = address;
     }
 

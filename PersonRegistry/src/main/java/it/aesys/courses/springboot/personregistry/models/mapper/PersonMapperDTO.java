@@ -3,7 +3,9 @@ package it.aesys.courses.springboot.personregistry.models.mapper;
 import it.aesys.courses.springboot.personregistry.models.EnumAddress;
 import it.aesys.courses.springboot.personregistry.models.Person;
 import it.aesys.courses.springboot.personregistry.models.PersonDTO;
+import org.springframework.stereotype.Component;
 
+@Component
 public class PersonMapperDTO {
 
     public PersonDTO toDto(Person person) {
@@ -14,7 +16,7 @@ public class PersonMapperDTO {
         dto.setSurname(person.getSurname());
         dto.setFiscalCode(person.getFiscalCode());
         dto.setGender(person.getGender());
-        dto.setAddress(person.getAddress().toString());
+        dto.setAddress(person.getAddress());
         dto.setBirthDate(person.getBirthDate());
         dto.setCellNumber(person.getCellNumber());
 
@@ -29,11 +31,13 @@ public class PersonMapperDTO {
         p.setSurname(dto.getSurname());
         p.setFiscalCode(dto.getFiscalCode());
         p.setGender(dto.getGender());
-        p.setAddress(EnumAddress.valueOf(dto.getAddress()));
+        p.setAddress(dto.getAddress());
         p.setBirthDate(dto.getBirthDate());
         p.setCellNumber(dto.getCallNumber());
 
         return p;
     }
-
+/**
+ * perche' si'
+ */
 }
