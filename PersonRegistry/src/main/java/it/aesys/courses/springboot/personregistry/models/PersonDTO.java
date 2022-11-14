@@ -1,4 +1,4 @@
-package it.aesys.courses.springboot.personregistry.models.mapper;
+package it.aesys.courses.springboot.personregistry.models;
 
 import it.aesys.courses.springboot.personregistry.models.EnumGender;
 
