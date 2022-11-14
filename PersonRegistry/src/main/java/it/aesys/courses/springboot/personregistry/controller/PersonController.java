@@ -27,7 +27,6 @@ public class PersonController {
 
     @PostMapping
     public PersonDTO addPerson(@RequestBody PersonRequest personRequest) throws ServiceException {
-
         return service.create(personRequest.getPersonDTO());
     }
 

@@ -5,6 +5,7 @@ import it.aesys.courses.springboot.personregistry.models.EnumAddress;
 import it.aesys.courses.springboot.personregistry.models.EnumGender;
 import it.aesys.courses.springboot.personregistry.models.Person;
 import it.aesys.courses.springboot.personregistry.repository.exception.ComponentException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.Collection;
@@ -18,7 +19,7 @@ public class PersonDao {
     private Map<Integer, Person> personMapDao = new HashMap<>();
     private Integer sequence;
 
-
+    @Autowired
     public PersonDao(){
         this.sequence = 0;
         this.personMapDao = new HashMap<>();

@@ -28,7 +28,7 @@ public class PersonService {
     public PersonDTO create(PersonDTO personDto) throws ServiceException {
 
         try {
-            return personMapperDTO.toDto(personDao.createPerson(personMapperDTO.toModel(personDto)));
+            return this.personMapperDTO.toDto(this.personDao.createPerson(this.personMapperDTO.toModel(personDto)));
         } catch (ComponentException e) {
             ServiceException ex = new ServiceException();
             ex.setStatusCode(e.getStatusCode());

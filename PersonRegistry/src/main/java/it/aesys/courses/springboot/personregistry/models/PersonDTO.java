@@ -15,7 +15,7 @@ public class PersonDTO {
 
 
     public PersonDTO() {
-
+        super();
     }
 
     public String getName() {

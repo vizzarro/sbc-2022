@@ -14,6 +14,7 @@ public class Person {
     private Integer id;
 
     public Person() {
+        super();
     }
 
     public EnumGender getGender() {
