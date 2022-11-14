@@ -13,6 +13,7 @@ class DocumentRepoApplication {
 	public static void main(String[] args) {
 
 		SpringApplication.run(DocumentRepoApplication.class, args);
+
 	}
 
 }

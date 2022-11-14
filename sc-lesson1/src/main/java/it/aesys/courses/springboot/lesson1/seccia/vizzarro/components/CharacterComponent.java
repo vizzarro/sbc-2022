@@ -14,7 +14,6 @@ public class CharacterComponent {
     private Map<String, Character> mapCharacter = new HashMap<>();
 
     public Character create(Character c) throws ComponentException {
-
         if (!mapCharacter.containsKey(c.getUuid())) {
             mapCharacter.put(c.getUuid(), c);
             return mapCharacter.get(c.getUuid());
@@ -33,6 +32,7 @@ public class CharacterComponent {
         ex.setStatusCode(404);
         throw ex;
     }
+
 
     public void delete(String uuid) throws ComponentException {
 
@@ -60,4 +60,5 @@ public class CharacterComponent {
         return mapCharacter.values();
 
     }
+
 }
