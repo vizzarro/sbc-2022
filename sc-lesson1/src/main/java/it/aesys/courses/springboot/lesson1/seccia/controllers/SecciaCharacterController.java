@@ -45,7 +45,7 @@ public class SecciaCharacterController{
     }
 
     @PutMapping("{uuid}")
-    public CharacterDTO update(@PathVariable ("uuid") @RequestBody CharacterRequest request) throws ServiceException {
+    public CharacterDTO update(@PathVariable ("uuid") String uuid, @RequestBody CharacterRequest request) throws ServiceException {
         return service.update(request.getCharacter());
     }
 }
