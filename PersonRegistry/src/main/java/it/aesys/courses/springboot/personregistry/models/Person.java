@@ -24,7 +24,7 @@ public class Person {
         this.gender = gender;
     }
 
-    public String getAddress() {
+    public EnumAddress getAddress() {
         return address;
     }
 

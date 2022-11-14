@@ -13,10 +13,10 @@ public class PersonMapperDTO {
         dto.setName(person.getName());
         dto.setSurname(person.getSurname());
         dto.setFiscalCode(person.getFiscalCode());
-        dto.setGender(EnumGender.valueOf(person.getGender()));
-        dto.setAddress(EnumAddress.valueOf(person.getAddress()));
+        dto.setGender(person.getGender());
+        dto.setAddress(person.getAddress().toString());
         dto.setBirthDate(person.getBirthDate());
-        dto.setCallNumber(person.getCallNumber());
+        dto.setCallNumber(person.getCellNumber());
 
         return dto;
     }
@@ -28,10 +28,10 @@ public class PersonMapperDTO {
         p.setName(dto.getName());
         p.setSurname(dto.getSurname());
         p.setFiscalCode(dto.getFiscalCode());
-        p.setGender(EnumGender.valueOf(dto.getGender()));
+        p.setGender(dto.getGender());
         p.setAddress(EnumAddress.valueOf(dto.getAddress()));
-        p.setBirthDate(dto.setBirthDate());
-        p.setCellNUmber(dto.getCallNumber());
+        p.setBirthDate(dto.getBirthDate());
+        p.setCellNUmber(dto.getCellNumber());
 
         return p;
     }
