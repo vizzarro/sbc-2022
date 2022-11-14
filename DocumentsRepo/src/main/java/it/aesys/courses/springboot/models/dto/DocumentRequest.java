@@ -2,18 +2,15 @@ package it.aesys.courses.springboot.models.dto;
 
 import java.time.LocalDate;
 public class DocumentRequest {
-
     private String nameFile;
     private String typeOfFile;
     private String typeOfDoc;
-    private String file;
     private String fiscalCode;
 
-    public DocumentRequest(String nameFile, String typeOfFile, String typeOfDoc, String file, String fiscalCode) {
+    public DocumentRequest(String nameFile, String typeOfFile, String typeOfDoc, String fiscalCode) {
         this.nameFile = nameFile;
         this.typeOfFile = typeOfFile;
         this.typeOfDoc = typeOfDoc;
-        this.file = file;
         this.fiscalCode = fiscalCode;
     }
 
@@ -45,13 +42,6 @@ public class DocumentRequest {
         this.typeOfDoc = typeOfDoc;
     }
 
-    public String getFile() {
-        return file;
-    }
-
-    public void setFile(String file) {
-        this.file = file;
-    }
 
     public String getFiscalCode() {
         return fiscalCode;
