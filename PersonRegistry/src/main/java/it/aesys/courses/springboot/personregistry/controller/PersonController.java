@@ -25,7 +25,7 @@ public class PersonController {
     }
 
     @PostMapping
-    public PersonDTO addPerson(@RequestBody request.PersonRequest personRequest) throws ServiceException {
+    public PersonDTO addPerson(@RequestBody it.aesys.courses.springboot.personregistry.request.PersonRequest personRequest) throws ServiceException {
 
         return service.create(personRequest.getPersonDTO());
     }
