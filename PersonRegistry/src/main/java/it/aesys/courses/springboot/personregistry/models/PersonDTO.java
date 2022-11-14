@@ -1,7 +1,5 @@
 package it.aesys.courses.springboot.personregistry.models;
 
-import it.aesys.courses.springboot.personregistry.models.EnumGender;
-
 import java.util.Date;
 
 public class PersonDTO {
@@ -10,7 +8,7 @@ public class PersonDTO {
     private String surname;
     private String fiscalCode;
     private EnumGender gender;
-    private String address;
+    private Address address;
     private Date birthDate;
 
     private String cellNumber;
@@ -52,11 +50,11 @@ public class PersonDTO {
         this.gender = gender;
     }
 
-    public String getAddress() {
+    public Address getAddress() {
         return address;
     }
 
-    public void setAddress(String address) {
+    public void setAddress(Address address) {
         this.address = address;
     }
 
