@@ -1,8 +1,6 @@
-dirocco:
+digregorio:
     config:
         version: 1.0.1
-<<<<<<< HEAD
-=======
         appName: Devel Environment lesson
 
 vervenna:
@@ -12,4 +10,3 @@ vervenna:
 brandolini:
     config:
         description: This is developement
->>>>>>> e8e0d8377a7a7e4f8cd614be68e029801ac5a513

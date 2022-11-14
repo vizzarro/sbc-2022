@@ -1,5 +1,5 @@
 <<<<<<< HEAD
-dirocco:
+digregorio:
 =======
 server:
     port: 8081
@@ -11,8 +11,6 @@ vizzarro:
 >>>>>>> bd44ebd6d8e17a7cfa070e62e7e266a23d5cfc09
     config:
         version: 1.0.1
-<<<<<<< HEAD
-=======
 
 vervenna:
     config:
@@ -22,4 +20,3 @@ vervenna:
 brandolini:
     config:
         description: This is production
->>>>>>> e8e0d8377a7a7e4f8cd614be68e029801ac5a513
