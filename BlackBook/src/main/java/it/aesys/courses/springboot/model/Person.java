@@ -7,11 +7,11 @@ public class Person {
 
     public Person() {}
 
-    public void setfiscalCodeNumber(String fiscalCodeNumber) {
+    public void setFiscalCodeNumber(String fiscalCodeNumber) {
         this.fiscalCodeNumber = fiscalCodeNumber;
     }
 
-    public String getfiscalCodeNumber() {
+    public String getFiscalCodeNumber() {
         return fiscalCodeNumber;
     }
 
