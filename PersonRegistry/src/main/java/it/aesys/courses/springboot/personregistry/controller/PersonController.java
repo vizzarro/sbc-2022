@@ -16,8 +16,6 @@ import javax.websocket.server.PathParam;
 //@Profile("")
 public class PersonController {
 
-
-
     private PersonService service;
 
     @Autowired
@@ -26,7 +24,7 @@ public class PersonController {
     }
 
     @PostMapping
-    public PersonDTO addPerson(@RequestBody PersonRequest personRequest) throws ServiceException {
+    public PersonDTO addPerson(@RequestBody PersonRequest personRequest) throws ServiceException, ComponentException {
         return service.create(personRequest.getPersonDTO());
     }
 
@@ -34,5 +32,13 @@ public class PersonController {
     public PersonDTO getPersonById(@PathVariable("id") Integer id) throws ServiceException, ComponentException {
         return service.get(id);
     }
+
+    @DeleteMapping("/{id}")
+    public String deletePerson(@PathVariable("id") Integer id ) throws ServiceException, ComponentException{
+        return service.delete(id);
+    }
+
+
+
 
 }
