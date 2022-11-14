@@ -45,5 +45,8 @@ public class DocumentComponent {
         return null;
     }
 
+    public List<Document> findAll(){
+        return this.documentList;
+    }
 
 }
