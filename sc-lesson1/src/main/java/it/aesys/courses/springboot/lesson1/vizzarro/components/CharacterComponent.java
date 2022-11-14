@@ -16,7 +16,6 @@ public class CharacterComponent {
     public Character create(Character c) throws ComponentException {
 
         if (!mapCharacter.containsKey(c.getUuid())) {
-            System.out.println(c.toString());
             mapCharacter.put(c.getUuid(), c);
             return mapCharacter.get(c.getUuid());
         }
