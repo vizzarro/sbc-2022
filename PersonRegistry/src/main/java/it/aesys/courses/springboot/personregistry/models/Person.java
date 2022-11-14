@@ -4,9 +4,9 @@ import java.util.Date;
 
 public class Person {
 
-    private String;
-    private String;
-    private String;
+    private String name;
+    private String surname;
+    private String fiscalCode;
     private EnumGender gender;
     private EnumAddress address;
     private Date birthDate;
