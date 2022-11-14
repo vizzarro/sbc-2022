@@ -1,10 +1,13 @@
 package it.aesys.courses.springboot.personregistry.repository;
 
+import it.aesys.courses.springboot.personregistry.models.EnumAddress;
+import it.aesys.courses.springboot.personregistry.models.EnumGender;
 import it.aesys.courses.springboot.personregistry.models.Person;
 import it.aesys.courses.springboot.personregistry.repository.exception.ComponentException;
 import org.springframework.stereotype.Component;
 
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,6 +21,17 @@ public class PersonDao {
     public PersonDao(){
         this.sequence = 0;
         this.personMapDao = new HashMap<>();
+
+        Person gennaro = new Person();
+        gennaro.setId(1);
+        gennaro.setName("gennaro");
+        gennaro.setSurname("mosconi");
+        gennaro.setBirthDate(new Date());
+        gennaro.setAddress(EnumAddress.DOMICILE);
+        gennaro.setGender(EnumGender.FEMALE);
+        gennaro.setFiscalCode("gnrmsc13k547c");
+
+        this.personMapDao.put(1, gennaro);
     }
 
     public Person createPerson (Person person) throws ComponentException {
@@ -39,7 +53,7 @@ public class PersonDao {
 
     public Person getPerson (Integer id) throws ComponentException {
 
-        if (id != null && !personMapDao.containsKey(id)){
+        if (id != null && personMapDao.containsKey(id)){
 
             return personMapDao.get(id);
         }
