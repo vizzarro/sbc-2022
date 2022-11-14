@@ -24,6 +24,7 @@ public class HeroCharacterService {
 
 
 
+
     @Autowired
     public HeroCharacterService(HeroCharacterComponent heroCharacterMapDao, HeroCharacterMapperDTO heroCharacterMapperDTO){
         this.heroCharacterMapDao = heroCharacterMapDao;
@@ -119,7 +120,7 @@ public class HeroCharacterService {
     }
 
     public HeroCharacterDTO random() throws ServiceExceptionBrandolini {
-        Random random = new Random();
+        //Random random = new Random();
 
         HeroCharacterDTO randomHeroCharacterDto = new HeroCharacterDTO();
 
