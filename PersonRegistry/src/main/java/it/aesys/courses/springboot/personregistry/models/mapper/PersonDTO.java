@@ -1,5 +1,7 @@
 package it.aesys.courses.springboot.personregistry.models.mapper;
 
+import it.aesys.courses.springboot.personregistry.models.EnumGender;
+
 import java.util.Date;
 
 public class PersonDTO {
