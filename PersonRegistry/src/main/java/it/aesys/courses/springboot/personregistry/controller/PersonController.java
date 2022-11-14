@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.web.bind.annotation.*;
 
 import javax.websocket.server.PathParam;
+import java.util.Collection;
 
 @RestController
 @RequestMapping("personregistry")
@@ -38,7 +39,10 @@ public class PersonController {
         return service.delete(id);
     }
 
-
+    @GetMapping("all")
+    public Collection<PersonDTO> getAllPersons() throws ServiceException, ComponentException {
+        return service.getAll();
+    }
 
 
 }
