@@ -1,24 +1,21 @@
 package it.aesys.courses.springboot.personregistry.models;
 
-import it.aesys.courses.springboot.personregistry.models.EnumGender;
-import org.springframework.stereotype.Component;
-
 import java.util.Date;
-@Component
+
 public class PersonDTO {
 
     private String name;
     private String surname;
     private String fiscalCode;
     private EnumGender gender;
-    private String address;
+    private Address address;
     private Date birthDate;
 
     private String cellNumber;
 
 
     public PersonDTO() {
-
+        super();
     }
 
     public String getName() {
@@ -53,11 +50,11 @@ public class PersonDTO {
         this.gender = gender;
     }
 
-    public String getAddress() {
+    public Address getAddress() {
         return address;
     }
 
-    public void setAddress(String address) {
+    public void setAddress(Address address) {
         this.address = address;
     }
 

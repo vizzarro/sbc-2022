@@ -1,9 +1,11 @@
 package it.aesys.courses.springboot.personregistry.repository;
 
+import it.aesys.courses.springboot.personregistry.models.Address;
 import it.aesys.courses.springboot.personregistry.models.EnumAddress;
 import it.aesys.courses.springboot.personregistry.models.EnumGender;
 import it.aesys.courses.springboot.personregistry.models.Person;
 import it.aesys.courses.springboot.personregistry.repository.exception.ComponentException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.Collection;
@@ -17,17 +19,22 @@ public class PersonDao {
     private Map<Integer, Person> personMapDao = new HashMap<>();
     private Integer sequence;
 
-
+    @Autowired
     public PersonDao(){
         this.sequence = 0;
         this.personMapDao = new HashMap<>();
 
+        Address gennaroAddress = new Address();
+        gennaroAddress.setCivic("69");
+        gennaroAddress.setHome(EnumAddress.RESIDENCE);
+        gennaroAddress.setStreet("via dei crocifissi");
+        gennaroAddress.setPostalCode(104);
         Person gennaro = new Person();
         gennaro.setId(1);
         gennaro.setName("gennaro");
         gennaro.setSurname("mosconi");
         gennaro.setBirthDate(new Date());
-        gennaro.setAddress(EnumAddress.DOMICILE);
+        gennaro.setAddress(gennaroAddress);
         gennaro.setGender(EnumGender.FEMALE);
         gennaro.setFiscalCode("gnrmsc13k547c");
 
