@@ -35,4 +35,5 @@ public class PersonController {
     public PersonDTO getPersonById(@PathVariable("id") Integer id) throws ServiceException, ComponentException {
         return service.get(id);
     }
+
 }

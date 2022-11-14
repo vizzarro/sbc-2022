@@ -1,9 +1,10 @@
 package it.aesys.courses.springboot.personregistry.models;
 
 import it.aesys.courses.springboot.personregistry.models.EnumGender;
+import org.springframework.stereotype.Component;
 
 import java.util.Date;
-
+@Component
 public class PersonDTO {
 
     private String name;
