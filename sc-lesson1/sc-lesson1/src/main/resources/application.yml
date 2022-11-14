@@ -1,0 +1,78 @@
+spring:
+  profiles:
+    active: devel
+
+app:
+  lesson: LESSON 1
+
+lesson:
+  author: matteo.fornaro@aesys.tech
+  welcome-message: Welcome to ${app.lesson} !!!
+
+
+dirocco:
+  config:
+    AppName: Lesson One Print Info
+    version: 1.0.0
+    description: Endpoint print info
+
+dilorito:
+  config:
+    appName: Lesson One Print Info
+    version: 1.0.0
+    description: Endpoint printing info made by Seccia
+
+digregorio:
+  config:
+    appName: Lessone One Print Info
+    version: 1.0.0
+    description: Endpoint printing info.
+
+fornaro:
+  config:
+    appName: Lesson One Print Info
+    version: 1.0.0
+    description: Endpoint printing info
+
+
+vizzarro:
+  config:
+    appName: Lesson One Print Info
+    version: 1.0.0
+    description: Endpoint printing info.
+
+seccia:
+  config:
+    appName: Lesson Print Info by Seccia
+    version: 1.0.0
+    description: Endpoint printing info.
+
+caterina:
+  config:
+    appName: Lesson One Print Info
+    version: 1.0.0
+    description: Endpoint printing info
+
+francesca:
+  config:
+    appName: Lesson One Print Info
+    version: 1.0.0
+    description: Endpoint printing info made by Seccia
+
+maiolini:
+  config:
+    version: 1.0.0
+    appName: Lesson One Print
+    description: Endpoint printing info Valerio Maiolini
+
+brandolini:
+  config:
+    version: 1.0.0
+    appName: Aesys Exercise 1
+    description: This is the print exercise. Luca Brandolini
+
+vervenna:
+  config:
+    appName: Lesson Print Info by Vervenna
+    version: 1.0.0
+    description: Endpoint printing info.
