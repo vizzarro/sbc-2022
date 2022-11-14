@@ -1,13 +1,16 @@
 package it.aesys.courses.springboot.models.dto;
 
+import it.aesys.courses.springboot.models.TypeOfDoc;
+import it.aesys.courses.springboot.models.TypeOfFile;
+
 import java.time.LocalDate;
 public class DocumentRequest {
     private String nameFile;
-    private String typeOfFile;
-    private String typeOfDoc;
+    private TypeOfFile typeOfFile;
+    private TypeOfDoc typeOfDoc;
     private String fiscalCode;
 
-    public DocumentRequest(String nameFile, String typeOfFile, String typeOfDoc, String fiscalCode) {
+    public DocumentRequest(String nameFile, TypeOfFile typeOfFile, TypeOfDoc typeOfDoc, String fiscalCode) {
         this.nameFile = nameFile;
         this.typeOfFile = typeOfFile;
         this.typeOfDoc = typeOfDoc;
@@ -26,19 +29,19 @@ public class DocumentRequest {
         this.nameFile = nameFile;
     }
 
-    public String getTypeOfFile() {
+    public TypeOfFile getTypeOfFile() {
         return typeOfFile;
     }
 
-    public void setTypeOfFile(String typeOfFile) {
+    public void setTypeOfFile(TypeOfFile typeOfFile) {
         this.typeOfFile = typeOfFile;
     }
 
-    public String getTypeOfDoc() {
+    public TypeOfDoc getTypeOfDoc() {
         return typeOfDoc;
     }
 
-    public void setTypeOfDoc(String typeOfDoc) {
+    public void setTypeOfDoc(TypeOfDoc typeOfDoc) {
         this.typeOfDoc = typeOfDoc;
     }
 

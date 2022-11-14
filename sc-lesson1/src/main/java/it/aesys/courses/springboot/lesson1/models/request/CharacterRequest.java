@@ -17,4 +17,6 @@ public class CharacterRequest {
     public void setCharacter(CharacterDTO character) {
         this.character = character;
     }
+
+
 }
