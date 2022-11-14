@@ -1,13 +1,6 @@
 vizzarro:
     config:
         version: 1.0.1
-<<<<<<< HEAD
-
-seccia:
-    config:
-        description: Endpoint made by Seccia
-        version: 1.0.3-SNAPSHOT
-=======
         appName: Devel Environment lesson
 
 vervenna:
@@ -17,4 +10,3 @@ vervenna:
 brandolini:
     config:
         description: This is developement
->>>>>>> e8e0d8377a7a7e4f8cd614be68e029801ac5a513

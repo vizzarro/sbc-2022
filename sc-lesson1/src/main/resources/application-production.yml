@@ -2,12 +2,6 @@ vizzarro:
     config:
         version: 1.0.1
 
-<<<<<<< HEAD
-seccia:
-    config:
-        description: Endpoint made by Antonio
-        version: 1.0.1-SNAPSHOT
-=======
 vervenna:
     config:
         version: 1.0.1
@@ -16,4 +10,3 @@ vervenna:
 brandolini:
     config:
         description: This is production
->>>>>>> e8e0d8377a7a7e4f8cd614be68e029801ac5a513

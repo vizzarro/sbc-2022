@@ -2,15 +2,12 @@ package it.aesys.courses.springboot.lesson1.seccia.controllers;
 
 import it.aesys.courses.springboot.lesson1.config.SecciaConfig;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Profile;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("seccia")
-@Profile("production")
 public class SecciaController {
 
 
@@ -25,7 +22,7 @@ public class SecciaController {
 
 
 
-    @GetMapping
+    @RequestMapping(method = RequestMethod.GET)
     public String lesson() {
         StringBuilder builder = new StringBuilder();
         builder.append("<H1>SPRING BOOT "+config.getAppName()+" </H1>");
