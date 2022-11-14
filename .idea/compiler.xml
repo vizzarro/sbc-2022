@@ -6,13 +6,19 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="sc-helloworld" />
+        <module name="DocumentsRepo" />
         <module name="sc-lesson1" />
+        <module name="BlackBook" />
+        <module name="PersonRegistry" />
+        <module name="sc-helloworld" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="BlackBook" options="-parameters" />
+      <module name="DocumentsRepo" options="-parameters" />
+      <module name="PersonRegistry" options="-parameters" />
       <module name="sc-helloworld" options="-parameters" />
       <module name="sc-lesson1" options="-parameters" />
     </option>
