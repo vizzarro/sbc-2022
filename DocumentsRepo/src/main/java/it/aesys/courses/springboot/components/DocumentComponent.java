@@ -3,11 +3,13 @@ package it.aesys.courses.springboot.components;
 import it.aesys.courses.springboot.exception.AlreadyExistsException;
 import it.aesys.courses.springboot.exception.NotFoundException;
 import it.aesys.courses.springboot.models.Document;
+import org.springframework.stereotype.Component;
 
 import java.util.*;
 
 import java.util.stream.Collectors;
 
+@Component
 public class DocumentComponent {
 
     private List<Document> documentList;
@@ -19,7 +21,7 @@ public class DocumentComponent {
         this.sequence = 0;
     }
 
-    public Document addDocument(Document document) throws AlreadyExistsException {
+    public Document addDocument(Document document) {
         List<Document> docsByTypeAndCf = documentList.stream()
                 .filter(doc -> doc.getFiscalCode().equals(document.getFiscalCode()))
                 .filter(doc -> doc.getTypeOfDoc().equals(document.getTypeOfDoc()))
@@ -32,7 +34,7 @@ public class DocumentComponent {
         } throw new AlreadyExistsException("Document already exists");
     }
 
-    public Document findById(Integer id) throws NotFoundException {
+    public Document findById(Integer id) {
         Optional<Document> found = this.documentList.stream().
                 filter(document -> document.getIdDoc().equals(id))
                 .findFirst();
