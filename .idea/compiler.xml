@@ -16,6 +16,14 @@
         <module name="sc-helloworld" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="black-book" target="11" />
+      <module name="documents-repo" target="11" />
+      <module name="person-registry" target="11" />
+      <module name="sc-helloworld" target="1.8" />
+      <module name="sc-lesson1" target="11" />
+      <module name="sc-lessons-exercise" target="1.5" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
