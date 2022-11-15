@@ -1,11 +1,13 @@
 package it.aesys.courses.springboot.personregistry.service.exceptions;
 
+import it.aesys.courses.springboot.personregistry.controller.ErrorManageController;
 import it.aesys.courses.springboot.personregistry.models.mapper.ErrorDTO;
 import java.util.Collection;
 
 public class ServiceException extends Exception {
 
     int statusCode = 0;
+    private Collection<? extends ErrorDTO> error;
 
     public int getStatusCode() {
         return statusCode;
@@ -39,6 +41,6 @@ public class ServiceException extends Exception {
     }
 
     public Collection<? extends ErrorDTO> getErrors() {
-        return this.getErrors();
+        return this.error;
     }
 }

@@ -12,6 +12,7 @@ public class PersonRequest {
         super();
     }
 
+
     public PersonDTO getPersonDTO() {
         return personDTO;
     }
