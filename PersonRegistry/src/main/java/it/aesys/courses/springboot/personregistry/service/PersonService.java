@@ -62,24 +62,27 @@ public class PersonService {
     }
 
 
-    public PersonDTO update(Integer id, PersonDTO personDTO) throws ServiceException {
+    public PersonDTO update(Integer id, PersonDTO personDTO) throws ComponentException, ServiceException {
 
         try {
-            if (personDao.getPerson(personMapperDTO.toModel(personDTO).getId()) != null) {
+            if (personMapperDTO.toDto(personDao.getPerson(id)) !=null) {
                 Person updatedPerson = personMapperDTO.toModel(personDTO);
                 personDao.updatePerson(id, updatedPerson);
                 return personMapperDTO.toDto(updatedPerson);
-            } else {
+            }
+            else {
                 ServiceException exc = new ServiceException();
                 exc.setStatusCode(404);
                 throw exc;
             }
-        } catch (ComponentException e) {
+        }
+        catch (ComponentException e){
             ServiceException ex = new ServiceException();
             ex.setStatusCode(e.getStatusCode());
             throw ex;
         }
     }
+
 
     public void delete(Integer id) throws ComponentException, ServiceException {
 
