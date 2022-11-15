@@ -56,24 +56,18 @@ public class DocumentComponent {
         return this.documentList;
     }
     public Document editById(Integer id, Document document) {
-        Optional<Document> found = this.documentList.stream()
-                .filter(doc -> id.equals(doc.getIdDoc()))
-                .findFirst();
-        if(found.isPresent()){        //andrebbe testato che il documento da inserire sia presente? per type?
+
+        if(this.findById(id)!=null){
             documentList.set(id, document);
-            return found.get();
+            return document;
         }throw new NotFoundException("Document not found");
 
     }
 
     public void deleteById(Integer id) {
-        Optional<Document> found = this.documentList.stream()
-                .filter(doc -> id.equals(doc.getIdDoc()))
-                .findFirst();
-        if(found.isPresent()) {
+        if(this.findById(id) != null) {
             documentList.remove(id);
         }else throw new NotFoundException("Document not found");
-
     }
 
 }
