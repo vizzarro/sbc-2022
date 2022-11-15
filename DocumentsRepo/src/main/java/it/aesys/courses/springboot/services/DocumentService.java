@@ -76,7 +76,8 @@ public class DocumentService {
         Object[] fields = {request.getNameFile(),
                 request.getFiscalCode(),
                 request.getTypeOfDoc(),
-                request.getTypeOfFile()};
+                request.getTypeOfFile(),
+                request.getFile()};
 
         for ( Object field: fields) {
             if (field == null) {
