@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/criminalRecord")
+@RequestMapping("criminalRecord")
 public class CriminalRecordController {
 
     private CriminalRecordComponent component;
@@ -23,5 +23,9 @@ public class CriminalRecordController {
     @PostMapping
     public void addReport(String fiscalCodeNumber,@RequestBody Report report) {
         component.addReport(fiscalCodeNumber, report);
+    }
+    @GetMapping
+    public List<Report> getReportList(String fiscalCodeNumber){
+        return component.getReportList( fiscalCodeNumber);
     }
 }
