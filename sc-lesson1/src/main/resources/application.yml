@@ -77,3 +77,8 @@ vervenna:
     appName: Lesson Print Info by Vervenna
     version: 1.0.0
     description: Endpoint printing info.
+mastrocola:
+  config:
+    appName: Lesson one print info
+    version: 1.0.0
+    description: time loss

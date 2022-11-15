@@ -1,6 +1,6 @@
 package it.aesys.courses.springboot.personregistry.repository.exception;
 
-public class ComponentException extends Exception{
+public class ComponentException extends Exception {
 
     int statusCode = 0;
 

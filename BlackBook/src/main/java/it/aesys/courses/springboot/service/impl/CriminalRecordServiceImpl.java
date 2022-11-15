@@ -1,24 +1,31 @@
 package it.aesys.courses.springboot.service.impl;
 
-import it.aesys.courses.springboot.model.CriminalRecord;
+import it.aesys.courses.springboot.component.CriminalRecordComponent;
+import it.aesys.courses.springboot.model.Report;
 import it.aesys.courses.springboot.service.CriminalRecordService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class CriminalRecordServiceImpl implements CriminalRecordService {
+    @Autowired
+    private CriminalRecordComponent criminalRecordComponent;
 
     @Override
-    public CriminalRecord getCriminalRecord(String fiscalCodeNumber) {
-        return null;
+    public List<Report> getCriminalRecord(String fiscalCodeNumber) {
+        return criminalRecordComponent.getReportList(fiscalCodeNumber);
     }
 
     @Override
-    public CriminalRecord addCriminalRecord (CriminalRecord newCriminalRecord) {
-        return null;
+    public void addPerson(String fiscalCodeNumber) {
+        this.criminalRecordComponent.addNewPerson(fiscalCodeNumber);
     }
 
     @Override
-    public CriminalRecord updateCriminalRecord(String fiscalCodeNumber, CriminalRecord updated) {
-        return null;
+    public void addReport(String fiscalCodeNumber, Report report) {
+        this.criminalRecordComponent.addReport(fiscalCodeNumber, report);
     }
+
 }
