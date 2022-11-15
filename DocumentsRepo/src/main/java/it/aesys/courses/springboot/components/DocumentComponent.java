@@ -62,7 +62,6 @@ public class DocumentComponent {
             return document;
         }
         throw new NotFoundException("Document not found");
-
     }
 
     public void deleteById(Integer id) {

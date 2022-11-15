@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
-import java.lang.reflect.Field;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -79,10 +78,12 @@ public class DocumentService {
                 request.getTypeOfFile(),
                 request.getFile()};
 
-        for ( Object field: fields) {
-            if (field == null) {
-                return false;
-            }
-        } return true;
+        if(request.getFiscalCode().length()==16) {
+            for ( Object field: fields) {
+                if (field == null) {
+                    return false;
+                }
+            } return true;
+        } throw new InvalidInputException("Invalid Fiscal Code");
     }
 }
