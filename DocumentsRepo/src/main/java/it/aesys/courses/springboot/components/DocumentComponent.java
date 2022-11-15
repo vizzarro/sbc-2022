@@ -43,13 +43,12 @@ public class DocumentComponent {
         } throw new NotFoundException("Document not found");
     }
 
-    public Document findByCf(String cf) {
-        Optional<Document> found = this.documentList.stream()
+    public List<Document> findByCf(String cf) {
+        return this.documentList.stream()
                 .filter(doc -> cf.equals(doc.getFiscalCode()))
-                .findFirst();
-        if(found.isPresent()){
-            return found.get();
-        }throw new NotFoundException("Document not found");
+                .collect(Collectors.toList());
+
+
     }
 
     public List<Document> findAll(){
