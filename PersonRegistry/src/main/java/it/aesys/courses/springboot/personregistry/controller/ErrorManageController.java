@@ -1,7 +1,7 @@
 package it.aesys.courses.springboot.personregistry.controller;
 
 import it.aesys.courses.springboot.personregistry.models.mapper.ApiErrorDTO;
-import it.aesys.courses.springboot.lesson1.vizzarro.services.exceptions.ServiceException;
+import it.aesys.courses.springboot.personregistry.service.exceptions.ServiceException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -14,11 +14,7 @@ public class ErrorManageController {
 
     @ExceptionHandler(value = ServiceException.class)
     public ResponseEntity<ApiErrorDTO> errorManage(ServiceException ex, WebRequest request) {
-
-
         return getErrorMessages(ex);
-
-
     }
 
 
