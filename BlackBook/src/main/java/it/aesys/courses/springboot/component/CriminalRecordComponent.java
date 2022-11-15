@@ -36,5 +36,10 @@ public class CriminalRecordComponent {
         return this.criminalMap.get(fiscalCodeNumber);
     }
 
+    public List<Report> addNewReport(String fiscalCodeNumber, Report report){
+        if (this.criminalMap.containsKey(fiscalCodeNumber))
+        this.criminalMap.get(fiscalCodeNumber).add(report);
+        return this.criminalMap.get(fiscalCodeNumber);
+    }
 }
 
