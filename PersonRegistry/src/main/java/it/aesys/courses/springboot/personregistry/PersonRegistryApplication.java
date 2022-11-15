@@ -12,10 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RequestMapping(path = "/")
 @SpringBootApplication
-@Profile("development")
-public class PersonRegistryApplication {
 
-    @Bean
+public class PersonRegistryApplication {
     public static void main(String[] args) {
 
         SpringApplication.run(PersonRegistryApplication.class, args);
