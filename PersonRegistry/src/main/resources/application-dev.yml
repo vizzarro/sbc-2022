@@ -1,6 +1,7 @@
 spring:
   application:
-    name: Person Registry
+    profiles:
+        active: development
 
 server:
   port: 8080

@@ -15,7 +15,7 @@ import java.util.Collection;
 
 @RestController
 @RequestMapping("personregistry")
-//@Profile("")
+@Profile("development")
 public class PersonController {
 
     private PersonService service;

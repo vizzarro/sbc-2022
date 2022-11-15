@@ -1,8 +1,11 @@
 package it.aesys.courses.springboot.personregistry.config;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Profile;
 
 @ConfigurationProperties("PersonRegistry.config")
+@Profile("development")
 public class PersonRegistryConfig {
 
     private String appName;
