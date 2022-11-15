@@ -67,7 +67,7 @@ public class DocumentComponent {
 
     public void deleteById(Integer id) {
         if (this.findById(id) != null) {
-            documentList.remove(id);
+            documentList.remove(this.findById(id));
         } else throw new NotFoundException("Document not found");
     }
 
