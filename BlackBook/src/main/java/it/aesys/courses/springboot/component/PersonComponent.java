@@ -12,7 +12,7 @@ public class PersonComponent {
     private Map<String, Person> mapPerson = new HashMap<>();
 
    public Person create(Person person){
-         if(mapPerson.containsKey(person.getFiscalCodeNumber())){
+         if(!mapPerson.containsKey(person.getFiscalCodeNumber())){
              mapPerson.put(person.getFiscalCodeNumber(), person);
              return mapPerson.get(person.getFiscalCodeNumber());
          }
@@ -36,9 +36,13 @@ public class PersonComponent {
     public Person update(Person person){
 
         if(mapPerson.containsKey(person.getFiscalCodeNumber())){
-            return mapPerson.put(person.getFiscalCodeNumber(), person);
+            Person updated = new Person();
+            updated.setFiscalCodeNumber(person.getFiscalCodeNumber());
+            return mapPerson.put(updated.getFiscalCodeNumber(), updated);
         }
         return null;
     }
+
+    //UPDATE = CREATE REPORT ???
 }
 

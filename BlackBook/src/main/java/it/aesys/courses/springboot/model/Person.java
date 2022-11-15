@@ -4,9 +4,8 @@ import java.util.List;
 
 public class Person {
     private String fiscalCodeNumber;
-
     private List<Report> reports;
-
+    private boolean evaluationResult;
     public Person() {
     }
 
@@ -24,5 +23,13 @@ public class Person {
 
     public void setReports(List<Report> reports) {
         this.reports = reports;
+    }
+
+    public boolean isEvaluationResult() {
+        return evaluationResult;
+    }
+
+    public void setEvaluationResult(boolean evaluationResult) {
+        this.evaluationResult = evaluationResult;
     }
 }
