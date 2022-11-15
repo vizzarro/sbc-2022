@@ -5,9 +5,7 @@ import it.aesys.courses.springboot.models.dto.DocumentRequest;
 import it.aesys.courses.springboot.services.DocumentService;
 import it.aesys.courses.springboot.services.FileService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Profile;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.List;
@@ -35,7 +33,7 @@ public class DocumentController {
         return service.getDocumentById(id);
     }
 
-    @GetMapping("/find")
+    @GetMapping("/{cf}")
     public List<Document> findDocumentByCf(String cf) {
         return service.getDocumentByCf(cf);
     }
