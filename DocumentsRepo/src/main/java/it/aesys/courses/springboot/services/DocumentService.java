@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.lang.reflect.Field;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -25,19 +26,22 @@ public class DocumentService {
     }
 
     public Document createDocument(DocumentRequest request) throws IOException {
-        Document document = new Document();
-        BeanUtils.copyProperties(request, document);
-        document.setDataOfInput(LocalDate.now());
-        document.setFile(fileService.upload(request.getFile()));
-        return (repository.addDocument(document));
+        if (validRequest(request)) {
+            Document document = new Document();
+            BeanUtils.copyProperties(request, document);
+            document.setDataOfInput(LocalDate.now());
+            document.setFile(fileService.upload(request.getFile()));
+            return (repository.addDocument(document));
+        }
+        throw new InvalidInputException("All fields are required");
     }
 
-    public List<Document> getAllDocuments(){
+    public List<Document> getAllDocuments() {
         return repository.findAll();
     }
 
-    public List<Document> getDocumentByCf(String cf){
-        if(cf.length() == 16){
+    public List<Document> getDocumentByCf(String cf) {
+        if (cf.length() == 16) {
             return repository.findByCf(cf);
         }
         throw new InvalidInputException("Invalid cf");
@@ -50,7 +54,7 @@ public class DocumentService {
         throw new InvalidInputException("Invalid id");
     }
 
-    public void deleteDocument(Integer id){
+    public void deleteDocument(Integer id) {
         if (id != null) {
             repository.deleteById(id);
         } else {
@@ -59,10 +63,25 @@ public class DocumentService {
     }
 
     public Document updateDocument(DocumentRequest request, Integer id) throws IOException {
-        Document document = repository.findById(id);
-        document.setFile(fileService.upload(request.getFile()));
-        BeanUtils.copyProperties(request, document);
-        return (repository.editById(id, document));
+        if (validRequest(request)) {
+            Document document = repository.findById(id);
+            document.setFile(fileService.upload(request.getFile()));
+            BeanUtils.copyProperties(request, document);
+            return (repository.editById(id, document));
+        }
+        throw new InvalidInputException("All fields are required");
     }
 
+    private Boolean validRequest(DocumentRequest request) {
+        Object[] fields = {request.getNameFile(),
+                request.getFiscalCode(),
+                request.getTypeOfDoc(),
+                request.getTypeOfFile()};
+
+        for ( Object field: fields) {
+            if (field == null) {
+                return false;
+            }
+        } return true;
+    }
 }
