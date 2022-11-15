@@ -8,6 +8,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -23,30 +24,34 @@ public class DocumentService {
         this.fileService = fileService;
     }
 
-    public Document createDocument(DocumentRequest request) {
+    public Document createDocument(DocumentRequest request) throws IOException {
         Document document = new Document();
         BeanUtils.copyProperties(request, document);
         document.setDataOfInput(LocalDate.now());
+        document.setFile(fileService.upload(request.getFile()));
         return (repository.addDocument(document));
     }
 
-    public List<Document> findByCf(String cf) {
-        if (cf.length() == 16) {
+    public List<Document> getAllDocuments(){
+        return repository.findAll();
+    }
+
+    public List<Document> getDocumentByCf(String cf){
+        if(cf.length() == 16){
             return repository.findByCf(cf);
         }
         throw new InvalidInputException("Invalid cf");
     }
 
-    public Document getById(Integer id) {
+    public Document getDocumentById(Integer id) {
         if (id != null) {
-            return repository.findById(id);
-
+            return (repository.findById(id));
         }
         throw new InvalidInputException("Invalid id");
     }
 
-    public void deleteDocument(Integer id) {
-        if (id != null) {
+    public void deleteDocument(Integer id){
+        if(id != null) {
             repository.deleteById(id);
         }
         throw new InvalidInputException("Invalid Id");

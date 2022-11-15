@@ -2,8 +2,7 @@ package it.aesys.courses.springboot.models.dto;
 
 import it.aesys.courses.springboot.models.TypeOfDoc;
 import it.aesys.courses.springboot.models.TypeOfFile;
-
-import java.time.LocalDate;
+import org.springframework.web.multipart.MultipartFile;
 
 public class DocumentRequest {
     private String nameFile;
@@ -11,11 +10,14 @@ public class DocumentRequest {
     private TypeOfDoc typeOfDoc;
     private String fiscalCode;
 
-    public DocumentRequest(String nameFile, TypeOfFile typeOfFile, TypeOfDoc typeOfDoc, String fiscalCode) {
+    private MultipartFile file;
+
+    public DocumentRequest(String nameFile, TypeOfFile typeOfFile, TypeOfDoc typeOfDoc, String fiscalCode, MultipartFile file) {
         this.nameFile = nameFile;
         this.typeOfFile = typeOfFile;
         this.typeOfDoc = typeOfDoc;
         this.fiscalCode = fiscalCode;
+        this.file = file;
     }
 
     public DocumentRequest() {
@@ -49,8 +51,15 @@ public class DocumentRequest {
     public String getFiscalCode() {
         return fiscalCode;
     }
-
     public void setFiscalCode(String fiscalCode) {
         this.fiscalCode = fiscalCode;
+    }
+
+    public MultipartFile getFile() {
+        return file;
+    }
+
+    public void setFile(MultipartFile file) {
+        this.file = file;
     }
 }

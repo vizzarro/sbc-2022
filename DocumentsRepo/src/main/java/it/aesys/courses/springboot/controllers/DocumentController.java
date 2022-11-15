@@ -3,33 +3,45 @@ package it.aesys.courses.springboot.controllers;
 import it.aesys.courses.springboot.models.Document;
 import it.aesys.courses.springboot.models.dto.DocumentRequest;
 import it.aesys.courses.springboot.services.DocumentService;
+import it.aesys.courses.springboot.services.FileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 import java.util.List;
 
 @RestController
 @RequestMapping("/document")
 public class DocumentController {
+
     DocumentService service;
+    FileService fileService;
 
     @Autowired
-    public DocumentController(DocumentService service) {
+    public DocumentController(DocumentService service, FileService fileService) {
         this.service = service;
+        this.fileService = fileService;
     }
 
-    @PostMapping
-    public Document createDocument(@RequestBody DocumentRequest request) {
-        return service.createDocument(request);
+    @GetMapping
+    public List<Document> getAll(){
+        return (service.getAllDocuments());
     }
 
     @GetMapping("/{id}")
     public Document findDocument(@PathVariable Integer id) {
-        return service.getById(id);
+        return service.getDocumentById(id);
     }
 
     @GetMapping("/cf")
-    public List<Document> getByCf(String cf) {
-        return service.findByCf(cf);
+    public List<Document> findDocumentByCf(String cf) {
+        return service.getDocumentByCf(cf);
+    }
+
+    @PostMapping(consumes = "multipart/form-data")
+    public Document createDocument(@ModelAttribute DocumentRequest request) throws IOException {
+        return service.createDocument(request);
     }
 
     @DeleteMapping("/{id}")
@@ -37,8 +49,8 @@ public class DocumentController {
         service.deleteDocument(id);
     }
 
-    @PostMapping("/{id}")
-    public Document updateDocument(@RequestBody DocumentRequest request, Integer id) {
+    @PutMapping("/{id}")
+    public Document updateDocument(@RequestBody DocumentRequest request,@PathVariable Integer id) {
         return service.updateDocument(request, id);
     }
 }
