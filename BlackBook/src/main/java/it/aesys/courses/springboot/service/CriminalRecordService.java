@@ -9,7 +9,7 @@ import java.util.List;
 public interface CriminalRecordService {
 
     List<Report> getCriminalRecord (String fiscalCodeNumber);
-    void addPerson(String fiscalCodeNumber);
     void addReport(String fiscalCodeNumber, Report report);
+    void updateReport(String fiscalCodeNumber, Report report);
 
 }

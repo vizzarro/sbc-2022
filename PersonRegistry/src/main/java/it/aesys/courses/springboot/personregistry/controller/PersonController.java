@@ -1,5 +1,6 @@
 package it.aesys.courses.springboot.personregistry.controller;
 
+import it.aesys.courses.springboot.personregistry.models.Person;
 import it.aesys.courses.springboot.personregistry.models.PersonDTO;
 import it.aesys.courses.springboot.personregistry.repository.exception.ComponentException;
 import it.aesys.courses.springboot.personregistry.request.PersonRequest;
@@ -45,9 +46,9 @@ public class PersonController {
         return service.get(id);
     }
 
-    @PutMapping("/{id}")
-    public  PersonDTO update(@PathVariable("id") Integer id, @RequestBody PersonRequest request) throws ServiceException, ComponentException{
-        return service.update(id, request.getPersonDTO());
+    @GetMapping("/fiscalcode/{fiscalCode}")
+    public PersonDTO getPersonByFiscalCode(@PathVariable("fiscalCode") String fiscalCode) throws ServiceException, ComponentException {
+        return service.getPersonFC(fiscalCode);
     }
 
 }
