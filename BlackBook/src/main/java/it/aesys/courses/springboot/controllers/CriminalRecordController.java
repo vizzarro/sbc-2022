@@ -1,6 +1,5 @@
 package it.aesys.courses.springboot.controllers;
 
-
 import it.aesys.courses.springboot.component.CriminalRecordComponent;
 import it.aesys.courses.springboot.model.Report;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,5 +26,9 @@ public class CriminalRecordController {
     @GetMapping
     public List<Report> getReportList(String fiscalCodeNumber){
         return component.getReportList( fiscalCodeNumber);
+    }
+    @PostMapping("add")
+    public void addPerson(String fiscalCodeNumber){
+        component.addNewPerson(fiscalCodeNumber);
     }
 }
