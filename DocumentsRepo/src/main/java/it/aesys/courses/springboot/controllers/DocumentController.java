@@ -34,7 +34,7 @@ public class DocumentController {
         return service.getDocumentById(id);
     }
 
-    @GetMapping("/cf")
+    @GetMapping("/find")
     public List<Document> findDocumentByCf(String cf) {
         return service.getDocumentByCf(cf);
     }

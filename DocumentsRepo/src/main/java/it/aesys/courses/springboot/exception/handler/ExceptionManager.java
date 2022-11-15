@@ -10,20 +10,20 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 @ControllerAdvice
 public class ExceptionManager {
 
-    @ExceptionHandler(NotFoundException.class)
-    public ResponseEntity<String> handleNotFound(NotFoundException e){
+    @ExceptionHandler({NotFoundException.class, AlreadyExistsException.class, InvalidInputException.class })
+    public ResponseEntity<String> handleBadRequest(Exception e){
         return ResponseEntity.badRequest().body(e.getMessage());
     }
 
-    @ExceptionHandler(AlreadyExistsException.class)
-    public ResponseEntity<String> handleAlreadyExists(AlreadyExistsException e){
-        return ResponseEntity.badRequest().body(e.getMessage());
-    }
-
-    @ExceptionHandler(InvalidInputException.class)
-    public ResponseEntity<String> handleInvalidInput(InvalidInputException e){
-        return ResponseEntity.badRequest().body(e.getMessage());
-    }
+//    @ExceptionHandler(AlreadyExistsException.class)
+//    public ResponseEntity<String> handleAlreadyExists(AlreadyExistsException e){
+//        return ResponseEntity.badRequest().body(e.getMessage());
+//    }
+//
+//    @ExceptionHandler(InvalidInputException.class)
+//    public ResponseEntity<String> handleInvalidInput(InvalidInputException e){
+//        return ResponseEntity.badRequest().body(e.getMessage());
+//    }
 
 
 }
