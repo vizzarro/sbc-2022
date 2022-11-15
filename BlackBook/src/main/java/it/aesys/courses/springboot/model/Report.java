@@ -2,7 +2,7 @@ package it.aesys.courses.springboot.model;
 
 public class Report {
 
-    private Integer reportTicket;
+    private Integer reportTicketNumber;
     private ProblemType problemType;
     private String problemDescription;
 
@@ -17,12 +17,12 @@ public class Report {
         this.problemType = problemType;
     }
 
-    public Integer getReportTicket() {
-        return reportTicket;
+    public Integer getReportTicketNumber() {
+        return reportTicketNumber;
     }
 
-    public void setReportTicket(Integer reportTicket) {
-        this.reportTicket = reportTicket;
+    public void setReportTicketNumber(Integer reportTicketNumber) {
+        this.reportTicketNumber = reportTicketNumber;
     }
 
     public String getProblemDescription() {
