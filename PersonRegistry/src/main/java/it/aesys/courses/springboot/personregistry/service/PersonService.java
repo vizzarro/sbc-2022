@@ -2,13 +2,18 @@ package it.aesys.courses.springboot.personregistry.service;
 
 import it.aesys.courses.springboot.personregistry.models.Person;
 import it.aesys.courses.springboot.personregistry.models.PersonDTO;
+import it.aesys.courses.springboot.personregistry.models.mapper.Documents;
 import it.aesys.courses.springboot.personregistry.models.mapper.PersonMapperDTO;
 import it.aesys.courses.springboot.personregistry.repository.PersonDao;
 import it.aesys.courses.springboot.personregistry.repository.exception.ComponentException;
 import it.aesys.courses.springboot.personregistry.service.exceptions.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
+import javax.websocket.ClientEndpoint;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -18,11 +23,13 @@ public class PersonService {
     private PersonMapperDTO personMapperDTO;
     private PersonDao personDao;
 
+    private RestTemplate documentsClient;
 
     @Autowired
-    public PersonService(PersonMapperDTO personMapperDTO, PersonDao personDao) {
+    public PersonService(PersonMapperDTO personMapperDTO, PersonDao personDao, RestTemplate documentsClient) {
         this.personMapperDTO = personMapperDTO;
         this.personDao = personDao;
+        this.documentsClient = documentsClient;
     }
 
     public PersonDTO create(PersonDTO personDto) throws ServiceException {
@@ -65,18 +72,16 @@ public class PersonService {
     public PersonDTO update(Integer id, PersonDTO personDTO) throws ComponentException, ServiceException {
 
         try {
-            if (personMapperDTO.toDto(personDao.getPerson(id)) !=null) {
+            if (personMapperDTO.toDto(personDao.getPerson(id)) != null) {
                 Person updatedPerson = personMapperDTO.toModel(personDTO);
                 personDao.updatePerson(id, updatedPerson);
                 return personMapperDTO.toDto(updatedPerson);
-            }
-            else {
+            } else {
                 ServiceException exc = new ServiceException();
                 exc.setStatusCode(404);
                 throw exc;
             }
-        }
-        catch (ComponentException e){
+        } catch (ComponentException e) {
             ServiceException ex = new ServiceException();
             ex.setStatusCode(e.getStatusCode());
             throw ex;
@@ -101,13 +106,18 @@ public class PersonService {
     public PersonDTO getPersonFC(String fiscalCode) throws ServiceException {
 
         try {
-            return personMapperDTO.toDto(personDao.getPersonByFiscalCode(fiscalCode));
 
+            PersonDTO person = personMapperDTO.toDto(personDao.getPersonByFiscalCode(fiscalCode));
+            //ARRICHIRE DATI del person con dati del documento
+            ResponseEntity<Documents> documentResponse = documentsClient.getForEntity("", Documents.class);
+            if (documentResponse.getStatusCode().equals(HttpStatus.OK)) {
+
+                return personMapperDTO.toDto(personDao.getPersonByFiscalCode(fiscalCode));
+            }
         } catch (ComponentException e) {
-            ServiceException ex = new ServiceException();
-            ex.setStatusCode(e.getStatusCode());
-            throw ex;
+            throw new RuntimeException(e);
         }
+        return null;
     }
 }
 
