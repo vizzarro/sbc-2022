@@ -1,10 +1,8 @@
-package it.aesys.courses.springboot;
+package it.aesys.courses.springboot.personregistry;
 
-import it.aesys.courses.springboot.personregistry.PersonRegistryApplication;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-
-@SpringBootTest(classes= PersonRegistryApplication.class)
+@SpringBootTest()
 class PersonRegistryApplicationTests {
 
 	@Test
