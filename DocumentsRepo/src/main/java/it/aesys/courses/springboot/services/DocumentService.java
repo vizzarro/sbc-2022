@@ -25,27 +25,28 @@ public class DocumentService {
 
     public Document createDocument(DocumentRequest request) {
         Document document = new Document();
-        BeanUtils.copyProperties(request,document);
+        BeanUtils.copyProperties(request, document);
         document.setDataOfInput(LocalDate.now());
-        return(repository.addDocument(document));
-    }
-    public List<Document> findByCf(String cf){
-        if(cf.length() == 16){
-            return repository.findByCf(cf);
-        } throw new InvalidInputException("Invalid cf");
+        return (repository.addDocument(document));
     }
 
-    public Document getById(Integer id){
-        if(id!=null){
+    public List<Document> findByCf(String cf) {
+        if (cf.length() == 16) {
+            return repository.findByCf(cf);
+        }
+        throw new InvalidInputException("Invalid cf");
+    }
+
+    public Document getById(Integer id) {
+        if (id != null) {
             return repository.findById(id);
 
-        }throw new InvalidInputException("Invalid id");
+        }
+        throw new InvalidInputException("Invalid id");
     }
 
-
-
-    public void deleteDocument(Integer id){
-        if(id != null) {
+    public void deleteDocument(Integer id) {
+        if (id != null) {
             repository.deleteById(id);
         }
         throw new InvalidInputException("Invalid Id");
@@ -53,8 +54,8 @@ public class DocumentService {
 
     public Document updateDocument(DocumentRequest request, Integer id) {
         Document document = new Document();
-        BeanUtils.copyProperties(request,document);
-        return(repository.editById(id, document));
+        BeanUtils.copyProperties(request, document);
+        return (repository.editById(id, document));
     }
 
 }
