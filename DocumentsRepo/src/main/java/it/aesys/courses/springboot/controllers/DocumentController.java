@@ -5,6 +5,7 @@ import it.aesys.courses.springboot.models.dto.DocumentRequest;
 import it.aesys.courses.springboot.services.DocumentService;
 import it.aesys.courses.springboot.services.FileService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
