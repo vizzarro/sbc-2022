@@ -42,6 +42,10 @@ public class DocumentService {
         throw new InvalidInputException("Invalid Id");
     }
 
-
+    public Document updateDocument(DocumentRequest request, Integer id) {
+        Document document = new Document();
+        BeanUtils.copyProperties(request,document);
+        return(repository.editById(id, document));
+    }
 
 }
