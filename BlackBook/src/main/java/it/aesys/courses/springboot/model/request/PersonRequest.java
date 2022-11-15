@@ -4,18 +4,19 @@ import it.aesys.courses.springboot.model.Person;
 import it.aesys.courses.springboot.model.Report;
 
 public class PersonRequest {
-    private String fiscalCode;
+
+    private Person person;
     private Report report;
 
     public PersonRequest() {
     }
 
-    public String getFiscalCode() {
-        return fiscalCode;
+    public Person getPerson() {
+        return person;
     }
 
-    public void setFiscalCode(String fiscalCode) {
-        this.fiscalCode = fiscalCode;
+    public void setPerson(Person person) {
+        this.person = person;
     }
 
     public Report getReport() {
