@@ -45,4 +45,9 @@ public class PersonController {
         return service.get(id);
     }
 
+    @PutMapping("/{id}")
+    public  PersonDTO update(@PathVariable("id") Integer id, @RequestBody PersonRequest request) throws ServiceException, ComponentException{
+        return service.update(id, request.getPersonDTO());
+    }
+
 }
