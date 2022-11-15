@@ -9,7 +9,6 @@ public class DocumentRequest {
     private TypeOfFile typeOfFile;
     private TypeOfDoc typeOfDoc;
     private String fiscalCode;
-
     private MultipartFile file;
 
     public DocumentRequest(String nameFile, TypeOfFile typeOfFile, TypeOfDoc typeOfDoc, String fiscalCode, MultipartFile file) {

@@ -56,9 +56,9 @@ public class DocumentComponent {
     }
 
     public Document editById(Integer id, Document document) {
-
         if (this.findById(id) != null) {
-            documentList.set(id, document);
+            int index = this.documentList.indexOf(this.findById(id));
+            documentList.set(index, document);
             return document;
         }
         throw new NotFoundException("Document not found");

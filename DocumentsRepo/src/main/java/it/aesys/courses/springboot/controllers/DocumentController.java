@@ -49,8 +49,8 @@ public class DocumentController {
         service.deleteDocument(id);
     }
 
-    @PutMapping("/{id}")
-    public Document updateDocument(@RequestBody DocumentRequest request,@PathVariable Integer id) {
+    @PutMapping(value = "/{id}")
+    public Document updateDocument(@ModelAttribute DocumentRequest request, @PathVariable Integer id) throws IOException {
         return service.updateDocument(request, id);
     }
 }

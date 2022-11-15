@@ -58,8 +58,9 @@ public class DocumentService {
         }
     }
 
-    public Document updateDocument(DocumentRequest request, Integer id) {
-        Document document = new Document();
+    public Document updateDocument(DocumentRequest request, Integer id) throws IOException {
+        Document document = repository.findById(id);
+        document.setFile(fileService.upload(request.getFile()));
         BeanUtils.copyProperties(request, document);
         return (repository.editById(id, document));
     }
