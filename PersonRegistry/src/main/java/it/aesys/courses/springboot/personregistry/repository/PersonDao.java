@@ -70,7 +70,7 @@ public class PersonDao {
 
     public Person updatePerson(Integer id, Person person) throws ComponentException {
 
-        if (id != null && !personMapDao.containsKey(id) && person != null) {
+        if (id != null && personMapDao.containsKey(id) && person != null) {
 
             Person personToUpdate = new Person();
             personToUpdate = person;
