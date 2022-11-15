@@ -9,18 +9,15 @@ public class DocumentRequest {
     private TypeOfFile typeOfFile;
     private TypeOfDoc typeOfDoc;
     private String fiscalCode;
-
     public DocumentRequest(String nameFile, TypeOfFile typeOfFile, TypeOfDoc typeOfDoc, String fiscalCode) {
         this.nameFile = nameFile;
         this.typeOfFile = typeOfFile;
         this.typeOfDoc = typeOfDoc;
         this.fiscalCode = fiscalCode;
     }
-
     public DocumentRequest() {
         super();
     }
-
     public String getNameFile() {
         return nameFile;
     }
@@ -45,11 +42,9 @@ public class DocumentRequest {
         this.typeOfDoc = typeOfDoc;
     }
 
-
     public String getFiscalCode() {
         return fiscalCode;
     }
-
     public void setFiscalCode(String fiscalCode) {
         this.fiscalCode = fiscalCode;
     }

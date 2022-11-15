@@ -43,4 +43,14 @@ public class DocumentService {
     }
 
 
+
+    public void deleteDocument(Integer id){
+        if(id != null) {
+            repository.deleteById(id);
+        }
+        throw new InvalidInputException("Invalid Id");
+    }
+
+
+
 }
