@@ -1,13 +1,4 @@
-spring:
-  profiles:
-    active:
-
 server:
-  port: 8080
-  error:
-    whitelabel:
-      enabled: false
+  port: 8081
 
-lesson:
-  author: Vervenna, Brandolini, Di Lorito, Fornaro
-  welcome-message: ${app.lesson}
+
