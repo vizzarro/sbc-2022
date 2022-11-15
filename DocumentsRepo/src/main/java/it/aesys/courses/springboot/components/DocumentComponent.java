@@ -44,11 +44,36 @@ public class DocumentComponent {
     }
 
     public Document findByCf(String cf) {
-        return null;
+        Optional<Document> found = this.documentList.stream()
+                .filter(doc -> cf.equals(doc.getFiscalCode()))
+                .findFirst();
+        if(found.isPresent()){
+            return found.get();
+        }throw new NotFoundException("Document not found");
     }
 
     public List<Document> findAll(){
         return this.documentList;
+    }
+    public Document editById(Integer id, Document document) {
+        Optional<Document> found = this.documentList.stream()
+                .filter(doc -> id.equals(doc.getIdDoc()))
+                .findFirst();
+        if(found.isPresent()){        //andrebbe testato che il documento da inserire sia presente? per type?
+            documentList.set(id, document);
+            return found.get();
+        }throw new NotFoundException("Document not found");
+
+    }
+
+    public void deleteById(Integer id) {
+        Optional<Document> found = this.documentList.stream()
+                .filter(doc -> id.equals(doc.getIdDoc()))
+                .findFirst();
+        if(found.isPresent()) {
+            documentList.remove(id);
+        }else throw new NotFoundException("Document not found");
+
     }
 
 }
