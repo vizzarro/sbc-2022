@@ -47,20 +47,18 @@ public class DocumentComponent {
         return this.documentList.stream()
                 .filter(doc -> cf.equals(doc.getFiscalCode()))
                 .collect(Collectors.toList());
-
-
     }
 
     public List<Document> findAll(){
         return this.documentList;
     }
+
     public Document editById(Integer id, Document document) {
 
         if(this.findById(id)!=null){
             documentList.set(id, document);
             return document;
         }throw new NotFoundException("Document not found");
-
     }
 
     public void deleteById(Integer id) {
