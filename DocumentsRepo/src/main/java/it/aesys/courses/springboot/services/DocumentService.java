@@ -35,6 +35,15 @@ public class DocumentService {
         } throw new InvalidInputException("Invalid cf");
     }
 
+    public Document getById(Integer id){
+        if(id!=null){
+            return repository.findById(id);
+
+        }throw new InvalidInputException("Invalid id");
+    }
+
+
+
     public void deleteDocument(Integer id){
         if(id != null) {
             repository.deleteById(id);
