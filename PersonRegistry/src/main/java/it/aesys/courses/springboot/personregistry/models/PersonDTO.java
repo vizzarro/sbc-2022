@@ -1,6 +1,4 @@
-package it.aesys.courses.springboot.personregistry.models.mapper;
-
-import it.aesys.courses.springboot.personregistry.models.EnumGender;
+package it.aesys.courses.springboot.personregistry.models;
 
 import java.util.Date;
 
@@ -8,15 +6,26 @@ public class PersonDTO {
 
     private String name;
     private String surname;
-    private Integer fiscalCode;
+    private String fiscalCode;
     private EnumGender gender;
-    private String address;
+    private Address address;
     private Date birthDate;
-    private String callNumber;
+
+    private String cellNumber;
 
 
     public PersonDTO() {
+        super();
+    }
 
+    public PersonDTO(String n, String s, String fC, EnumGender g, Address a, Date bD, String cN) {
+        this.name = n;
+        this.surname = s;
+        this.fiscalCode = fC;
+        this.gender = g;
+        this.address = a;
+        this.birthDate = bD;
+        this.cellNumber = cN;
     }
 
     public String getName() {
@@ -35,11 +44,11 @@ public class PersonDTO {
         this.surname = surname;
     }
 
-    public Integer getFiscalCode() {
+    public String getFiscalCode() {
         return fiscalCode;
     }
 
-    public void setFiscalCode(Integer fiscalCode) {
+    public void setFiscalCode(String fiscalCode) {
         this.fiscalCode = fiscalCode;
     }
 
@@ -51,11 +60,11 @@ public class PersonDTO {
         this.gender = gender;
     }
 
-    public String getAddress() {
+    public Address getAddress() {
         return address;
     }
 
-    public void setAddress(String address) {
+    public void setAddress(Address address) {
         this.address = address;
     }
 
@@ -67,12 +76,12 @@ public class PersonDTO {
         this.birthDate = birthDate;
     }
 
-    public String getCallNumber() {
-        return callNumber;
+    public String getCellNumber() {
+        return cellNumber;
     }
 
-    public void setCallNumber(String callNumber) {
-        this.callNumber = callNumber;
+    public void setCellNumber(String cellNumber) {
+        this.cellNumber = cellNumber;
     }
 
     @Override
@@ -84,7 +93,7 @@ public class PersonDTO {
                 ", gender=" + gender +
                 ", address='" + address + '\'' +
                 ", birthDate=" + birthDate +
-                ", callNumber='" + callNumber + '\'' +
+                ", cellNumber='" + cellNumber + '\'' +
                 '}';
     }
 }

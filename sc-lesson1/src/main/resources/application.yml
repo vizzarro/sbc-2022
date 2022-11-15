@@ -6,7 +6,7 @@ server:
 
 spring:
   profiles:
-    active: devel
+    active: test
 
 app:
   lesson: LESSON 1
@@ -41,6 +41,7 @@ fornaro:
     description: Endpoint printing info
 
 
+
 vizzarro:
   config:
     appName: Lesson One Print Info
@@ -71,14 +72,13 @@ maiolini:
     appName: Lesson One Print
     description: Endpoint printing info Valerio Maiolini
 
-brandolini:
-  config:
-    version: 1.0.0
-    appName: Aesys Exercise 1
-    description: This is the print exercise. Luca Brandolini
-
 vervenna:
   config:
     appName: Lesson Print Info by Vervenna
     version: 1.0.0
     description: Endpoint printing info.
+mastrocola:
+  config:
+    appName: Lesson one print info
+    version: 1.0.0
+    description: time loss
