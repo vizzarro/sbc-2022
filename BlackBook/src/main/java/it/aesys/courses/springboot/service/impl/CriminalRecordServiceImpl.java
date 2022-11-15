@@ -11,21 +11,16 @@ import java.util.List;
 @Service
 public class CriminalRecordServiceImpl implements CriminalRecordService {
     @Autowired
-    private CriminalRecordComponent criminalRecordComponent;
+    private CriminalRecordComponent component;
 
     @Override
     public List<Report> getCriminalRecord(String fiscalCodeNumber) {
-        return criminalRecordComponent.getReportList(fiscalCodeNumber);
-    }
-
-    @Override
-    public void addPerson(String fiscalCodeNumber) {
-        this.criminalRecordComponent.addNewPerson(fiscalCodeNumber);
+        return component.getReportList(fiscalCodeNumber);
     }
 
     @Override
     public void addReport(String fiscalCodeNumber, Report report) {
-        this.criminalRecordComponent.addReport(fiscalCodeNumber, report);
+        this.component.addReport(fiscalCodeNumber, report);
     }
 
 }
