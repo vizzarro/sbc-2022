@@ -1,6 +1,9 @@
 package it.aesys.courses.springboot.personregistry.models;
 
+import it.aesys.courses.springboot.personregistry.models.mapper.DocumentDTO;
+
 import java.util.Date;
+import java.util.List;
 
 public class PersonDTO {
 //commento prova
@@ -13,6 +16,7 @@ public class PersonDTO {
 
     private String cellNumber;
 
+    private List<DocumentDTO> documents;
 
     public PersonDTO() {
         super();
@@ -82,6 +86,14 @@ public class PersonDTO {
 
     public void setCellNumber(String cellNumber) {
         this.cellNumber = cellNumber;
+    }
+
+    public List<DocumentDTO> getDocuments() {
+        return documents;
+    }
+
+    public void setDocuments(List<DocumentDTO> documents) {
+        this.documents = documents;
     }
 
     @Override
