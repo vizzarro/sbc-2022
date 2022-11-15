@@ -31,49 +31,44 @@ public class DocumentComponent {
             document.setIdDoc(sequence);
             documentList.add(document);
             return document;
-        } throw new AlreadyExistsException("Document already exists");
+        }
+        throw new AlreadyExistsException("Document already exists");
     }
 
     public Document findById(Integer id) {
         Optional<Document> found = this.documentList.stream().
                 filter(document -> document.getIdDoc().equals(id))
                 .findFirst();
-        if(found.isPresent()) {
+        if (found.isPresent()) {
             return found.get();
-        } throw new NotFoundException("Document not found");
+        }
+        throw new NotFoundException("Document not found");
     }
 
-    public Document findByCf(String cf) {
-        Optional<Document> found = this.documentList.stream()
+    public List<Document> findByCf(String cf) {
+        return this.documentList.stream()
                 .filter(doc -> cf.equals(doc.getFiscalCode()))
-                .findFirst();
-        if(found.isPresent()){
-            return found.get();
-        }throw new NotFoundException("Document not found");
+                .collect(Collectors.toList());
     }
 
-    public List<Document> findAll(){
+    public List<Document> findAll() {
         return this.documentList;
     }
+
     public Document editById(Integer id, Document document) {
-        Optional<Document> found = this.documentList.stream()
-                .filter(doc -> id.equals(doc.getIdDoc()))
-                .findFirst();
-        if(found.isPresent()){        //andrebbe testato che il documento da inserire sia presente? per type?
-            documentList.set(id, document);
-            return found.get();
-        }throw new NotFoundException("Document not found");
+        if (this.findById(id) != null) {
+            int index = this.documentList.indexOf(this.findById(id));
+            documentList.set(index, document);
+            return document;
+        }
+        throw new NotFoundException("Document not found");
 
     }
 
     public void deleteById(Integer id) {
-        Optional<Document> found = this.documentList.stream()
-                .filter(doc -> id.equals(doc.getIdDoc()))
-                .findFirst();
-        if(found.isPresent()) {
-            documentList.remove(id);
-        }else throw new NotFoundException("Document not found");
-
+        if (this.findById(id) != null) {
+            documentList.remove(this.findById(id));
+        } else throw new NotFoundException("Document not found");
     }
 
 }

@@ -11,10 +11,20 @@ public class EvaluateServiceImpl implements EvaluateService {
     @Autowired
     private CriminalRecordComponent criminalRecordComponent;
 
+//        @Override
+//    public boolean evaluatePerson(String fiscalCodeNumber) {
+//        try {
+//            if (this.criminalRecordComponent.getReportList(fiscalCodeNumber).size() < 3) {
+//                return true;
+//            }
+//            return false;
+//        } catch (Exception x) {
+//            throw new NullPointerException("ID not present");
+//        }
+//    }
     @Override
     public boolean evaluatePerson(String fiscalCodeNumber) {
-
-        if(this.criminalRecordComponent.getReportList(fiscalCodeNumber).size()<3){
+        if (this.criminalRecordComponent.getReportList(fiscalCodeNumber).size() < 3) {
             return true;
         }
         return false;

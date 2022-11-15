@@ -5,6 +5,7 @@ import it.aesys.courses.springboot.personregistry.models.EnumAddress;
 import it.aesys.courses.springboot.personregistry.models.EnumGender;
 import it.aesys.courses.springboot.personregistry.models.Person;
 import it.aesys.courses.springboot.personregistry.repository.exception.ComponentException;
+import it.aesys.courses.springboot.personregistry.service.exceptions.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -101,4 +102,17 @@ public class PersonDao {
         return personMapDao.values();
     }
 
+    public Person getPersonByFiscalCode(String fiscalCode) throws ComponentException {
+
+        for (Person p : personMapDao.values()) {
+            if (fiscalCode.equals(p.getFiscalCode())) {
+                return p;
+            } else {
+                ComponentException ex = new ComponentException();
+                ex.setStatusCode(404);
+                throw ex;
+            }
+        }
+        return null;
+    }
 }

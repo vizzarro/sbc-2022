@@ -1,10 +1,9 @@
 package it.aesys.courses.springboot.controllers;
 
-
-import it.aesys.courses.springboot.component.CriminalRecordComponent;
 import it.aesys.courses.springboot.model.Report;
+import it.aesys.courses.springboot.model.request.PersonRequest;
+import it.aesys.courses.springboot.service.impl.CriminalRecordServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Profile;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,19 +12,25 @@ import java.util.List;
 @RequestMapping("criminalRecord")
 public class CriminalRecordController {
 
-    private CriminalRecordComponent component;
+    private CriminalRecordServiceImpl service;
 
     @Autowired
-    public CriminalRecordController(CriminalRecordComponent component){
-        this.component = component;
+    public CriminalRecordController(CriminalRecordServiceImpl service){
+        this.service = service;
     }
 
     @PostMapping
-    public void addReport(String fiscalCodeNumber,@RequestBody Report report) {
-        component.addReport(fiscalCodeNumber, report);
+    public void addReport(@RequestBody PersonRequest request) {
+        service.addReport(request.getPerson().getFiscalCodeNumber(), request.getReport());
     }
     @GetMapping
-    public List<Report> getReportList(String fiscalCodeNumber){
-        return component.getReportList( fiscalCodeNumber);
+    public List<Report> getReportList(@RequestBody PersonRequest request){
+        return service.getCriminalRecord(request.getPerson().getFiscalCodeNumber());
     }
+
+    @PutMapping
+    public void updateNewReport(@RequestBody PersonRequest request) {
+        service.updateReport(request.getPerson().getFiscalCodeNumber(), request.getReport());
+    }
+
 }

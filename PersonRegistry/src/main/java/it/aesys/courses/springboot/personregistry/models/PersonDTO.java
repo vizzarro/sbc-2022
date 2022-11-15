@@ -3,7 +3,7 @@ package it.aesys.courses.springboot.personregistry.models;
 import java.util.Date;
 
 public class PersonDTO {
-
+//commento prova
     private String name;
     private String surname;
     private String fiscalCode;
