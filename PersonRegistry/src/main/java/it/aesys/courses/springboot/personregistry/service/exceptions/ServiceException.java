@@ -1,7 +1,6 @@
 package it.aesys.courses.springboot.personregistry.service.exceptions;
 
 import it.aesys.courses.springboot.personregistry.models.mapper.ErrorDTO;
-
 import java.util.Collection;
 
 public class ServiceException extends Exception {
