@@ -6,6 +6,8 @@ import it.aesys.courses.springboot.services.DocumentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/document")
 public class DocumentController {
@@ -27,6 +29,9 @@ public class DocumentController {
         return service.getById(id);
 
     }
-
+    @GetMapping("/cf")
+    public List<Document> getByCf(String cf){
+        return service.findByCf(cf);
+    }
 
 }
