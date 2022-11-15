@@ -31,43 +31,44 @@ public class DocumentComponent {
             document.setIdDoc(sequence);
             documentList.add(document);
             return document;
-        } throw new AlreadyExistsException("Document already exists");
+        }
+        throw new AlreadyExistsException("Document already exists");
     }
 
     public Document findById(Integer id) {
         Optional<Document> found = this.documentList.stream().
                 filter(document -> document.getIdDoc().equals(id))
                 .findFirst();
-        if(found.isPresent()) {
+        if (found.isPresent()) {
             return found.get();
-        } throw new NotFoundException("Document not found");
+        }
+        throw new NotFoundException("Document not found");
     }
 
-    public Document findByCf(String cf) {
-        Optional<Document> found = this.documentList.stream()
+    public List<Document> findByCf(String cf) {
+        return this.documentList.stream()
                 .filter(doc -> cf.equals(doc.getFiscalCode()))
-                .findFirst();
-        if(found.isPresent()){
-            return found.get();
-        }throw new NotFoundException("Document not found");
+                .collect(Collectors.toList());
     }
 
-    public List<Document> findAll(){
+    public List<Document> findAll() {
         return this.documentList;
     }
+
     public Document editById(Integer id, Document document) {
 
-        if(this.findById(id)!=null){
+        if (this.findById(id) != null) {
             documentList.set(id, document);
             return document;
-        }throw new NotFoundException("Document not found");
+        }
+        throw new NotFoundException("Document not found");
 
     }
 
     public void deleteById(Integer id) {
-        if(this.findById(id) != null) {
+        if (this.findById(id) != null) {
             documentList.remove(id);
-        }else throw new NotFoundException("Document not found");
+        } else throw new NotFoundException("Document not found");
     }
 
 }
