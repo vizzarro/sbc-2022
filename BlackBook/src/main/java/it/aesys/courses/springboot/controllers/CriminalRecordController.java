@@ -30,4 +30,9 @@ public class CriminalRecordController {
         return service.getCriminalRecord(fiscalCodeNumber);
     }
 
+    @PutMapping
+    public void updateNewReport(@RequestBody PersonRequest request) {
+        service.updateReport(request.getFiscalCode(), request.getReport());
+    }
+
 }

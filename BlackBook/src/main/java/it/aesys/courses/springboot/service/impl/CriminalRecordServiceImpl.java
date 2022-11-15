@@ -23,4 +23,9 @@ public class CriminalRecordServiceImpl implements CriminalRecordService {
         this.component.addReport(fiscalCodeNumber, report);
     }
 
+    @Override
+    public void updateReport(String fiscalCodeNumber, Report report) {
+        this.component.addNewReport(fiscalCodeNumber, report);
+    }
+
 }

@@ -14,6 +14,14 @@ public class Report {
         this.reportDescription = reportDescription;
     }
 
+    public ProblemType getProblemType() {
+        return problemType;
+    }
+
+    public void setProblemType(ProblemType problemType) {
+        this.problemType = problemType;
+    }
+
     public String getReportDescription() {
         return reportDescription;
     }
