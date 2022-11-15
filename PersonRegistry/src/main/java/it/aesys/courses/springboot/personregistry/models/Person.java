@@ -1,24 +1,33 @@
 package it.aesys.courses.springboot.personregistry.models;
-<<<<<<< HEAD
 
-public class Person {
-
-=======
+import org.springframework.stereotype.Component;
 
 import java.util.Date;
-
+@Component
 public class Person {
 
-    private String;
-    private String;
-    private String;
+    private String name;
+    private String surname;
+    private String fiscalCode;
     private EnumGender gender;
-    private EnumAddress address;
+    private Address address;
     private Date birthDate;
     private String cellNumber;
     private Integer id;
 
     public Person() {
+        super();
+    }
+
+    public Person(String n, String s, String fC, EnumGender g, Address a, Date bD, String cN, Integer id) {
+        this.name = n;
+        this.surname = s;
+        this.fiscalCode = fC;
+        this.gender = g;
+        this.address = a;
+        this.birthDate = bD;
+        this.cellNumber = cN;
+        this.id = id;
     }
 
     public EnumGender getGender() {
@@ -29,11 +38,11 @@ public class Person {
         this.gender = gender;
     }
 
-    public String getAddress() {
+    public Address getAddress() {
         return address;
     }
 
-    public void setAddress(EnumAddress address) {
+    public void setAddress(Address address) {
         this.address = address;
     }
 
@@ -60,5 +69,28 @@ public class Person {
     public void setId(Integer id) {
         this.id = id;
     }
->>>>>>> 821b3ef0033ba9a6f3d4c7d40e8b21b9a57792a0
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public String getFiscalCode() {
+        return fiscalCode;
+    }
+
+    public void setFiscalCode(String fiscalCode) {
+        this.fiscalCode = fiscalCode;
+    }
 }
