@@ -1,13 +1,11 @@
 package it.aesys.courses.springboot.lesson1.brandolini.controllers;
 import it.aesys.courses.springboot.lesson1.config.BrandoliniConfig;
-import org.springframework.context.annotation.Profile;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("brandolini")
-@Profile("devel")
 public class BrandoliniController {
     private BrandoliniConfig config;
 

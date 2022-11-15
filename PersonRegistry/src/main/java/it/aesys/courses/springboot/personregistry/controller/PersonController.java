@@ -40,5 +40,9 @@ public class PersonController {
         return service.getAll();
     }
 
+    @GetMapping("/{id}")
+    public PersonDTO getById(@PathVariable("id") Integer id) throws ServiceException, ComponentException {
+        return service.get(id);
+    }
 
 }
