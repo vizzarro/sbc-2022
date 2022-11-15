@@ -3,20 +3,10 @@ package it.aesys.courses.springboot.model.request;
 import it.aesys.courses.springboot.model.Person;
 import it.aesys.courses.springboot.model.Report;
 
-public class PersonRequest {
-
-    private Person person;
+public class ReportRequest {
     private Report report;
 
-    public PersonRequest() {
-    }
-
-    public Person getPerson() {
-        return person;
-    }
-
-    public void setPerson(Person person) {
-        this.person = person;
+    public ReportRequest() {
     }
 
     public Report getReport() {

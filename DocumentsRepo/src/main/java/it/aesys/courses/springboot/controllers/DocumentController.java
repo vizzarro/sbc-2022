@@ -23,19 +23,16 @@ public class DocumentController {
         this.fileService = fileService;
     }
 
-    @GetMapping
-    public List<Document> getAll(){
-        return (service.getAllDocuments());
-    }
-
     @GetMapping("/{id}")
     public Document findDocument(@PathVariable Integer id) {
         return service.getDocumentById(id);
     }
 
-    @GetMapping("/{cf}")
-    public List<Document> findDocumentByCf(String cf) {
-        return service.getDocumentByCf(cf);
+    @GetMapping
+    public List<Document> findDocuments(@RequestParam(required = false) String cf) {
+        if (cf!=null) {
+            return service.getDocumentByCf(cf);
+        } return service.getAllDocuments();
     }
 
     @PostMapping(consumes = "multipart/form-data")

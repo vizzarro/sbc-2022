@@ -1,17 +1,17 @@
 package it.aesys.courses.springboot.service.impl;
 
-import it.aesys.courses.springboot.component.CriminalRecordComponent;
+import it.aesys.courses.springboot.component.ReportComponent;
 import it.aesys.courses.springboot.model.Report;
-import it.aesys.courses.springboot.service.CriminalRecordService;
+import it.aesys.courses.springboot.service.ReportService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class CriminalRecordServiceImpl implements CriminalRecordService {
+public class ReportServiceImpl implements ReportService {
     @Autowired
-    private CriminalRecordComponent component;
+    private ReportComponent component;
 
     @Override
     public List<Report> getCriminalRecord(String fiscalCodeNumber) {

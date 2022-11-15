@@ -1,9 +1,14 @@
 package it.aesys.courses.springboot.model;
 
+import java.util.List;
+
 public class Person {
     private String fiscalCodeNumber;
 
-    public Person() {}
+    private List<Report> reports;
+
+    public Person() {
+    }
 
     public void setFiscalCodeNumber(String fiscalCodeNumber) {
         this.fiscalCodeNumber = fiscalCodeNumber;
@@ -13,7 +18,11 @@ public class Person {
         return fiscalCodeNumber;
     }
 
+    public List<Report> getReports() {
+        return reports;
+    }
 
-
-        
+    public void setReports(List<Report> reports) {
+        this.reports = reports;
+    }
 }
