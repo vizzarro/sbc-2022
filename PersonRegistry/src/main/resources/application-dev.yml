@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: Person Registry
+
+server:
+  port: 8080
+  error:
+    whitelabel:
+      enabled: true
+
+personRegistry:
+  config:
+    appName: Person Registry
+    version: 1.0.0
+    description: Endpoint print info
+
+app:
+lesson:
+  author: Vervenna, Brandolini, Di Lorito, Fornaro
+  welcome-message: ${config.appName}

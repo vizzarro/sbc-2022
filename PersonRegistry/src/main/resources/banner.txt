@@ -13,4 +13,4 @@ ${AnsiBackground.BRIGHT_RED}███████╗███████╗█�
 ${AnsiBackground.BRIGHT_BLUE}╚══════╝╚══════╝╚══════╝╚══════╝ ╚═════╝ ╚═╝  ╚═══╝     ╚═════╝ ╚═╝  ╚═══╝╚══════╝
 ${AnsiBackground.DEFAULT}
 
-APPICATION VERSION  ${application.version}
+PERSON REGISTRY  ${app.lesson.}
