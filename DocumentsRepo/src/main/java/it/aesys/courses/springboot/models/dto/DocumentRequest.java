@@ -4,20 +4,24 @@ import it.aesys.courses.springboot.models.TypeOfDoc;
 import it.aesys.courses.springboot.models.TypeOfFile;
 
 import java.time.LocalDate;
+
 public class DocumentRequest {
     private String nameFile;
     private TypeOfFile typeOfFile;
     private TypeOfDoc typeOfDoc;
     private String fiscalCode;
+
     public DocumentRequest(String nameFile, TypeOfFile typeOfFile, TypeOfDoc typeOfDoc, String fiscalCode) {
         this.nameFile = nameFile;
         this.typeOfFile = typeOfFile;
         this.typeOfDoc = typeOfDoc;
         this.fiscalCode = fiscalCode;
     }
+
     public DocumentRequest() {
         super();
     }
+
     public String getNameFile() {
         return nameFile;
     }
@@ -45,6 +49,7 @@ public class DocumentRequest {
     public String getFiscalCode() {
         return fiscalCode;
     }
+
     public void setFiscalCode(String fiscalCode) {
         this.fiscalCode = fiscalCode;
     }
