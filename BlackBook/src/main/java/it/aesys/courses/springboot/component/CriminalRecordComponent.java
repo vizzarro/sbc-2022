@@ -19,10 +19,9 @@ public class CriminalRecordComponent {
         this.criminalMap= new HashMap<>();
     }
 
-    public List<Report> addReport(String fiscalCodeNumber, Report report){
+    public void addReport(String fiscalCodeNumber, Report report){
        initPerson(fiscalCodeNumber);
        this.criminalMap.get(fiscalCodeNumber).add(report);
-       return this.criminalMap.get(fiscalCodeNumber);
     }
 
     private void initPerson(String fiscalCodeNumber) {
@@ -36,10 +35,9 @@ public class CriminalRecordComponent {
         return this.criminalMap.get(fiscalCodeNumber);
     }
 
-    public List<Report> addNewReport(String fiscalCodeNumber, Report report){
+    public void addNewReport(String fiscalCodeNumber, Report report){
         if (this.criminalMap.containsKey(fiscalCodeNumber))
-        this.criminalMap.get(fiscalCodeNumber).add(report);
-        return this.criminalMap.get(fiscalCodeNumber);
+            this.criminalMap.get(fiscalCodeNumber).add(report);
     }
 }
 
