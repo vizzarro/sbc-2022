@@ -34,4 +34,13 @@ public class DocumentService {
             return repository.findByCf(cf);
         } throw new InvalidInputException("Invalid cf");
     }
+
+    public Document getById(Integer id){
+        if(id!=null){
+            return repository.findById(id);
+
+        }throw new InvalidInputException("Invalid id");
+    }
+
+
 }

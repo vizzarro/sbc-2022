@@ -4,10 +4,7 @@ import it.aesys.courses.springboot.models.Document;
 import it.aesys.courses.springboot.models.dto.DocumentRequest;
 import it.aesys.courses.springboot.services.DocumentService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/document")
@@ -25,6 +22,10 @@ public class DocumentController {
         return service.createDocument(request);
     }
 
+    @GetMapping("/{id}")
+    public Document findDocument(@PathVariable Integer id){
+        return service.getById(id);
 
+    }
 
 }
