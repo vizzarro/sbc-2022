@@ -2,10 +2,17 @@ package it.aesys.courses.springboot.personregistry.service.exceptions;
 
 import it.aesys.courses.springboot.personregistry.controller.ErrorManageController;
 import it.aesys.courses.springboot.personregistry.models.mapper.ErrorDTO;
+
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
+
+import static org.springframework.web.servlet.function.RequestPredicates.path;
 
 public class ServiceException extends Exception {
 
+    private String path;
+    private List<ErrorDTO> errors = new ArrayList<>();
     int statusCode = 0;
     private Collection<? extends ErrorDTO> error;
 
@@ -37,10 +44,20 @@ public class ServiceException extends Exception {
     }
 
     public String getPath() {
-        return this.getPath();
+        return path;
     }
 
-    public Collection<? extends ErrorDTO> getErrors() {
-        return this.error;
+    public void setPath(String path) {
+        this.path = path;
     }
+
+    public List<ErrorDTO> getErrors() {
+        return errors;
+    }
+
+    public void setErrors(List<ErrorDTO> errors) {
+        this.errors = errors;
+    }
+
+
 }
