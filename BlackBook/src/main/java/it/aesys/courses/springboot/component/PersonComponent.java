@@ -16,7 +16,7 @@ public class PersonComponent {
              mapPerson.put(person.getFiscalCodeNumber(), person);
              return mapPerson.get(person.getFiscalCodeNumber());
          }
-         return null;
+         return null; // to do : show message error
     }
 
     public Person get(String fiscalCodeNumber) {

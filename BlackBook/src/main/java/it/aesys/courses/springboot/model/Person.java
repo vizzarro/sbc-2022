@@ -9,6 +9,15 @@ public class Person {
     public Person() {
     }
 
+    public Person(String fiscalCodeNumber) {
+        this.fiscalCodeNumber = fiscalCodeNumber;
+    }
+
+    public Person(String fiscalCodeNumber, List<Report> reports) {
+        this.fiscalCodeNumber = fiscalCodeNumber;
+        this.reports = reports;
+    }
+
     public void setFiscalCodeNumber(String fiscalCodeNumber) {
         this.fiscalCodeNumber = fiscalCodeNumber;
     }
