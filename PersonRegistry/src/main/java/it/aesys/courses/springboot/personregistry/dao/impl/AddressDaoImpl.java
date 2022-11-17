@@ -1,20 +1,25 @@
 package it.aesys.courses.springboot.personregistry.dao.impl;
 
 import it.aesys.courses.springboot.personregistry.dao.AddressDao;
+import it.aesys.courses.springboot.personregistry.dao.Dao;
 import it.aesys.courses.springboot.personregistry.dao.exception.DaoException;
 import it.aesys.courses.springboot.personregistry.models.Address;
+import it.aesys.courses.springboot.personregistry.models.EnumAddress;
+import it.aesys.courses.springboot.personregistry.models.EnumGender;
+import it.aesys.courses.springboot.personregistry.models.Person;
 import org.springframework.stereotype.Repository;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository
 public class AddressDaoImpl implements AddressDao {
 
 
-    String dbURL = "jdbc:mysql://localhost:3306/personregistrydb";
-    String username = "root";
-    String password = "secret";
+    String dbURL = "jdbc:mysql://192.168.130.6:3306/";
+    String username = "user_library";
+    String password = "password";
 
     private static final String DRIVER_NAME = "com.mysql.cj.jdbc.Driver";
     private static final String INSERT_ADDRESS_SQL = "INSERT INTO address" +
@@ -35,28 +40,30 @@ public class AddressDaoImpl implements AddressDao {
             preparedStatement.setString(1, address.getStreet());
             preparedStatement.setString(2, address.getCivic());
             preparedStatement.setInt(3, address.getPostalCode());
-            preparedStatement.setString(4, address.getHome());
+            preparedStatement.setString(4, address.getHome().name());
             System.out.println(preparedStatement);
             preparedStatement.execute();
 
            ResultSet rs = preparedStatement.getGeneratedKeys();
            while (rs.next()){
-               address.setAddress_id(rs.getInt(1));
+               address.setAddressId(rs.getInt(1));
            }
 
         } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
+            DaoException exc = new DaoException();
+            exc.setMessage("Driver not found!");
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            DaoException exc = new DaoException();
+            exc.setMessage("not found");;
         }
         return address;
     }
 
     @Override
-    public Address update(Address address) {
+    public Address update(Address address) throws DaoException {
 
 
-        if (get(address.getAddressId()) != null) {
+        if (get(address.getAddressId().toString()) != null) {
 
             try {
                 Class.forName(DRIVER_NAME);
@@ -67,8 +74,8 @@ public class AddressDaoImpl implements AddressDao {
                 PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_ADDRESS_SQL);
                 preparedStatement.setString(1, address.getStreet());
                 preparedStatement.setString(2, address.getCivic());
-                preparedStatement.setString(3, address.getPostalCode());
-                preparedStatement.setDate(4, address.getHome());
+                preparedStatement.setInt(3, address.getPostalCode());
+                preparedStatement.setString(4, address.getHome().name());
 
                 System.out.println(preparedStatement);
                 // Step 3: Execute the query or update query
@@ -81,29 +88,175 @@ public class AddressDaoImpl implements AddressDao {
                 // print SQL exception information
                 printSQLException(e);
                 DaoException exc = new DaoException();
-                exc.setMessage("already existing");
+                exc.setMessage("Already existing");
 
             } catch (ClassNotFoundException ex) {
                 ex.printStackTrace();
-                throw new DaoException();
+                DaoException exc = new DaoException();
+                exc.setMessage("Driver not found");
+
+                throw exc;
             }
         }
+        DaoException excep = new DaoException();
+        excep.setMessage("Address is null!");
+        throw excep;
+    }
 
-        return null;
+
+
+    @Override
+    public void deleteAddress(Integer index) throws DaoException {
+
+        try {
+            Class.forName(DRIVER_NAME);
+            Connection connection = DriverManager
+                    .getConnection(dbURL, username, password);
+
+            // Step 2:Create a statement using connection object
+            PreparedStatement preparedStatement = connection.prepareStatement(DELETE_ADDRESS_SQL);
+            preparedStatement.setInt(1, index);
+
+            System.out.println(preparedStatement);
+            // Step 3: Execute the query or update query
+            preparedStatement.execute();
+
+        } catch (SQLException e) {
+            // print SQL exception information
+            printSQLException(e);
+            DaoException exc = new DaoException();
+            exc.setMessage("not found");
+        } catch (ClassNotFoundException ex) {
+            //ex.printStackTrace();
+            DaoException excep = new DaoException();
+            excep.setMessage("Driver not found!");
+            throw excep;
+        }
+    }
+
+
+
+
+
+
+
+    public Address getAddress(Integer index) throws DaoException {
+
+        Address a = null;
+        System.out.println(GET_ADDRESS_SQL);
+        // Step 1: Establishing a Connection
+        try {
+            Class.forName(DRIVER_NAME);
+            Connection connection = DriverManager
+                    .getConnection(dbURL, username, password);
+
+
+            // Step 2:Create a statement using connection object
+            PreparedStatement preparedStatement = connection.prepareStatement(GET_ADDRESS_SQL);
+            preparedStatement.setInt(1, index);
+
+            System.out.println(preparedStatement);
+            // Step 3: Execute the query or update query
+
+            ResultSet rs = preparedStatement.executeQuery();
+
+
+            while (rs.next()) {
+                a = new Address();
+                a.setStreet(rs.getString("street"));
+                a.setCivic(rs.getString("civic"));
+                a.setPostalCode(rs.getInt("postalCode"));
+                a.setHome(EnumAddress.valueOf(rs.getString("home")));
+            }
+
+        } catch (SQLException e) {
+
+            // print SQL exception information
+            printSQLException(e);
+            DaoException exc = new DaoException();
+            exc.setMessage("not found");
+        } catch (ClassNotFoundException e) {
+            DaoException exc = new DaoException();
+            exc.setMessage("Driver Not Found!");
+            throw exc;
+        }
+        return a;
+
+
+
     }
 
     @Override
-    public void delete(String s) {
+    public List<Address> getAll() throws DaoException {
 
+        List<Address> addressList = new ArrayList<>();
+
+        // Step 1: Establishing a Connection
+        try {
+            Class.forName(DRIVER_NAME);
+            Connection connection = DriverManager
+                    .getConnection(dbURL, username, password);
+
+
+            // Step 2:Create a statement using connection object
+            Statement statement = connection.createStatement();
+
+
+            // Step 3: Execute the query or update query
+
+            ResultSet rs = statement.executeQuery(GET_ALL_ADDRESS_SQL);
+
+            //TODO ciclare il rs per prendere i campi e settarlo nella entity
+            while (rs.next()) {
+                Address a = new Address();
+                a.setStreet(rs.getString("street"));
+                a.setCivic(rs.getString("civic"));
+                a.setPostalCode(rs.getInt("postalCode"));
+                a.setHome(EnumAddress.valueOf(rs.getString("home")));;
+                addressList.add(a);
+            }
+
+        } catch (SQLException e) {
+
+            // print SQL exception information
+            printSQLException(e);
+
+            DaoException ex = new DaoException();
+            ex.setMessage("SQL Error, Address not found");
+            throw ex;
+        } catch (ClassNotFoundException e) {
+             DaoException exc = new DaoException();
+            exc.setMessage("Driver not found!");
+            throw exc;
+        }
+        return addressList;
+    }
+
+
+    public static void printSQLException(SQLException ex) {
+        for (Throwable e : ex) {
+            if (e instanceof SQLException) {
+                e.printStackTrace(System.err);
+                System.err.println("SQLState: " + ((SQLException) e).getSQLState());
+                System.err.println("Error Code: " + ((SQLException) e).getErrorCode());
+                System.err.println("Message: " + e.getMessage());
+                Throwable t = ex.getCause();
+                while (t != null) {
+                    System.out.println("Cause: " + t);
+                    t = t.getCause();
+                }
+            }
+        }
+    }
+    @Override
+    public void delete(String s) throws DaoException {
+        //NON USARE
     }
 
     @Override
-    public Address get(String s) {
-        return null;
-    }
+    public Address get(String s) throws DaoException {
+        // NON USARE
 
-    @Override
-    public List<Address> getAll() {
         return null;
     }
 }

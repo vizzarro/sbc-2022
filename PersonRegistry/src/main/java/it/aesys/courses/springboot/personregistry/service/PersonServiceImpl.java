@@ -3,8 +3,10 @@ package it.aesys.courses.springboot.personregistry.service;
 import it.aesys.courses.springboot.personregistry.dao.PersonDao;
 import it.aesys.courses.springboot.personregistry.dao.exception.DaoException;
 import it.aesys.courses.springboot.personregistry.dao.impl.PersonDaoImpl;
+import it.aesys.courses.springboot.personregistry.models.Address;
 import it.aesys.courses.springboot.personregistry.models.Person;
 import it.aesys.courses.springboot.personregistry.models.PersonDTO;
+import it.aesys.courses.springboot.personregistry.models.mapper.AddressMapperDTO;
 import it.aesys.courses.springboot.personregistry.models.mapper.PersonMapperDTO;
 
 import it.aesys.courses.springboot.personregistry.service.exceptions.ServiceException;
@@ -18,9 +20,10 @@ import java.util.Collection;
 @Service
 public class PersonServiceImpl implements PersonService {
     private PersonMapperDTO personMapperDTO;
-    //private PersonDao personDao;
     private PersonDao personDao;
     private RestTemplate documentsClient;
+
+    
 
     @Autowired
     public PersonServiceImpl(PersonMapperDTO personMapperDTO, PersonDaoImpl personDao, RestTemplate documentsClient) {
@@ -32,7 +35,9 @@ public class PersonServiceImpl implements PersonService {
     public PersonDTO create(PersonDTO personDto) throws ServiceException {
 
         try {
-            return personMapperDTO.toDto(personDao.create(personMapperDTO.toModel(personDto)));
+            personDao.create(personMapperDTO.toModel(personDto));
+            return personDto;
+
         } catch (DaoException e) {
             ServiceException ex = new ServiceException();
 //            ex.setStatusCode(e.getStatusCode());
@@ -76,23 +81,19 @@ public class PersonServiceImpl implements PersonService {
 
         try {
 
-            if (personMapperDTO.toDto(personDao.get(fiscalcode)) != null) {
+            if ( personDao.get(fiscalcode) != null) {
                 Person updatedPerson = personMapperDTO.toModel(personDTO);
                 personDao.update(updatedPerson);
                 return personMapperDTO.toDto(updatedPerson);
-            } else {
-                if (personMapperDTO.toDto(personDao.get(personDTO.getFiscalCode())) != null) {
-                    Person updatedPerson = personMapperDTO.toModel(personDTO);
-                    personDao.update(updatedPerson);
-                    return personMapperDTO.toDto(updatedPerson);
-                } else {
+                }
+            else {
                     ServiceException serviceException = new ServiceException();
                     serviceException.setStatusCode(404);
                     serviceException.setMessage("Resource not found");
 
                     throw serviceException;
                 }
-            }
+
         } catch (DaoException e) {
             ServiceException se = new ServiceException();
 //            se.setStatusCode(e.getErrorCode())
@@ -103,8 +104,8 @@ public class PersonServiceImpl implements PersonService {
 
     public void delete(String fiscalcode) throws ServiceException {
         try {
-            if (personMapperDTO.toDto(personDao.get(fiscalcode)) != null) {
-                personDao.get(fiscalcode);
+            if (personDao.get(fiscalcode) != null) {
+
                 personDao.delete(fiscalcode);
             } else {
                 ServiceException exc = new ServiceException();

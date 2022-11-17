@@ -8,17 +8,9 @@ public class Address {
     public EnumAddress home;
     public Integer addressId;
 
-
-
-    public void setAddressId(int addressId) {
+    public void setAddressId(Integer addressId) {
         this.addressId = addressId;
     }
-
-    public void setAddress_id(int address_id) {
-        this.address_id = address_id;
-    }
-
-    public int address_id;
 
     public Address() {
     }
@@ -47,7 +39,7 @@ public class Address {
         this.postalCode = postalCode;
     }
 
-    public String getHome() {
+    public EnumAddress getHome() {
         return home;
     }
 
