@@ -3,5 +3,6 @@ spring:
     active: devel
 
 jdbc:
-    user:
-    password:
+    url: jdbc:mysql://192.168.130.6:3306/?user=user_library/documents
+    user: user_library
+    password: password

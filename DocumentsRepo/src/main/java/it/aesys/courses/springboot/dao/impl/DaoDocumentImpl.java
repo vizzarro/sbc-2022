@@ -1,16 +1,20 @@
 package it.aesys.courses.springboot.dao.impl;
 
+import com.mysql.cj.jdbc.Driver;
 import it.aesys.courses.springboot.dao.Dao;
 import it.aesys.courses.springboot.models.Document;
 import it.aesys.courses.springboot.utils.connectionDb.ConnectionDb;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.sql.*;
 import java.util.List;
 import java.util.Optional;
 
 public class DaoDocumentImpl implements Dao<Document> {
 
-    ConnectionDb connectionDB;
+    private static  ConnectionDb connectionDB;
+    private static final String INSERTQUERY="";
+    private static final String SELECTALL="SELECT * FROM library.documenttest";
 
     @Autowired
     public DaoDocumentImpl(ConnectionDb connectionDB){
@@ -19,8 +23,11 @@ public class DaoDocumentImpl implements Dao<Document> {
 
 
     @Override
-    public Document add(Document document) {
-        connectionDB.register();
+    public Document add(Document document) throws SQLException {
+        Connection connection= connectionDB.register();
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery(SELECTALL);
+
         return null;
     }
 
@@ -30,7 +37,13 @@ public class DaoDocumentImpl implements Dao<Document> {
     }
 
     @Override
-    public List<Document> findAll() {
+    public List<Document> findAll() throws SQLException {
+        Connection connection= connectionDB.register();
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery(SELECTALL);
+        while (resultSet.next()){
+            System.out.println("cf: " + resultSet.getString("fiscalCode"));
+        }
         return null;
     }
 
