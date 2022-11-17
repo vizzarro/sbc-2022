@@ -5,6 +5,7 @@ import it.aesys.courses.springboot.personregistry.models.EnumGender;
 import it.aesys.courses.springboot.personregistry.models.Person;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class PersonDaoImpl implements PersonDao {
@@ -14,14 +15,17 @@ public class PersonDaoImpl implements PersonDao {
     String password = "password";
     private static final String DRIVER_NAME = "com.mysql.cj.jdbc.Driver";
 
-    private static final String INSERT_PERSONS_SQL = "INSERT INTO persons" +
+    private static final String INSERT_PERSONS_SQL = "INSERT INTO person" +
             "  ( name, surname, fiscalcode, gender, address, birthdate, cellnumber, ) VALUES " +
             " ( ?, ?, ?, ? , ? , ? , ?);";
-    private static final String GET_PERSONS_SQL = "SELECT fiscalcode FROM persons WHERE fiscalcode =  ?";
+    private static final String GET_PERSONS_SQL = "SELECT fiscalcode FROM person WHERE fiscalcode =  ?";
 
-    private static final String UPDATE_PERSONS_SQL = "UPDATE persons SET person WHERE fiscalcode = ?";
+    private static final String GET_ALL_SQL = "SELECT fiscalcode FROM person";
 
-    private static final String DELETE_PERSONS_SQL = "DELETE person WHERE fiscalcode = ?";
+
+    private static final String UPDATE_PERSONS_SQL = "UPDATE person SET campo1=?, campo2=? WHERE fiscalcode = ?";
+
+    private static final String DELETE_PERSONS_SQL = "DELETE FROM person WHERE fiscalcode = ?";
 
 
 
@@ -53,7 +57,7 @@ public class PersonDaoImpl implements PersonDao {
             // print SQL exception information
             printSQLException(e);
         } catch (ClassNotFoundException ex) {
-
+            ex.printStackTrace();
         }
 
         // Step 4: try-with-resource statement will auto close the connection.
@@ -108,7 +112,7 @@ public class PersonDaoImpl implements PersonDao {
                 // print SQL exception information
                 printSQLException(e);
             } catch (ClassNotFoundException ex) {
-
+                ex.printStackTrace();
             }
         }
 
@@ -137,7 +141,7 @@ public class PersonDaoImpl implements PersonDao {
                 // print SQL exception information
                 printSQLException(e);
             } catch (ClassNotFoundException ex) {
-
+                ex.printStackTrace();
             }
         }
 
@@ -165,6 +169,7 @@ public class PersonDaoImpl implements PersonDao {
 
             //TODO ciclare il rs per prendere i campi e settarlo nella entity
             while (rs.next()) {
+                p = new Person();
                 p.setName(rs.getString("name"));
                 p.setSurname(rs.getString("surname"));
                 p.setFiscalCode(rs.getString("fiscalcode"));
@@ -187,6 +192,42 @@ public class PersonDaoImpl implements PersonDao {
 
     @Override
     public List<Person> getAll() {
-        return null;
+        List<Person> personList = new ArrayList<>();
+
+        // Step 1: Establishing a Connection
+        try {
+            Class.forName(DRIVER_NAME);
+            Connection connection = DriverManager
+                    .getConnection(dbURL, username, password);
+
+
+            // Step 2:Create a statement using connection object
+            Statement statement = connection.createStatement();
+
+
+            // Step 3: Execute the query or update query
+
+            ResultSet rs = statement.executeQuery(GET_ALL_SQL);
+
+            //TODO ciclare il rs per prendere i campi e settarlo nella entity
+            while (rs.next()) {
+                Person p = new Person();
+                p.setName(rs.getString("name"));
+                p.setSurname(rs.getString("surname"));
+                p.setFiscalCode(rs.getString("fiscalcode"));
+                p.setGender(EnumGender.valueOf(rs.getString("gender")));
+                p.setBirthDate(rs.getDate("birth_date"));
+                p.setCellNumber(rs.getString("cellnumber"));
+                personList.add(p);
+            }
+
+        } catch (SQLException e) {
+
+            // print SQL exception information
+            printSQLException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        return personList;
     }
 }
