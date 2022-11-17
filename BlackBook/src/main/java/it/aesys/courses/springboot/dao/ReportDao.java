@@ -8,7 +8,6 @@ import org.springframework.stereotype.Component;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.StreamHandler;
 
 @Component
 public class ReportDao {

@@ -14,13 +14,12 @@ import java.util.List;
 
 @Service
 public class ReportServiceImpl implements ReportService {
-
     private ReportDao reportDao;
 
     private ReportMapperDTO mapper;
 
     @Autowired
-    public ReportServiceImpl(ReportDao reportDao, ReportMapperDTO mapper){
+    public ReportServiceImpl(ReportDao reportDao, ReportMapperDTO mapper) {
         this.reportDao = reportDao;
         this.mapper = mapper;
     }
@@ -44,10 +43,5 @@ public class ReportServiceImpl implements ReportService {
     @Override
     public ReportDtoResponse update(Integer reportTicketNumber, ReportDtoResponse updatedDto) throws BadInputException {
         return this.mapper.toResponseDto(this.reportDao.updateReport(this.mapper.toResponseModel(updatedDto)));
-    }
-
-    @Override
-    public boolean canBorrow(String fiscalCodeNumber) {
-        return false;
     }
 }

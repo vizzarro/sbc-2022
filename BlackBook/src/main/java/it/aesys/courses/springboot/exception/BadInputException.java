@@ -1,8 +1,8 @@
 package it.aesys.courses.springboot.exception;
 
-public class BadInputException extends Exception{
+public class BadInputException extends Exception {
 
-    public BadInputException (){
+    public BadInputException() {
     }
 
     public BadInputException(String message, Throwable cause) {

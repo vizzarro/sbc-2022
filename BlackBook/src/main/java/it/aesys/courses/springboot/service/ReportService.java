@@ -12,5 +12,4 @@ public interface ReportService {
     List<Report> getPersonHistory(String fiscalCodeNumber);
     void delete (Integer reportTicketNumber) throws BadInputException;
     ReportDtoResponse update(Integer reportTicketNumber, ReportDtoResponse updatedDto) throws BadInputException;
-    boolean canBorrow(String fiscalCodeNumber);
 }
