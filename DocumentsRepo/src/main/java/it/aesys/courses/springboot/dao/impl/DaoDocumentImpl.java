@@ -7,17 +7,18 @@ import it.aesys.courses.springboot.models.TypeOfDoc;
 import it.aesys.courses.springboot.models.TypeOfFile;
 import it.aesys.courses.springboot.utils.connectionDb.ConnectionDb;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
+@Component
 public class DaoDocumentImpl implements Dao<Document> {
 
     private static  ConnectionDb connectionDB;
     private static final String INSERTQUERY="";
-    private static final String SELECTALL="SELECT * FROM library.documenttest";
+    private static final String SELECTALL="SELECT * FROM library.documents";
 
     @Autowired
     public DaoDocumentImpl(ConnectionDb connectionDB){
