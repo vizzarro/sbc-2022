@@ -2,14 +2,13 @@ package it.aesys.courses.springboot.model.mapperDTO;
 
 import it.aesys.courses.springboot.model.ProblemType;
 
-public class ReportDTO {
+public class ReportDtoRequest {
 
     private String fiscalCodeNumber;
-    private Integer reportTicketNumber;
     private ProblemType problemType;
     private String problemDescription;
 
-    public ReportDTO() {
+    public ReportDtoRequest() {
     }
 
     public String getFiscalCodeNumber() {
@@ -18,14 +17,6 @@ public class ReportDTO {
 
     public void setFiscalCodeNumber(String fiscalCodeNumber) {
         this.fiscalCodeNumber = fiscalCodeNumber;
-    }
-
-    public Integer getReportTicketNumber() {
-        return reportTicketNumber;
-    }
-
-    public void setReportTicketNumber(Integer reportTicketNumber) {
-        this.reportTicketNumber = reportTicketNumber;
     }
 
     public ProblemType getProblemType() {

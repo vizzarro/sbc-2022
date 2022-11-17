@@ -1,10 +1,13 @@
 package it.aesys.courses.springboot.controllers;
 
-import it.aesys.courses.springboot.model.mapperDTO.ReportDTO;
+import it.aesys.courses.springboot.model.Report;
+import it.aesys.courses.springboot.model.mapperDTO.ReportDtoResponse;
 import it.aesys.courses.springboot.model.request.ReportRequest;
 import it.aesys.courses.springboot.service.impl.ReportServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("report")
@@ -18,28 +21,23 @@ public class ReportController {
     }
 
     @PostMapping
-    public ReportDTO create(@RequestBody ReportRequest request) {
-        return service.create(request.getReportDTO());
+    public ReportDtoResponse create(@RequestBody ReportRequest request) {
+        return service.create(request.getReportDtoRequest());
     }
 
     @GetMapping("{fiscalCodeNumber}")
-    public ReportDTO findPersonHistory (@PathVariable("fiscalCodeNumber") String fiscalCodeNumber){
+    public List<Report> findPersonHistory (@PathVariable("fiscalCodeNumber") String fiscalCodeNumber){
         return service.getPersonHistory(fiscalCodeNumber);
     }
 
-    @GetMapping("{reportTicketNumber}")
-    public ReportDTO findReportTicket(@PathVariable("reportTicketNumber") String reportTicketNumber){
-        return service.getReportTicket(reportTicketNumber);
-    }
-
     @DeleteMapping("{reportTicketNumber}")
-    public void deleteReport (@PathVariable("reportTicketNumber") String reportTicketNumber) {
+    public void deleteReport (@PathVariable("reportTicketNumber") Integer reportTicketNumber) {
         service.delete(reportTicketNumber);
     }
 
     @PutMapping("{reportTicketNumber}")
-    public ReportDTO update(@PathVariable("fiscalCodeNumber") String fiscalCodeNumber, @RequestBody ReportRequest request) {
-        return service.update(request.getReportDTO());
+    public ReportDtoResponse update(@PathVariable("reportTicketNumber") Integer reportTicketNumber, @RequestBody ReportRequest request) {
+        return service.update(reportTicketNumber ,request.getReportDtoRequest());
     }
 
 }
