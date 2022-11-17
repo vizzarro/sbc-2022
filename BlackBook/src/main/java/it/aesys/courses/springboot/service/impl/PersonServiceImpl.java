@@ -1,6 +1,7 @@
 package it.aesys.courses.springboot.service.impl;
 
 import it.aesys.courses.springboot.component.PersonComponent;
+import it.aesys.courses.springboot.exception.BadInputException;
 import it.aesys.courses.springboot.model.Report;
 import it.aesys.courses.springboot.model.mapperDTO.PersonDTO;
 import it.aesys.courses.springboot.model.mapperDTO.PersonMapperDTO;
