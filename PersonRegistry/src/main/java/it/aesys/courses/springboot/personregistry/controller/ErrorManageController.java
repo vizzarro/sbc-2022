@@ -1,6 +1,7 @@
 package it.aesys.courses.springboot.personregistry.controller;
 
 import it.aesys.courses.springboot.personregistry.models.mapper.ApiErrorDTO;
+import it.aesys.courses.springboot.personregistry.models.mapper.ErrorDTO;
 import it.aesys.courses.springboot.personregistry.service.exceptions.ServiceException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,18 +15,19 @@ public class ErrorManageController {
 
     @ExceptionHandler(value = ServiceException.class)
     public ResponseEntity<ApiErrorDTO> errorManage(ServiceException ex, WebRequest request) {
-        return getErrorMessages(ex);
+
+
+        return getErrorMessages(ex, request);
     }
 
 
-    public ResponseEntity<ApiErrorDTO> getErrorMessages (ServiceException bre) {
+    public ResponseEntity<ApiErrorDTO> getErrorMessages (ServiceException bre, WebRequest request) {
 
 
         ApiErrorDTO error = new ApiErrorDTO();
         error.setStatusCode(bre.getStatusCode());
         error.setMessage(bre.getMessage());
-        error.setPath(bre.getPath());
-        error.getErrors().addAll(bre.getErrors());
+        error.setPath(request.getContextPath());
 
         ResponseEntity<ApiErrorDTO> errorResponse = ResponseEntity.status(HttpStatus.resolve(bre.getStatusCode())).body(error);
         return errorResponse;

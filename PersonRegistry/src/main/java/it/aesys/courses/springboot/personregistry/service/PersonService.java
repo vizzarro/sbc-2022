@@ -40,6 +40,7 @@ public class PersonService {
         } catch (ComponentException e) {
             ServiceException ex = new ServiceException();
             ex.setStatusCode(e.getStatusCode());
+            ex.setMessage("Impossible to create");
             throw ex;
         }
     }
@@ -52,6 +53,7 @@ public class PersonService {
         } catch (ComponentException e) {
             ServiceException ex = new ServiceException();
             ex.setStatusCode(e.getStatusCode());
+            ex.setMessage("Resource not found");
             throw ex;
         }
     }
@@ -80,11 +82,13 @@ public class PersonService {
             } else {
                 ServiceException exc = new ServiceException();
                 exc.setStatusCode(404);
+                exc.setMessage("Resource not found");
                 throw exc;
             }
         } catch (ComponentException e) {
             ServiceException ex = new ServiceException();
             ex.setStatusCode(e.getStatusCode());
+            ex.setMessage("Resource not found");
             throw ex;
         }
     }
@@ -98,6 +102,7 @@ public class PersonService {
         } else {
             ServiceException exc = new ServiceException();
             exc.setStatusCode(404);
+            exc.setMessage("Resource not found");
             throw exc;
         }
 
