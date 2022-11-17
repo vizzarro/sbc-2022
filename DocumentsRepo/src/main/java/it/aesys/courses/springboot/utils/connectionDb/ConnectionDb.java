@@ -1,4 +1,5 @@
 package it.aesys.courses.springboot.utils.connectionDb;
+import com.mysql.cj.jdbc.Driver;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -14,16 +15,18 @@ public class ConnectionDb {
     private String user;
     @Value("${jdbc.password}")
     private String password;
+    @Value("${jdbc.url}")
+    private String url;
 
-    public void register(){
+    public Connection register(){
         try {
-            Class.forName("oracle.jdbc.OracleDriver");
-            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/DocumentsRepo",user, password);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+            Driver driver = new Driver();
+            Connection connection = DriverManager.getConnection(url,user, password);
+            return connection;
         } catch (SQLException e) {
             e.printStackTrace();
+            throw new RuntimeException();
         }
-
     }
+
 }

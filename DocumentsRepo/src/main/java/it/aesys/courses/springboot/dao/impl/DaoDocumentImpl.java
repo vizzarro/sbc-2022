@@ -1,16 +1,23 @@
 package it.aesys.courses.springboot.dao.impl;
 
+import com.mysql.cj.jdbc.Driver;
 import it.aesys.courses.springboot.dao.Dao;
 import it.aesys.courses.springboot.models.Document;
+import it.aesys.courses.springboot.models.TypeOfDoc;
+import it.aesys.courses.springboot.models.TypeOfFile;
 import it.aesys.courses.springboot.utils.connectionDb.ConnectionDb;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 public class DaoDocumentImpl implements Dao<Document> {
 
-    ConnectionDb connectionDB;
+    private static  ConnectionDb connectionDB;
+    private static final String INSERTQUERY="";
+    private static final String SELECTALL="SELECT * FROM library.documenttest";
 
     @Autowired
     public DaoDocumentImpl(ConnectionDb connectionDB){
@@ -19,8 +26,11 @@ public class DaoDocumentImpl implements Dao<Document> {
 
 
     @Override
-    public Document add(Document document) {
-        connectionDB.register();
+    public Document add(Document document) throws SQLException {
+        Connection connection= connectionDB.register();
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery(SELECTALL);
+
         return null;
     }
 
@@ -30,8 +40,24 @@ public class DaoDocumentImpl implements Dao<Document> {
     }
 
     @Override
-    public List<Document> findAll() {
-        return null;
+    public List<Document> findAll() throws SQLException {
+        Connection connection= connectionDB.register();
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery(SELECTALL);
+        List<Document> documents = new ArrayList<>();
+        Document document = new Document();
+        while (resultSet.next()){
+            document.setIdDoc(resultSet.getInt("idDoc"));
+            document.setNameFile(resultSet.getString("nameFile"));
+            document.setTypeOfFile(TypeOfFile.valueOf(resultSet.getString("typeOfFile")));
+            document.setTypeOfDoc(TypeOfDoc.valueOf(resultSet.getString("typeOfDoc")));
+            document.setDataOfInput(resultSet.getDate("dataOfInput").toLocalDate());
+            document.setFile(resultSet.getString("file"));
+            document.setFiscalCode(resultSet.getString("fiscalCode"));
+            documents.add(document);
+            System.out.println("cf: " + resultSet.getString("fiscalCode"));
+        }
+        return documents;
     }
 
     @Override

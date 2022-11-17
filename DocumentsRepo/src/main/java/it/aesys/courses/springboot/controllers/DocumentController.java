@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 
 @RestController
@@ -29,7 +30,7 @@ public class DocumentController {
     }
 
     @GetMapping
-    public List<Document> findDocuments(@RequestParam(required = false) String cf) {
+    public List<Document> findDocuments(@RequestParam(required = false) String cf) throws SQLException {
         if (cf!=null) {
             return service.getDocumentByCf(cf);
         } return service.getAllDocuments();
