@@ -6,6 +6,8 @@ public class Report {
     private ProblemType problemType;
     private String problemDescription;
 
+    private  String fiscalCodeNumber;
+
     public Report() {
     }
 
@@ -33,4 +35,11 @@ public class Report {
         this.problemDescription = problemDescription;
     }
 
+    public String getFiscalCodeNumber() {
+        return fiscalCodeNumber;
+    }
+
+    public void setFiscalCodeNumber(String fiscalCodeNumber) {
+        this.fiscalCodeNumber = fiscalCodeNumber;
+    }
 }
