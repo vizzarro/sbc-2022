@@ -9,7 +9,7 @@ import java.util.Optional;
 public interface Dao<T> {
 
     T add(T t) throws SQLException;
-    Optional<T> find(Integer id);
+    Optional<T> find(Integer id) throws SQLException;
     List<T> findAll() throws SQLException;
     T edit(Integer id, T t);
     void delete(Integer id) throws SQLException;

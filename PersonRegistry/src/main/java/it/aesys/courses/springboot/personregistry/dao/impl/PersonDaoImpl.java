@@ -60,7 +60,11 @@ public class PersonDaoImpl implements PersonDao {
         } catch (SQLException e) {
             // print SQL exception information
             printSQLException(e);
-            throw new DaoException();
+            DaoException exc = new DaoException();
+            exc.setStatusCode(404);
+            exc.setMessage("not found");
+
+            throw exc;
         } catch (ClassNotFoundException ex) {
             ex.printStackTrace();
             throw new DaoException();
@@ -116,7 +120,9 @@ public class PersonDaoImpl implements PersonDao {
             } catch (SQLException e) {
                 // print SQL exception information
                 printSQLException(e);
-                throw new DaoException();
+                DaoException exc = new DaoException();
+                exc.setMessage("already existing");
+
             } catch (ClassNotFoundException ex) {
                 ex.printStackTrace();
                 throw new DaoException();
@@ -147,7 +153,8 @@ public class PersonDaoImpl implements PersonDao {
             } catch (SQLException e) {
                 // print SQL exception information
                 printSQLException(e);
-                throw new DaoException();
+                DaoException exc = new DaoException();
+                exc.setMessage("not found");
             } catch (ClassNotFoundException ex) {
                 ex.printStackTrace();
                 throw new DaoException();
@@ -193,7 +200,8 @@ public class PersonDaoImpl implements PersonDao {
 
             // print SQL exception information
             printSQLException(e);
-            throw new DaoException();
+            DaoException exc = new DaoException();
+            exc.setMessage("not found");
         } catch (ClassNotFoundException e) {
             throw new DaoException();
         }

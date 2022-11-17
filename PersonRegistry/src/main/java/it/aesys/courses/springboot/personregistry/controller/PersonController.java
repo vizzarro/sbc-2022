@@ -43,11 +43,6 @@ public class PersonController {
         return service.getAll();
     }
 
-//    @GetMapping("/{id}")
-//    public PersonDTO getById(@PathVariable("id") Integer id) throws ServiceException {
-//        return service.get(id);
-//    }
-
     @GetMapping("{fiscalCode}")
     public PersonDTO getPersonByFiscalCode(@PathVariable("fiscalCode") String fiscalCode) throws ServiceException {
         return service.get(fiscalCode);

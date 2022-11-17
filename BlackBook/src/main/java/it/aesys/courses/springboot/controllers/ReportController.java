@@ -1,6 +1,7 @@
 package it.aesys.courses.springboot.controllers;
 
 import it.aesys.courses.springboot.exception.BadInputException;
+import it.aesys.courses.springboot.exception.PersonHistoryNotFoundException;
 import it.aesys.courses.springboot.model.Report;
 import it.aesys.courses.springboot.model.mapperDTO.ReportDtoRequest;
 import it.aesys.courses.springboot.model.mapperDTO.ReportDtoResponse;
@@ -24,12 +25,12 @@ public class ReportController {
     }
 
     @PostMapping
-    public ReportDtoRequest create(@RequestBody ReportRequest request) {
+    public ReportDtoRequest create(@RequestBody ReportRequest request) throws BadInputException {
         return service.create(request.getReportDtoRequest());
     }
 
     @GetMapping("{fiscalCodeNumber}")
-    public List<Report> findPersonHistory (@PathVariable("fiscalCodeNumber") String fiscalCodeNumber){
+    public List<Report> findPersonHistory (@PathVariable("fiscalCodeNumber") String fiscalCodeNumber) throws PersonHistoryNotFoundException {
         return service.getPersonHistory(fiscalCodeNumber);
     }
 

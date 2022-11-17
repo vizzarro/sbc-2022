@@ -2,9 +2,7 @@ package it.aesys.courses.springboot.personregistry.service;
 
 import it.aesys.courses.springboot.personregistry.dao.PersonDao;
 import it.aesys.courses.springboot.personregistry.dao.exception.DaoException;
-import it.aesys.courses.springboot.personregistry.dao.impl.AddressDaoImpl;
 import it.aesys.courses.springboot.personregistry.dao.impl.PersonDaoImpl;
-import it.aesys.courses.springboot.personregistry.models.AddressDTO;
 import it.aesys.courses.springboot.personregistry.models.Person;
 import it.aesys.courses.springboot.personregistry.models.PersonDTO;
 import it.aesys.courses.springboot.personregistry.models.mapper.PersonMapperDTO;
@@ -21,31 +19,26 @@ import java.util.Collection;
 public class PersonServiceImpl implements PersonService {
     private PersonMapperDTO personMapperDTO;
     //private PersonDao personDao;
-    private PersonDaoImpl personDao;
+    private PersonDao personDao;
     private RestTemplate documentsClient;
 
-    private AddressDaoImpl addressDao;
-
     @Autowired
-    public PersonServiceImpl(PersonMapperDTO personMapperDTO, PersonDaoImpl personDao, RestTemplate documentsClient, AddressDaoImpl addressDao) {
+    public PersonServiceImpl(PersonMapperDTO personMapperDTO, PersonDaoImpl personDao, RestTemplate documentsClient) {
         this.personMapperDTO = personMapperDTO;
         this.personDao = personDao;
         this.documentsClient = documentsClient;
-        this.addressDao = addressDao;
     }
 
     public PersonDTO create(PersonDTO personDto) throws ServiceException {
 
         try {
-
-            personMapperDTO.toDto(personDao.create(personMapperDTO.toModel(personDto)));
+            return personMapperDTO.toDto(personDao.create(personMapperDTO.toModel(personDto)));
         } catch (DaoException e) {
             ServiceException ex = new ServiceException();
 //            ex.setStatusCode(e.getStatusCode());
             ex.setMessage("Impossible to create");
             throw ex;
         }
-        return personDto;
     }
 
     public PersonDTO get(String fiscalcode) throws ServiceException {
