@@ -2,11 +2,12 @@ package it.aesys.courses.springboot.personregistry.dao.impl;
 
 import it.aesys.courses.springboot.personregistry.dao.AddressDao;
 import it.aesys.courses.springboot.personregistry.models.Address;
+import org.springframework.stereotype.Repository;
 
 import java.sql.*;
 import java.util.List;
 
-
+@Repository
 public class AddressDaoImpl implements AddressDao {
 
 
@@ -26,13 +27,18 @@ public class AddressDaoImpl implements AddressDao {
         try {
             Class.forName(DRIVER_NAME);
             Connection connection = DriverManager.getConnection(dbURL, username, password);
-            PreparedStatement preparedStatement = connection.prepareStatement(INSERT_ADDRESS_SQL);
+            PreparedStatement preparedStatement = connection.prepareStatement(INSERT_ADDRESS_SQL, Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setString(1, address.getStreet());
             preparedStatement.setString(2, address.getCivic());
             preparedStatement.setInt(3, address.getPostalCode());
             preparedStatement.setString(4, address.getHome().name());
 
             preparedStatement.executeUpdate();
+
+           ResultSet rs = preparedStatement.getGeneratedKeys();
+           while (rs.next()){
+               address.setAddress_id(rs.getInt(1));
+           }
 
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
