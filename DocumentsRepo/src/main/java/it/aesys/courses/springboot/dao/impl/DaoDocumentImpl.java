@@ -1,14 +1,15 @@
 package it.aesys.courses.springboot.dao.impl;
 
 import it.aesys.courses.springboot.dao.Dao;
-import it.aesys.courses.springboot.exception.NotFoundException;
 import it.aesys.courses.springboot.models.Document;
 import it.aesys.courses.springboot.models.TypeOfDoc;
 import it.aesys.courses.springboot.models.TypeOfFile;
 import it.aesys.courses.springboot.utils.connectionDb.ConnectionDb;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -16,11 +17,10 @@ import java.util.Optional;
 @Component
 public class DaoDocumentImpl implements Dao<Document> {
 
-    private static final String INSERT = "";
+    private static final String INSERT = "INSERT INTO library.documents (`nameFile`, `dataOfInput`, `typeOfFile`, `typeOfDoc`, `file`, `fiscalCode`) VALUES (?, ?, ?, ?, ?, ?)";
     private static final String SELECT_ALL = "SELECT * FROM library.documents";
-    private static final String FIND_BY_CF="SELECT * FROM library.documents  WHERE cf=?";
-
-    private static final String SELECT_BY_ID = "SELECT * FROM library.documents WHERE idDoc=?";
+    private static final String FIND_BY_CF = "SELECT * FROM library.documents  WHERE cf = ? ";
+    private static final String SELECT_BY_ID = "SELECT * FROM library.documents WHERE idDoc = ? ";
     private ConnectionDb connectionDB;
     private PreparedStatement statement;
 
@@ -29,9 +29,33 @@ public class DaoDocumentImpl implements Dao<Document> {
         this.connectionDB = connectionDB;
     }
 
+
     @Override
     public Document add(Document document) {
-        return null;
+
+        String nameFile = document.getNameFile();
+        LocalDate dataOfInput = document.getDataOfInput();
+        TypeOfFile typeOfFile = document.getTypeOfFile();
+        TypeOfDoc typeOfDoc = document.getTypeOfDoc();
+        String file = document.getFile();
+        String fiscalCode = document.getFiscalCode();
+        Connection connection = connectionDB.register();
+        try {
+            PreparedStatement statement = connection.prepareStatement(INSERT, Statement.RETURN_GENERATED_KEYS);
+            statement.setString(1, nameFile);
+            statement.setDate(2, Date.valueOf(dataOfInput));
+            statement.setString(3, typeOfFile.name());
+            statement.setString(4, typeOfDoc.name());
+            statement.setString(5, file);
+            statement.setString(6, fiscalCode);
+
+            statement.executeUpdate();
+            statement.getGeneratedKeys();
+            return document;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
     @Override
@@ -40,13 +64,13 @@ public class DaoDocumentImpl implements Dao<Document> {
     }
 
     public List<Document> findByCf(String cf) throws SQLException {
-        Connection connection= connectionDB.register();
+        Connection connection = connectionDB.register();
         Statement statement = connection.createStatement();
         ResultSet resultSet = statement.executeQuery(FIND_BY_CF);
         List<Document> documents = new ArrayList<>();
-        while (resultSet.next()){
+        while (resultSet.next()) {
             Document document = new Document();
-            if(resultSet.getString(1).equals(cf)){
+            if (resultSet.getString(1).equals(cf)) {
                 document.setIdDoc(resultSet.getInt("idDoc"));
                 document.setNameFile(resultSet.getString("nameFile"));
                 document.setTypeOfFile(TypeOfFile.valueOf(resultSet.getString("typeOfFile")));
@@ -64,10 +88,8 @@ public class DaoDocumentImpl implements Dao<Document> {
         Connection connection = connectionDB.register();
         PreparedStatement preparedStatement = connection.prepareStatement(SELECT_BY_ID);
         preparedStatement.setInt(1, id);
-        try{
-        ResultSet resultSet = statement.executeQuery(SELECT_BY_ID);
-
-        // while (resultSet.next()) {
+        ResultSet resultSet = preparedStatement.executeQuery();
+        while (resultSet.next()) {
             Document document = new Document();
             document.setIdDoc(resultSet.getInt("idDoc"));
             document.setNameFile(resultSet.getString("nameFile"));
@@ -77,11 +99,7 @@ public class DaoDocumentImpl implements Dao<Document> {
             document.setFile(resultSet.getString("file"));
             document.setFiscalCode(resultSet.getString("fiscalCode"));
             return Optional.of(document);
-        }
-        catch (SQLException e) {
-            throw new NotFoundException("Document not found");
-        }
-
+        } return null;
     }
 
     @Override
@@ -90,8 +108,8 @@ public class DaoDocumentImpl implements Dao<Document> {
         Statement statement = connection.createStatement();
         ResultSet resultSet = statement.executeQuery(SELECT_ALL);
         List<Document> documents = new ArrayList<>();
-        Document document = new Document();
         while (resultSet.next()) {
+            Document document = new Document();
             document.setIdDoc(resultSet.getInt("idDoc"));
             document.setNameFile(resultSet.getString("nameFile"));
             document.setTypeOfFile(TypeOfFile.valueOf(resultSet.getString("typeOfFile")));
@@ -111,7 +129,7 @@ public class DaoDocumentImpl implements Dao<Document> {
 
     @Override
     public void delete(Integer id) throws SQLException {
-        Connection connection= connectionDB.register();
+        Connection connection = connectionDB.register();
         Statement statement = connection.createStatement();
         statement.executeUpdate("DELETE FROM library.documents WHERE idDoc = " + id);
     }

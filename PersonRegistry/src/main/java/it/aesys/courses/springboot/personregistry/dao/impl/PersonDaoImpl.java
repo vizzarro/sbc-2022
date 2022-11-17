@@ -26,7 +26,9 @@ public class PersonDaoImpl implements PersonDao {
     private static final String GET_ALL_SQL = "SELECT fiscalcode FROM person";
 
 
-    private static final String UPDATE_PERSONS_SQL = "UPDATE person SET campo1=?, campo2=? WHERE fiscalcode = ?";
+    private static final String UPDATE_PERSONS_SQL = "UPDATE person SET " +
+            "( name = ?, surname = ?, fiscalcode = ?, gender = ?, address = ? ,birthdate = ?, cellnumber = ?  WHERE fiscalcode = ?)";
+
 
     private static final String DELETE_PERSONS_SQL = "DELETE FROM person WHERE fiscalcode = ?";
 

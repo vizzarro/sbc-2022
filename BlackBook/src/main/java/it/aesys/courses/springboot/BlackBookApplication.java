@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 class BlackBookApplication {
 
 
-	public static void main(String[] args) {
+    public static void main(String[] args) {
 
-		SpringApplication.run(BlackBookApplication.class, args);
-	}
+        SpringApplication.run(BlackBookApplication.class, args);
+    }
 
 }

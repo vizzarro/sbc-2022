@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class ReportMapperDTO {
 
-    public ReportDtoResponse toResponseDto (Report report){
+    public ReportDtoResponse toResponseDto(Report report) {
 
         ReportDtoResponse responseDto = new ReportDtoResponse();
         responseDto.setProblemType(report.getProblemType());
@@ -17,7 +17,7 @@ public class ReportMapperDTO {
         return responseDto;
     }
 
-    public Report toResponseModel(ReportDtoResponse responseDto){
+    public Report toResponseModel(ReportDtoResponse responseDto) {
 
         Report report = new Report();
         report.setProblemType(responseDto.getProblemType());
@@ -28,7 +28,7 @@ public class ReportMapperDTO {
         return report;
     }
 
-    public ReportDtoRequest toRequestDto(Report report){
+    public ReportDtoRequest toRequestDto(Report report) {
 
         ReportDtoRequest requestDto = new ReportDtoRequest();
         requestDto.setProblemType(report.getProblemType());
@@ -37,7 +37,7 @@ public class ReportMapperDTO {
         return requestDto;
     }
 
-    public Report toRequestModel(ReportDtoRequest requestDto){
+    public Report toRequestModel(ReportDtoRequest requestDto) {
 
         Report report = new Report();
         report.setProblemType(requestDto.getProblemType());

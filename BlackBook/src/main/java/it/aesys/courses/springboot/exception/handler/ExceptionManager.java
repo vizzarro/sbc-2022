@@ -12,8 +12,8 @@ import java.time.LocalDateTime;
 @ControllerAdvice
 public class ExceptionManager {
 
-    @ExceptionHandler ({BadInputException.class, TypeMismatchException.class})
-    public ResponseEntity<ErrorResponse> handleBadRequest(Exception e){
+    @ExceptionHandler({BadInputException.class, TypeMismatchException.class})
+    public ResponseEntity<ErrorResponse> handleBadRequest(Exception e) {
         ErrorResponse response = new ErrorResponse();
         response.setError("Bad Input");
         response.setStatus(400);

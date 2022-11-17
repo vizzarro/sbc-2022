@@ -25,8 +25,8 @@ public class DocumentController {
     }
 
     @GetMapping("/{id}")
-    public Document findDocument(@PathVariable Integer id) {
-        return service.getDocumentById(id);
+    public Document findDocument(@PathVariable Integer id) throws SQLException {
+        return service.getDocumentById(id).get();
     }
     @GetMapping
     public List<Document> findDocuments(@RequestParam(required = false) String cf) throws SQLException {

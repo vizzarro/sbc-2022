@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class DocumentService {
@@ -37,7 +38,7 @@ public class DocumentService {
             BeanUtils.copyProperties(request, document);
             document.setDataOfInput(LocalDate.now());
             document.setFile(fileUtil.upload(request.getFile()));
-            return (repository.addDocument(document));
+            return (dao.add(document));
         }
         throw new InvalidInputException("All fields are required");
     }
@@ -53,9 +54,9 @@ public class DocumentService {
         throw new InvalidInputException("Invalid cf");
     }
 
-    public Document getDocumentById(Integer id) {
+    public Optional<Document> getDocumentById(Integer id) throws SQLException {
         if (id != null) {
-            return (repository.findById(id));
+            return (dao.findById(id));
         }
         throw new InvalidInputException("Invalid id");
     }
