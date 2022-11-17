@@ -6,5 +6,5 @@ public interface Dao<T> {
     <T> update(<T>);
     void delete(String);
     <T> get(String);
-    <List<T> getAll();
+    <List<T>> getAll();
 }
