@@ -1,32 +1,13 @@
 package it.aesys.courses.springboot.personregistry.models;
 
-public class Address {
+public class AddressDTO {
 
     public String street;
     public String civic;
     public Integer postalCode;
     public EnumAddress home;
-    public int addressId;
 
-    public int getAddressId() {
-        return addressId;
-    }
-
-    public void setAddressId(int addressId) {
-        this.addressId = addressId;
-    }
-
-    public int getAddress_id() {
-        return address_id;
-    }
-
-    public void setAddress_id(int address_id) {
-        this.address_id = address_id;
-    }
-
-    public int address_id;
-
-    public Address() {
+    public AddressDTO() {
     }
 
     public String getStreet() {

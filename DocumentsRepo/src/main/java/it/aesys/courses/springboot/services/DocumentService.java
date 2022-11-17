@@ -47,16 +47,16 @@ public class DocumentService {
         return dao.findAll();
     }
 
-    public List<Document> getDocumentByCf(String cf) {
+    public List<Document> getDocumentByCf(String cf) throws SQLException {
         if (cf.length() == 16) {
-            return repository.findByCf(cf);
+            return dao.findByCf(cf);
         }
         throw new InvalidInputException("Invalid cf");
     }
 
     public Optional<Document> getDocumentById(Integer id) throws SQLException {
         if (id != null) {
-            return (dao.findById(id));
+            return (dao.find(id));
         }
         throw new InvalidInputException("Invalid id");
     }
@@ -69,12 +69,14 @@ public class DocumentService {
         }
     }
 
-    public Document updateDocument(DocumentRequest request, Integer id) throws IOException {
+    public Document updateDocument(DocumentRequest request, Integer id) throws IOException, SQLException {
         if (validRequest(request)) {
-            Document document = repository.findById(id);
-            document.setFile(fileUtil.upload(request.getFile()));
-            BeanUtils.copyProperties(request, document);
-            return (repository.editById(id, document));
+            Optional<Document> document = dao.find(id);
+            if (document.isPresent()) {
+                document.get().setFile(fileUtil.upload(request.getFile()));
+                BeanUtils.copyProperties(request, document.get());
+                return (dao.edit(id, document.get()));
+            }
         }
         throw new InvalidInputException("All fields are required");
     }
