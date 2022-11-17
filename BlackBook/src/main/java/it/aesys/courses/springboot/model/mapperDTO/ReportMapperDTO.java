@@ -1,7 +1,9 @@
 package it.aesys.courses.springboot.model.mapperDTO;
 
 import it.aesys.courses.springboot.model.Report;
+import org.springframework.stereotype.Component;
 
+@Component
 public class ReportMapperDTO {
 
     public ReportDtoResponse toResponseDto (Report report){
