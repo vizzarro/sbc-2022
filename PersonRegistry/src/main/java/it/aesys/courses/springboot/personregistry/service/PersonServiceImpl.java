@@ -1,8 +1,11 @@
 package it.aesys.courses.springboot.personregistry.service;
 
+import it.aesys.courses.springboot.personregistry.dao.AddressDao;
 import it.aesys.courses.springboot.personregistry.dao.PersonDao;
 import it.aesys.courses.springboot.personregistry.dao.exception.DaoException;
+import it.aesys.courses.springboot.personregistry.dao.impl.AddressDaoImpl;
 import it.aesys.courses.springboot.personregistry.dao.impl.PersonDaoImpl;
+import it.aesys.courses.springboot.personregistry.models.Address;
 import it.aesys.courses.springboot.personregistry.models.Person;
 import it.aesys.courses.springboot.personregistry.models.PersonDTO;
 import it.aesys.courses.springboot.personregistry.models.mapper.PersonMapperDTO;
@@ -20,16 +23,27 @@ public class PersonServiceImpl implements PersonService {
     private PersonMapperDTO personMapperDTO;
     //private PersonDao personDao;
     private PersonDao personDao;
+
+    private AddressDao addressDao;
     private RestTemplate documentsClient;
 
     @Autowired
-    public PersonServiceImpl(PersonMapperDTO personMapperDTO, PersonDaoImpl personDao, RestTemplate documentsClient) {
+    public PersonServiceImpl(PersonMapperDTO personMapperDTO, PersonDaoImpl personDao, AddressDaoImpl addressDao, RestTemplate documentsClient) {
         this.personMapperDTO = personMapperDTO;
         this.personDao = personDao;
+        this.addressDao = addressDao;
         this.documentsClient = documentsClient;
     }
 
-    public PersonDTO create(PersonDTO personDto) throws ServiceException {
+    public PersonDTO create(PersonDTO personDto) throws ServiceException, DaoException {
+
+        if (personDto.getAddress() != null){
+            Person newPerson = personMapperDTO.toModel(personDto);
+            Address newAddress = newPerson.getAddress();
+            addressDao.create(newAddress);
+            
+        }
+
 
         try {
             return personMapperDTO.toDto(personDao.create(personMapperDTO.toModel(personDto)));
@@ -73,6 +87,8 @@ public class PersonServiceImpl implements PersonService {
     }
 
     public PersonDTO update(String fiscalcode, PersonDTO personDTO) throws ServiceException {
+
+
 
         try {
 

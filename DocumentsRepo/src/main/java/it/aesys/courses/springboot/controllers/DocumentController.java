@@ -46,7 +46,7 @@ public class DocumentController {
     }
 
     @PutMapping(value = "/{id}")
-    public Document updateDocument(@ModelAttribute DocumentRequest request, @PathVariable Integer id) throws IOException {
+    public Document updateDocument(@ModelAttribute DocumentRequest request, @PathVariable Integer id) throws IOException, SQLException {
         return service.updateDocument(request, id);
     }
 }
