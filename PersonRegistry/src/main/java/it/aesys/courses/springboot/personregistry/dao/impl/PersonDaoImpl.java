@@ -1,13 +1,16 @@
 package it.aesys.courses.springboot.personregistry.dao.impl;
 
 import it.aesys.courses.springboot.personregistry.dao.PersonDao;
+import it.aesys.courses.springboot.personregistry.dao.exception.DaoException;
 import it.aesys.courses.springboot.personregistry.models.EnumGender;
 import it.aesys.courses.springboot.personregistry.models.Person;
+import it.aesys.courses.springboot.personregistry.service.exceptions.ServiceException;
+import org.springframework.stereotype.Repository;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-
+@Repository
 public class PersonDaoImpl implements PersonDao {
 
     String dbURL = "jdbc:mysql://192.168.130.6:3306/";
@@ -30,9 +33,8 @@ public class PersonDaoImpl implements PersonDao {
     private static final String DELETE_PERSONS_SQL = "DELETE FROM person WHERE fiscalcode = ?";
 
 
-
     @Override
-    public Person create(Person person) //throws SQLException
+    public Person create(Person person) throws DaoException //throws SQLException
     {
 
         System.out.println(INSERT_PERSONS_SQL);
@@ -58,8 +60,14 @@ public class PersonDaoImpl implements PersonDao {
         } catch (SQLException e) {
             // print SQL exception information
             printSQLException(e);
+            DaoException exc = new DaoException();
+            exc.setStatusCode(404);
+            exc.setMessage("not found");
+
+            throw exc;
         } catch (ClassNotFoundException ex) {
             ex.printStackTrace();
+            throw new DaoException();
         }
 
         // Step 4: try-with-resource statement will auto close the connection.
@@ -83,11 +91,10 @@ public class PersonDaoImpl implements PersonDao {
     }
 
 
-
     @Override
-    public Person update(Person person) {
+    public Person update(Person person) throws DaoException {
 
-        if(get(person.getFiscalCode()) != null) {
+        if (get(person.getFiscalCode()) != null) {
 
             try {
                 Class.forName(DRIVER_NAME);
@@ -113,8 +120,12 @@ public class PersonDaoImpl implements PersonDao {
             } catch (SQLException e) {
                 // print SQL exception information
                 printSQLException(e);
+                DaoException exc = new DaoException();
+                exc.setMessage("already existing");
+
             } catch (ClassNotFoundException ex) {
                 ex.printStackTrace();
+                throw new DaoException();
             }
         }
 
@@ -122,9 +133,9 @@ public class PersonDaoImpl implements PersonDao {
     }
 
     @Override
-    public void delete(String fiscalcode) {
+    public void delete(String fiscalcode) throws DaoException {
 
-        if( fiscalcode != null && get(fiscalcode) != null ) {
+        if (fiscalcode != null && get(fiscalcode) != null) {
 
             try {
                 Class.forName(DRIVER_NAME);
@@ -142,15 +153,18 @@ public class PersonDaoImpl implements PersonDao {
             } catch (SQLException e) {
                 // print SQL exception information
                 printSQLException(e);
+                DaoException exc = new DaoException();
+                exc.setMessage("not found");
             } catch (ClassNotFoundException ex) {
                 ex.printStackTrace();
+                throw new DaoException();
             }
         }
 
     }
 
     @Override
-    public Person get(String s) {
+    public Person get(String s) throws DaoException {
         Person p = null;
         System.out.println(GET_PERSONS_SQL);
         // Step 1: Establishing a Connection
@@ -186,14 +200,16 @@ public class PersonDaoImpl implements PersonDao {
 
             // print SQL exception information
             printSQLException(e);
+            DaoException exc = new DaoException();
+            exc.setMessage("not found");
         } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
+            throw new DaoException();
         }
         return p;
     }
 
     @Override
-    public List<Person> getAll() {
+    public List<Person> getAll() throws DaoException {
         List<Person> personList = new ArrayList<>();
 
         // Step 1: Establishing a Connection
@@ -227,8 +243,9 @@ public class PersonDaoImpl implements PersonDao {
 
             // print SQL exception information
             printSQLException(e);
+            throw new DaoException();
         } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
+            throw new DaoException();
         }
         return personList;
     }
