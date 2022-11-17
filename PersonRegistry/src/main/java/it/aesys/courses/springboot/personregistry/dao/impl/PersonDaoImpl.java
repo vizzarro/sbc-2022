@@ -19,7 +19,8 @@ public class PersonDaoImpl implements PersonDao {
             " ( ?, ?, ?, ? , ? , ? , ?);";
     private static final String GET_PERSONS_SQL = "SELECT fiscalcode FROM persons WHERE fiscalcode =  ?";
 
-    public void insertPerson(Person person) throws SQLException {
+    @Override
+    public Person create(Person person) throws SQLException {
 
         System.out.println(INSERT_PERSONS_SQL);
         // Step 1: Establishing a Connection
@@ -39,7 +40,7 @@ public class PersonDaoImpl implements PersonDao {
 
             System.out.println(preparedStatement);
             // Step 3: Execute the query or update query
-            preparedStatement.executeUpdate();
+            preparedStatement.execute();
         } catch (SQLException e) {
             // print SQL exception information
             printSQLException(e);
@@ -48,6 +49,7 @@ public class PersonDaoImpl implements PersonDao {
         }
 
         // Step 4: try-with-resource statement will auto close the connection.
+        return person;
     }
 
     public static void printSQLException(SQLException ex) {
@@ -66,13 +68,13 @@ public class PersonDaoImpl implements PersonDao {
         }
     }
 
-    @Override
-    public Person create(Person person) {
-        return null;
-    }
+
 
     @Override
     public Person update(Person person) {
+
+
+
         return null;
     }
 
