@@ -12,7 +12,7 @@ public interface Dao<T> {
     Optional<T> find(Integer id);
     List<T> findAll() throws SQLException;
     T edit(Integer id, T t);
-    void delete(Integer id);
+    void delete(Integer id) throws SQLException;
 
 
 

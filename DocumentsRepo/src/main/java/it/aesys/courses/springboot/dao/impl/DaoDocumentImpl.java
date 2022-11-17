@@ -63,7 +63,9 @@ public class DaoDocumentImpl implements Dao<Document> {
     }
 
     @Override
-    public void delete(Integer id) {
-
+    public void delete(Integer id) throws SQLException {
+        Connection connection= connectionDB.register();
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery("DELETE FROM library.documents WHERE idDoc = " + id);
     }
 }
