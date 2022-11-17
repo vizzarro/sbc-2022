@@ -18,7 +18,7 @@ public class ErrorManageController {
     }
 
 
-    public ResponseEntity<ApiErrorDTO> getErrorMessages (ServiceException bre) {
+    public ResponseEntity<ApiErrorDTO> getErrorMessages(ServiceException bre) {
 
 
         ApiErrorDTO error = new ApiErrorDTO();
@@ -27,8 +27,7 @@ public class ErrorManageController {
         error.setPath(bre.getPath());
         error.getErrors().addAll(bre.getErrors());
 
-        ResponseEntity<ApiErrorDTO> errorResponse = ResponseEntity.status(HttpStatus.resolve(bre.getStatusCode())).body(error);
-        return errorResponse;
+        return ResponseEntity.status(HttpStatus.resolve(bre.getStatusCode())).body(error);
 
     }
 
