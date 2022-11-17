@@ -26,8 +26,8 @@ public class ReportServiceImpl implements ReportService {
 
 
     @Override
-    public ReportDtoResponse create(ReportDtoRequest dto) {
-        return this.mapper.toResponseDto(this.reportDao.addReport(this.mapper.toRequestModel(dto)));
+    public ReportDtoRequest create(ReportDtoRequest dto) {
+        return this.mapper.toRequestDto(this.reportDao.addReport(this.mapper.toRequestModel(dto)));
     }
 
     @Override
@@ -41,8 +41,8 @@ public class ReportServiceImpl implements ReportService {
     }
 
     @Override
-    public ReportDtoResponse update(Integer reportTicketNumber, ReportDtoRequest updatedDto) {
-        return this.mapper.toResponseDto(this.reportDao.updateReport(this.mapper.toRequestModel(updatedDto)));
+    public ReportDtoResponse update(Integer reportTicketNumber, ReportDtoResponse updatedDto) {
+        return this.mapper.toResponseDto(this.reportDao.updateReport(this.mapper.toResponseModel(updatedDto)));
     }
 
     @Override

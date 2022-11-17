@@ -7,9 +7,9 @@ import it.aesys.courses.springboot.model.mapperDTO.ReportDtoResponse;
 import java.util.List;
 
 public interface ReportService {
-    ReportDtoResponse create(ReportDtoRequest dto);
+    ReportDtoRequest create(ReportDtoRequest dto);
     List<Report> getPersonHistory(String fiscalCodeNumber);
     void delete (Integer reportTicketNumber);
-    ReportDtoResponse update(Integer reportTicketNumber, ReportDtoRequest updatedDto);
+    ReportDtoResponse update(Integer reportTicketNumber, ReportDtoResponse updatedDto);
     boolean canBorrow(String fiscalCodeNumber);
 }

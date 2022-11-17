@@ -1,7 +1,6 @@
 package it.aesys.courses.springboot.connections;
 
 import org.springframework.stereotype.Component;
-
 import java.sql.*;
 @Component
 public class DBManager {
@@ -16,7 +15,7 @@ public class DBManager {
     public Connection connection(){
         Connection connectiondb = null;
         try{
-        connectiondb = DriverManager.getConnection("");
+        connectiondb = DriverManager.getConnection("jdbc:mysql://192.168.130.6:3306/library", "user_library","password");
         } catch (SQLException e){
             e.printStackTrace();
         }
