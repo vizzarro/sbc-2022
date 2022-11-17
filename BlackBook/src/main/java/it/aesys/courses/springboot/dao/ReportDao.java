@@ -82,4 +82,19 @@ public class ReportDao {
 
         return report;
     }
+    public void  deleteReport(String fiscalCodeNumber){
+        try {
+            Class.forName(DRIVER_NAME);
+            Connection connection = DriverManager.getConnection("com.mysql.cj.jdbc.Driver");
+            PreparedStatement preparedStatement = connection.prepareStatement(SQLDelete);
+            preparedStatement.setString(1, fiscalCodeNumber);
+
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
 }
