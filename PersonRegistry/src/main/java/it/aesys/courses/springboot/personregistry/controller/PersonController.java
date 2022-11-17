@@ -43,18 +43,18 @@ public class PersonController {
         return service.getAll();
     }
 
-    @GetMapping("/{id}")
-    public PersonDTO getById(@PathVariable("id") Integer id) throws ServiceException, ComponentException {
-        return service.get(id);
-    }
+//    @GetMapping("/{id}")
+//    public PersonDTO getById(@PathVariable("id") Integer id) throws ServiceException, ComponentException {
+//        return service.get(id);
+//    }
 
-    @GetMapping("/fiscalcode/{fiscalCode}")
+    @GetMapping("{fiscalCode}")
     public PersonDTO getPersonByFiscalCode(@PathVariable("fiscalCode") String fiscalCode) throws ServiceException, ComponentException {
         return service.getPersonFC(fiscalCode);
     }
 
-    @PutMapping("{id}")
-    public  PersonDTO update(@PathVariable("id") Integer id, @RequestBody PersonRequest request) throws ServiceException, ComponentException{
-        return service.update(id, request.getPersonDTO());
+    @PutMapping("{fiscalcode}")
+    public  PersonDTO update(@PathVariable("fiscalcode") String fiscalcode, @RequestBody PersonRequest request) throws ServiceException, ComponentException{
+        return service.update(fiscalcode, request.getPersonDTO());
     }
 }
