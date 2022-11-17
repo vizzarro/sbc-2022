@@ -76,7 +76,7 @@ public class PersonService {
     {
 
         //       try {
-<<<<<<< HEAD
+
         if (personMapperDTO.toDto(personDao.get(fiscalcode)).equals("SELECT fiscalcode FROM person WHERE fiscalcode =  ?")) {
             Person updatedPerson = personMapperDTO.toModel(personDTO);
             personDao.update(updatedPerson);
@@ -85,7 +85,7 @@ public class PersonService {
                 ServiceException exc = new ServiceException();
                 exc.setStatusCode(404);
                 exc.setMessage("Resource not found");
-=======
+
         if (personMapperDTO.toDto(personDao.get(personDTO.getFiscalCode())) != null) {
         Person updatedPerson = personMapperDTO.toModel(personDTO);
         personDao.update(updatedPerson);
@@ -94,7 +94,7 @@ public class PersonService {
 //                ServiceException exc = new ServiceException();
 //                exc.setStatusCode(404);
 //                exc.setMessage("Resource not found");
->>>>>>> 35b2ede3f0b5739f42551decdfb229dd64aa8e05
+
 //                throw exc;
             }
 //        } catch (SQLException e) {

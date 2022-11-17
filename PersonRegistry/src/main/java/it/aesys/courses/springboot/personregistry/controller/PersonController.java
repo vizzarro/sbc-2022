@@ -55,6 +55,6 @@ public class PersonController {
 
     @PutMapping("{fiscalcode}")
     public  PersonDTO update(@PathVariable("fiscalcode") String fiscalcode, @RequestBody PersonRequest request) throws ServiceException, ComponentException{
-        return service.update(fiscalcode, request.getPersonDTO());
+        return service.update(request.getPersonDTO());
     }
 }
