@@ -1,10 +1,13 @@
-package it.aesys.courses.springboot.personregistry.daoImpl;
+package it.aesys.courses.springboot.personregistry.dao.impl;
 
+import it.aesys.courses.springboot.personregistry.dao.PersonDao;
+import it.aesys.courses.springboot.personregistry.models.EnumGender;
 import it.aesys.courses.springboot.personregistry.models.Person;
 
 import java.sql.*;
+import java.util.List;
 
-public class DaoImpl {
+public class PersonDaoImpl implements PersonDao {
 
     String dbURL = "jdbc:mysql://192.168.130.6:3306/";
     String username = "user_library";
@@ -26,7 +29,7 @@ public class DaoImpl {
                     .getConnection(dbURL, username, password);
 
             // Step 2:Create a statement using connection object
-            PreparedStatement preparedStatement = connection.prepareStatement(INSERT_PERSONS_SQL));
+            PreparedStatement preparedStatement = connection.prepareStatement(INSERT_PERSONS_SQL);
             preparedStatement.setString(1, person.getName());
             preparedStatement.setString(2, person.getSurname());
             preparedStatement.setString(3, person.getFiscalCode());
@@ -63,17 +66,35 @@ public class DaoImpl {
         }
     }
 
-    public Person getPerson(String fiscalcode) throws SQLException {
+    @Override
+    public Person create(Person person) {
+        return null;
+    }
+
+    @Override
+    public Person update(Person person) {
+        return null;
+    }
+
+    @Override
+    public void delete(String s) {
+
+    }
+
+    @Override
+    public Person get(String s) {
         Person p = null;
         System.out.println(GET_PERSONS_SQL);
         // Step 1: Establishing a Connection
-        try (Connection connection = DriverManager
-                .getConnection("jdbc:mysql://localhost:3306/mysql_database?useSSL=false", "root", "root")) {
+        try {
+            Class.forName(DRIVER_NAME);
+            Connection connection = DriverManager
+                    .getConnection(dbURL, username, password);
 
 
             // Step 2:Create a statement using connection object
             PreparedStatement preparedStatement = connection.prepareStatement(GET_PERSONS_SQL);
-            preparedStatement.setString(1, fiscalcode);
+            preparedStatement.setString(1, s);
 
             System.out.println(preparedStatement);
             // Step 3: Execute the query or update query
@@ -82,13 +103,13 @@ public class DaoImpl {
 
             //TODO ciclare il rs per prendere i campi e settarlo nella entity
             while (rs.next()) {
-                p.setName();
-                p.setSurname();
-                p.setFiscalCode();
-                p.setGender();
-                p.setAddress();
-                p.setBirthDate();
-                p.getCellNumber();
+                p.setName(rs.getString("name"));
+                p.setSurname(rs.getString("surname"));
+                p.setFiscalCode(rs.getString("fiscalcode"));
+                p.setGender(EnumGender.valueOf(rs.getString("gender")));
+
+                p.setBirthDate(rs.getDate("birth_date"));
+                p.setCellNumber(rs.getString("cellnumber"));
 
             }
 
@@ -96,8 +117,14 @@ public class DaoImpl {
 
             // print SQL exception information
             printSQLException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
         }
         return p;
+    }
 
+    @Override
+    public List<Person> getAll() {
+        return null;
     }
 }
