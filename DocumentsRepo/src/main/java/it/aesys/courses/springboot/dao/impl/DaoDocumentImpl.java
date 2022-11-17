@@ -8,7 +8,6 @@ import it.aesys.courses.springboot.models.TypeOfFile;
 import it.aesys.courses.springboot.utils.connectionDb.ConnectionDb;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -66,6 +65,6 @@ public class DaoDocumentImpl implements Dao<Document> {
     public void delete(Integer id) throws SQLException {
         Connection connection= connectionDB.register();
         Statement statement = connection.createStatement();
-        ResultSet resultSet = statement.executeQuery("DELETE FROM library.documents WHERE idDoc = " + id);
+        statement.executeUpdate("DELETE FROM library.documents WHERE idDoc = " + id);
     }
 }
