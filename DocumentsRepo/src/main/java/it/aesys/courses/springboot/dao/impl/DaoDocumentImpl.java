@@ -21,6 +21,7 @@ public class DaoDocumentImpl implements Dao<Document> {
     private static final String SELECT_ALL = "SELECT * FROM library.documents";
     private static final String FIND_BY_CF = "SELECT * FROM library.documents  WHERE cf = ? ";
     private static final String SELECT_BY_ID = "SELECT * FROM library.documents WHERE idDoc = ? ";
+    private static final String DELETE = "DELETE FROM library.documents WHERE idDoc = ? ";
     private ConnectionDb connectionDB;
     private PreparedStatement statement;
 
@@ -130,7 +131,9 @@ public class DaoDocumentImpl implements Dao<Document> {
     @Override
     public void delete(Integer id) throws SQLException {
         Connection connection = connectionDB.register();
-        Statement statement = connection.createStatement();
-        statement.executeUpdate("DELETE FROM library.documents WHERE idDoc = " + id);
+        PreparedStatement preparedStatement = connection.prepareStatement(DELETE);
+        preparedStatement.setInt(1, id);
+        ResultSet resultSet = preparedStatement.executeQuery();
+
     }
 }
