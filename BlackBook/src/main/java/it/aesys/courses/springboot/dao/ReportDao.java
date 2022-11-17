@@ -13,7 +13,6 @@ import java.util.List;
 public class ReportDao {
     private static final String DRIVER_NAME = "com.mysql.cj.jdbc.Driver";
     private static final String SQLSelect = "SELECT * FROM report WHERE fiscalCodeNumber=?";
-
     private static final String SQLSelectByTicket = "SELECT * FROM report WHERE reportTicketNumber=?";
     private static final String SQLInsert = "INSERT INTO report (problemType,problemDescription,fiscalCodeNumber) VALUE(?,?,?)";
     private static final String SQLUpdate = "UPDATE report SET problemType=?,problemDescription=? WHERE reportTicketNumber=?";
@@ -36,9 +35,7 @@ public class ReportDao {
                 report.setFiscalCodeNumber(resultSet.getString("fiscalCodeNumber"));
                 reportList.add(report);
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
         return reportList;
@@ -57,9 +54,7 @@ public class ReportDao {
 
             preparedStatement.executeUpdate();
 
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
 
@@ -77,9 +72,7 @@ public class ReportDao {
 
             preparedStatement.executeUpdate();
 
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
         return report;
@@ -93,9 +86,7 @@ public class ReportDao {
 
             preparedStatement.executeUpdate();
 
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
     }
@@ -114,9 +105,7 @@ public class ReportDao {
             report.setProblemDescription(resultSet.getString("problemDescription"));
             report.setFiscalCodeNumber(resultSet.getString("fiscalCodeNumber"));
 
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
         return report;
