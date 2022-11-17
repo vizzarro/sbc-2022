@@ -73,13 +73,13 @@ public class DocumentService {
     }
 
     private Boolean validRequest(DocumentRequest request) {
+
         Object[] fields = {request.getNameFile(),
-                request.getFiscalCode(),
                 request.getTypeOfDoc(),
                 request.getTypeOfFile(),
                 request.getFile()};
 
-        if(request.getFiscalCode().length()==16) {
+        if(request.getFiscalCode() != null && request.getFiscalCode().length()==16) {
             for ( Object field: fields) {
                 if (field == null) {
                     return false;
