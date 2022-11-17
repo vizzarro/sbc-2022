@@ -31,7 +31,7 @@ public class ReportMapperDTO {
         ReportDtoRequest requestDto = new ReportDtoRequest();
         requestDto.setProblemType(report.getProblemType());
         requestDto.setProblemDescription(report.getProblemDescription());
-
+        requestDto.setFiscalCodeNumber(report.getFiscalCodeNumber());
         return requestDto;
     }
 
@@ -40,7 +40,7 @@ public class ReportMapperDTO {
         Report report = new Report();
         report.setProblemType(requestDto.getProblemType());
         report.setProblemDescription(requestDto.getProblemDescription());
-
+        report.setFiscalCodeNumber(requestDto.getFiscalCodeNumber());
         return report;
     }
 
