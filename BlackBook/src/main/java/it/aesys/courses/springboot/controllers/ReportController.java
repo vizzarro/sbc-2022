@@ -1,5 +1,6 @@
 package it.aesys.courses.springboot.controllers;
 
+import it.aesys.courses.springboot.exception.BadInputException;
 import it.aesys.courses.springboot.model.Report;
 import it.aesys.courses.springboot.model.mapperDTO.ReportDtoRequest;
 import it.aesys.courses.springboot.model.mapperDTO.ReportDtoResponse;
@@ -33,13 +34,12 @@ public class ReportController {
     }
 
     @DeleteMapping("{reportTicketNumber}")
-    public void deleteReport (@PathVariable("reportTicketNumber") Integer reportTicketNumber) {
+    public void deleteReport (@PathVariable("reportTicketNumber") Integer reportTicketNumber) throws BadInputException {
         service.delete(reportTicketNumber);
     }
 
     @PutMapping("{reportTicketNumber}")
-    public ReportDtoResponse update(@PathVariable("reportTicketNumber") Integer reportTicketNumber, @RequestBody ReportResponse response) {
-        return service.update(reportTicketNumber ,response.getReportDtoResponse());
+    public ReportDtoResponse update(@PathVariable("reportTicketNumber") Integer reportTicketNumber, @RequestBody ReportResponse response) throws BadInputException {
+        return service.update(reportTicketNumber, response.getReportDtoResponse());
     }
-
 }

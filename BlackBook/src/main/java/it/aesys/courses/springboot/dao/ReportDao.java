@@ -1,5 +1,6 @@
 package it.aesys.courses.springboot.dao;
 
+import it.aesys.courses.springboot.exception.BadInputException;
 import it.aesys.courses.springboot.model.ProblemType;
 import it.aesys.courses.springboot.model.Report;
 import org.springframework.stereotype.Component;
@@ -7,6 +8,7 @@ import org.springframework.stereotype.Component;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.StreamHandler;
 
 @Component
 public class ReportDao {
@@ -79,10 +81,9 @@ public class ReportDao {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-
         return report;
     }
-    public void deleteReport(Integer ticketReportNumber){
+    public void deleteReport(Integer ticketReportNumber) throws BadInputException {
         try {
             Class.forName(DRIVER_NAME);
             Connection connection = DriverManager.getConnection("jdbc:mysql://192.168.130.6:3306/library", "user_library","password");
