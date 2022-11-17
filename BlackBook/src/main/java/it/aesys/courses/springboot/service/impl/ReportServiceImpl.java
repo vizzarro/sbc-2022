@@ -1,38 +1,40 @@
 package it.aesys.courses.springboot.service.impl;
 
 
-import it.aesys.courses.springboot.model.mapperDTO.ReportDTO;
+import it.aesys.courses.springboot.model.Report;
+import it.aesys.courses.springboot.model.mapperDTO.ReportDtoRequest;
+import it.aesys.courses.springboot.model.mapperDTO.ReportDtoResponse;
 import it.aesys.courses.springboot.service.ReportService;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class ReportServiceImpl implements ReportService {
 
 
     @Override
-    public ReportDTO create(ReportDTO dto) {
-
-        return null;
-    }
-    @Override
-    public ReportDTO getPersonHistory(String fiscalCodeNumber) {
-        return null;
-    }
-    @Override
-    public ReportDTO getReportTicket(String reportTicketNumber) {return null;}
-
-    @Override
-    public ReportDTO delete(String reportTicketNumber) {
+    public ReportDtoResponse create(ReportDtoRequest dto) {
         return null;
     }
 
     @Override
-    public ReportDTO update(ReportDTO dto) {
+    public List<Report> getPersonHistory(String fiscalCodeNumber) {
         return null;
     }
 
     @Override
-    public boolean canBorrow(ReportDTO dto) {
+    public void delete(Integer reportTicketNumber) {
+
+    }
+
+    @Override
+    public ReportDtoResponse update(Integer reportTicketNumber, ReportDtoRequest updatedDto) {
+        return null;
+    }
+
+    @Override
+    public boolean canBorrow(String fiscalCodeNumber) {
         return false;
     }
 }

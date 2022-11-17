@@ -1,19 +1,20 @@
 package it.aesys.courses.springboot.model.request;
 
-import it.aesys.courses.springboot.model.mapperDTO.ReportDTO;
+import it.aesys.courses.springboot.model.mapperDTO.ReportDtoRequest;
+import it.aesys.courses.springboot.model.mapperDTO.ReportDtoResponse;
 
 public class ReportRequest {
-    private ReportDTO reportDTO = new ReportDTO();
+    private ReportDtoRequest reportDtoRequest = new ReportDtoRequest();
 
     public ReportRequest() {
         super();
     }
 
-    public ReportDTO getReportDTO() {
-        return reportDTO;
+    public ReportDtoRequest getReportDtoRequest() {
+        return reportDtoRequest;
     }
 
-    public void setReportDTO(ReportDTO reportDTO) {
-        this.reportDTO = reportDTO;
+    public void setReportDtoRequest(ReportDtoRequest reportDtoRequest) {
+        this.reportDtoRequest = reportDtoRequest;
     }
 }
