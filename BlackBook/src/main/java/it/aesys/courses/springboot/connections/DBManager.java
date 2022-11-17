@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 import java.sql.*;
 @Component
 public class DBManager {
-    private static final String DRIVER_NAME = " da mettere ";
+    private static final String DRIVER_NAME = "com.mysql.cj.jdbc.Driver";
     public void register(){
         try {
             Class.forName(DRIVER_NAME);
