@@ -11,10 +11,10 @@ import static org.springframework.web.servlet.function.RequestPredicates.path;
 
 public class ServiceException extends Exception {
 
-    private String path;
-    private List<ErrorDTO> errors = new ArrayList<>();
+
+
+    String message;
     int statusCode = 0;
-    private Collection<? extends ErrorDTO> error;
 
     public int getStatusCode() {
         return statusCode;
@@ -43,20 +43,13 @@ public class ServiceException extends Exception {
         super(message, cause, enableSuppression, writableStackTrace);
     }
 
-    public String getPath() {
-        return path;
+    @Override
+    public String getMessage() {
+        return message;
     }
 
-    public void setPath(String path) {
-        this.path = path;
-    }
-
-    public List<ErrorDTO> getErrors() {
-        return errors;
-    }
-
-    public void setErrors(List<ErrorDTO> errors) {
-        this.errors = errors;
+    public void setMessage(String message) {
+        this.message = message;
     }
 
 

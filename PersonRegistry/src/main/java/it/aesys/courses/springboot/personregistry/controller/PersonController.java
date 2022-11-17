@@ -24,6 +24,9 @@ public class PersonController {
         this.service = service;
     }
 
+
+
+
     @PostMapping
     public PersonDTO addPerson(@RequestBody PersonRequest personRequest) throws ServiceException, ComponentException {
         return service.create(personRequest.getPersonDTO());
