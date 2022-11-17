@@ -1,5 +1,6 @@
 package it.aesys.courses.springboot.personregistry.service;
 
+import it.aesys.courses.springboot.personregistry.dao.impl.PersonDaoImpl;
 import it.aesys.courses.springboot.personregistry.models.Person;
 import it.aesys.courses.springboot.personregistry.models.PersonDTO;
 import it.aesys.courses.springboot.personregistry.models.mapper.Documents;
@@ -14,20 +15,20 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import javax.websocket.ClientEndpoint;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
 @Service
 public class PersonService {
-
     private PersonMapperDTO personMapperDTO;
-    private PersonDao personDao;
-
+    //private PersonDao personDao;
+    private PersonDaoImpl personDao;
     private RestTemplate documentsClient;
 
     @Autowired
-    public PersonService(PersonMapperDTO personMapperDTO, PersonDao personDao, RestTemplate documentsClient) {
+    public PersonService(PersonMapperDTO personMapperDTO, PersonDaoImpl personDao, RestTemplate documentsClient) {
         this.personMapperDTO = personMapperDTO;
         this.personDao = personDao;
         this.documentsClient = documentsClient;
@@ -35,70 +36,73 @@ public class PersonService {
 
     public PersonDTO create(PersonDTO personDto) throws ServiceException {
 
-        try {
-            return personMapperDTO.toDto(personDao.createPerson(personMapperDTO.toModel(personDto)));
-        } catch (ComponentException e) {
-            ServiceException ex = new ServiceException();
-            ex.setStatusCode(e.getStatusCode());
-            ex.setMessage("Impossible to create");
-            throw ex;
-        }
+//        try {
+        return personMapperDTO.toDto(personDao.create(personMapperDTO.toModel(personDto)));
+//        } catch (ServiceException e) {
+//            ServiceException ex = new ServiceException();
+//           ex.setStatusCode(e.getStatusCode());
+//            ex.setMessage("Impossible to create");
+//            throw ex;
+//        }
     }
 
-    public PersonDTO get(Integer id) throws ServiceException {
+    public PersonDTO get(String fiscalcode) throws ServiceException {
 
-        try {
-            return personMapperDTO.toDto(personDao.getPerson(id));
+//        try {
+        return personMapperDTO.toDto(personDao.get(fiscalcode));
 
-        } catch (ComponentException e) {
-            ServiceException ex = new ServiceException();
-            ex.setStatusCode(e.getStatusCode());
-            ex.setMessage("Resource not found");
-            throw ex;
-        }
+//        } catch (ComponentException e) {
+//            ServiceException ex = new ServiceException();
+//            ex.setStatusCode(e.getStatusCode());
+//            ex.setMessage("Resource not found");
+//            throw ex;
+//        }
     }
 
     public Collection<PersonDTO> getAll() throws ComponentException {
 
 
-        Collection<PersonDTO> allHeroCharactersDto = new ArrayList<>();
+        Collection<PersonDTO> allPersonsDto = new ArrayList<>();
 
-        Collection<Person> allHeroCharacters = personDao.getAllPersons();
+        Collection<Person> allPersons = personDao.getAll();
 
-        allHeroCharacters.forEach(x -> allHeroCharactersDto.add(personMapperDTO.toDto(x)));
+        allPersons.forEach(x -> allPersonsDto.add(personMapperDTO.toDto(x)));
 
-        return allHeroCharactersDto;
+        return allPersonsDto;
+
+    }
+
+    public PersonDTO update( PersonDTO personDTO) //throws ComponentException, ServiceException
+    {
+
+        //       try {
+        if (personMapperDTO.toDto(personDao.get(personDTO.getFiscalCode())) != null) {
+        Person updatedPerson = personMapperDTO.toModel(personDTO);
+        personDao.update(updatedPerson);
+        return personMapperDTO.toDto(updatedPerson);
+//            } else {
+//                ServiceException exc = new ServiceException();
+//                exc.setStatusCode(404);
+//                exc.setMessage("Resource not found");
+//                throw exc;
+//            }
+//        } catch (SQLException e) {
+//            ServiceException ex = new ServiceException();
+//            ex.setStatusCode(e.getErrorCode());
+//            ex.setMessage("Resource not found");
+//            throw ex;
+//        }
+    }
 
     }
 
 
-    public PersonDTO update(Integer id, PersonDTO personDTO) throws ComponentException, ServiceException {
+    public void delete(String fiscalcode) throws //ComponentException, ServiceException
+    {
 
-        try {
-            if (personMapperDTO.toDto(personDao.getPerson(id)) != null) {
-                Person updatedPerson = personMapperDTO.toModel(personDTO);
-                personDao.updatePerson(id, updatedPerson);
-                return personMapperDTO.toDto(updatedPerson);
-            } else {
-                ServiceException exc = new ServiceException();
-                exc.setStatusCode(404);
-                exc.setMessage("Resource not found");
-                throw exc;
-            }
-        } catch (ComponentException e) {
-            ServiceException ex = new ServiceException();
-            ex.setStatusCode(e.getStatusCode());
-            ex.setMessage("Resource not found");
-            throw ex;
-        }
-    }
-
-
-    public void delete(Integer id) throws ComponentException, ServiceException {
-
-        if (personMapperDTO.toDto(personDao.getPerson(id)) != null) {
-            personDao.getPerson(id);
-            personDao.deletePerson(id);
+        if (personMapperDTO.toDto(personDao.get(id)) != null) {
+            personDao.get(id);
+            personDao.delete(id);
         } else {
             ServiceException exc = new ServiceException();
             exc.setStatusCode(404);
@@ -113,7 +117,7 @@ public class PersonService {
 
         try {
 
-            PersonDTO person = personMapperDTO.toDto(personDao.getPersonByFiscalCode(fiscalCode));
+            PersonDTO person = personMapperDTO.toDto(personDao.get(fiscalCode));
             //TODO: ARRICHIRE DATI del person con dati del documento
 
             ResponseEntity<Documents> documentResponse = documentsClient.getForEntity("http://localhost:8081/document?cf=" + fiscalCode

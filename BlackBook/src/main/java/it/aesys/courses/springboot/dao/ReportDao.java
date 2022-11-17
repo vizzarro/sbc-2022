@@ -82,12 +82,12 @@ public class ReportDao {
 
         return report;
     }
-    public void  deleteReport(String fiscalCodeNumber){
+    public void deleteReport(Integer ticketReportNumber){
         try {
             Class.forName(DRIVER_NAME);
             Connection connection = DriverManager.getConnection("com.mysql.cj.jdbc.Driver");
             PreparedStatement preparedStatement = connection.prepareStatement(SQLDelete);
-            preparedStatement.setString(1, fiscalCodeNumber);
+            preparedStatement.setInt(1, ticketReportNumber);
 
             preparedStatement.executeUpdate();
 

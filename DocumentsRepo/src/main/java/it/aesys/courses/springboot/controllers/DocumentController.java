@@ -42,7 +42,7 @@ public class DocumentController {
     }
 
     @DeleteMapping("/{id}")
-    public void deleteDocument(@PathVariable Integer id) {
+    public void deleteDocument(@PathVariable Integer id) throws SQLException {
         service.deleteDocument(id);
     }
 

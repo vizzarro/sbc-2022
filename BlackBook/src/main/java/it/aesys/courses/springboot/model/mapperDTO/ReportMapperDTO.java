@@ -1,7 +1,9 @@
 package it.aesys.courses.springboot.model.mapperDTO;
 
 import it.aesys.courses.springboot.model.Report;
+import org.springframework.stereotype.Component;
 
+@Component
 public class ReportMapperDTO {
 
     public ReportDtoResponse toResponseDto (Report report){
@@ -31,7 +33,7 @@ public class ReportMapperDTO {
         ReportDtoRequest requestDto = new ReportDtoRequest();
         requestDto.setProblemType(report.getProblemType());
         requestDto.setProblemDescription(report.getProblemDescription());
-
+        requestDto.setFiscalCodeNumber(report.getFiscalCodeNumber());
         return requestDto;
     }
 
@@ -40,7 +42,7 @@ public class ReportMapperDTO {
         Report report = new Report();
         report.setProblemType(requestDto.getProblemType());
         report.setProblemDescription(requestDto.getProblemDescription());
-
+        report.setFiscalCodeNumber(requestDto.getFiscalCodeNumber());
         return report;
     }
 

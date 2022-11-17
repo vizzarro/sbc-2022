@@ -19,8 +19,15 @@ public class PersonDaoImpl implements PersonDao {
             " ( ?, ?, ?, ? , ? , ? , ?);";
     private static final String GET_PERSONS_SQL = "SELECT fiscalcode FROM persons WHERE fiscalcode =  ?";
 
+    private static final String UPDATE_PERSONS_SQL = "UPDATE persons SET person WHERE fiscalcode = ?";
+
+    private static final String DELETE_PERSONS_SQL = "DELETE person WHERE fiscalcode = ?";
+
+
+
     @Override
-    public Person create(Person person) throws SQLException {
+    public Person create(Person person) //throws SQLException
+    {
 
         System.out.println(INSERT_PERSONS_SQL);
         // Step 1: Establishing a Connection
@@ -41,6 +48,7 @@ public class PersonDaoImpl implements PersonDao {
             System.out.println(preparedStatement);
             // Step 3: Execute the query or update query
             preparedStatement.execute();
+
         } catch (SQLException e) {
             // print SQL exception information
             printSQLException(e);
@@ -73,13 +81,65 @@ public class PersonDaoImpl implements PersonDao {
     @Override
     public Person update(Person person) {
 
+        if(get(person.getFiscalCode()) != null) {
 
+            try {
+                Class.forName(DRIVER_NAME);
+                Connection connection = DriverManager
+                        .getConnection(dbURL, username, password);
+
+                // Step 2:Create a statement using connection object
+                PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_PERSONS_SQL);
+                preparedStatement.setString(1, person.getName());
+                preparedStatement.setString(2, person.getSurname());
+
+                preparedStatement.setString(4, person.getGender().name());
+                preparedStatement.setDate(6, (Date) person.getBirthDate());
+                preparedStatement.setString(7, person.getCellNumber());
+
+                System.out.println(preparedStatement);
+                // Step 3: Execute the query or update query
+                preparedStatement.execute();
+
+
+                return person;
+
+            } catch (SQLException e) {
+                // print SQL exception information
+                printSQLException(e);
+            } catch (ClassNotFoundException ex) {
+
+            }
+        }
 
         return null;
     }
 
     @Override
-    public void delete(String s) {
+    public void delete(String fiscalcode) {
+
+        if( fiscalcode != null && get(fiscalcode) != null ) {
+
+            try {
+                Class.forName(DRIVER_NAME);
+                Connection connection = DriverManager
+                        .getConnection(dbURL, username, password);
+
+                // Step 2:Create a statement using connection object
+                PreparedStatement preparedStatement = connection.prepareStatement(DELETE_PERSONS_SQL);
+                preparedStatement.setString(1, fiscalcode);
+
+                System.out.println(preparedStatement);
+                // Step 3: Execute the query or update query
+                preparedStatement.execute();
+
+            } catch (SQLException e) {
+                // print SQL exception information
+                printSQLException(e);
+            } catch (ClassNotFoundException ex) {
+
+            }
+        }
 
     }
 
