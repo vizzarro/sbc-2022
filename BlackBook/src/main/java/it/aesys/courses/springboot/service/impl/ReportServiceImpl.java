@@ -2,6 +2,7 @@ package it.aesys.courses.springboot.service.impl;
 
 import it.aesys.courses.springboot.dao.ReportDao;
 import it.aesys.courses.springboot.exception.BadInputException;
+import it.aesys.courses.springboot.exception.PersonHistoryNotFoundException;
 import it.aesys.courses.springboot.model.Report;
 import it.aesys.courses.springboot.model.mapperDTO.ReportDtoRequest;
 import it.aesys.courses.springboot.model.mapperDTO.ReportDtoResponse;
@@ -26,22 +27,40 @@ public class ReportServiceImpl implements ReportService {
 
 
     @Override
-    public ReportDtoRequest create(ReportDtoRequest dto) {
-        return this.mapper.toRequestDto(this.reportDao.addReport(this.mapper.toRequestModel(dto)));
+    public ReportDtoRequest create(ReportDtoRequest dto) throws BadInputException {
+        if(dto.getFiscalCodeNumber().length() == 16 && dto.getProblemDescription().length() < 100) {
+            return this.mapper.toRequestDto(this.reportDao.addReport(this.mapper.toRequestModel(dto)));
+        } else {
+            throw new BadInputException("Bad Input.");
+        }
     }
 
     @Override
-    public List<Report> getPersonHistory(String fiscalCodeNumber) {
-        return this.reportDao.getReport(fiscalCodeNumber);
+    public List<Report> getPersonHistory(String fiscalCodeNumber) throws PersonHistoryNotFoundException {
+        if(reportDao.getReport(fiscalCodeNumber).isEmpty()) {
+            return this.reportDao.getReport(fiscalCodeNumber);
+        } else {
+            throw new PersonHistoryNotFoundException("No history availible, required person is clean!");
+        }
     }
+
 
     @Override
     public void delete(Integer reportTicketNumber) throws BadInputException {
-        this.reportDao.deleteReport(reportTicketNumber);
+        if (reportDao.getReportByTicket(reportTicketNumber) != null) {
+            this.reportDao.deleteReport(reportTicketNumber);
+        } else {
+            throw new BadInputException("Invalid Input: Ticket not found");
+        }
     }
+
 
     @Override
     public ReportDtoResponse update(Integer reportTicketNumber, ReportDtoResponse updatedDto) throws BadInputException {
-        return this.mapper.toResponseDto(this.reportDao.updateReport(this.mapper.toResponseModel(updatedDto)));
+        if(reportDao.getReportByTicket(updatedDto.getReportTicketNumber()) != null) {
+            return this.mapper.toResponseDto(this.reportDao.updateReport(this.mapper.toResponseModel(updatedDto)));
+        } else {
+            throw new BadInputException("Invalid Input: ticket not found");
+        }
     }
 }
