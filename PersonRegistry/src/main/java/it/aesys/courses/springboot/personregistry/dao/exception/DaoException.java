@@ -1,7 +1,17 @@
 package it.aesys.courses.springboot.personregistry.dao.exception;
 
 public class DaoException extends Exception {
-    int statusCode = 0;
+    private int statusCode = 0;
+    private String message;
+
+    @Override
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
 
     public int getStatusCode() {
         return statusCode;
