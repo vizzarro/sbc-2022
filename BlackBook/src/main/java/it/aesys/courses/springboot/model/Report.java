@@ -5,7 +5,7 @@ public class Report {
     private Integer reportTicketNumber;
     private ProblemType problemType;
     private String problemDescription;
-    private  String fiscalCodeNumber;
+    private String fiscalCodeNumber;
 
     public Report() {
     }

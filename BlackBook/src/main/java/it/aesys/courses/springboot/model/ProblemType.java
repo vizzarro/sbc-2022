@@ -13,13 +13,13 @@ public enum ProblemType {
         this.label = label;
     }
 
-    public String getLabel(){
+    public String getLabel() {
         return this.label;
     }
 
-    public ProblemType getFromLabel(String label){  //possible debug needed
-        for (ProblemType p: ProblemType.values()) {
-            if(p.label.equals(label)){
+    public ProblemType getFromLabel(String label) {  //possible debug needed
+        for (ProblemType p : ProblemType.values()) {
+            if (p.label.equals(label)) {
                 return p;
             }
         }

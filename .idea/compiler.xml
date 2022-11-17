@@ -33,8 +33,8 @@
       <module name="black-book" options="-parameters" />
       <module name="documents-repo" options="-parameters" />
       <module name="person-registry" options="-parameters" />
-      <module name="sc-helloworld" options="-parameters" />
-      <module name="sc-lesson1" options="-parameters" />
+      <module name="sc-helloworld" options="" />
+      <module name="sc-lesson1" options="" />
     </option>
   </component>
 </project>
