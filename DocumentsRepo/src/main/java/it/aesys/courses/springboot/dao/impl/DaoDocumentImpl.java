@@ -8,7 +8,6 @@ import it.aesys.courses.springboot.models.TypeOfFile;
 import it.aesys.courses.springboot.utils.connectionDb.ConnectionDb;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
