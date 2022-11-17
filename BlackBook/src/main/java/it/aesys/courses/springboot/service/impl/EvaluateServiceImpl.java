@@ -4,7 +4,9 @@ import it.aesys.courses.springboot.dao.ReportDao;
 import it.aesys.courses.springboot.model.mapperDTO.ReportMapperDTO;
 import it.aesys.courses.springboot.service.EvaluateService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class EvaluateServiceImpl implements EvaluateService {
     private ReportDao reportDao;
 
