@@ -4,22 +4,42 @@ import it.aesys.courses.springboot.model.Report;
 
 public class ReportMapperDTO {
 
-    public ReportDTO toDto(Report report){
+    public ReportDtoResponse toResponseDto (Report report){
 
-        ReportDTO dto = new ReportDTO();
-        dto.setProblemType(report.getProblemType());
-        dto.setProblemDescription(report.getProblemDescription());
-        dto.setReportTicketNumber(report.getReportTicketNumber());
+        ReportDtoResponse responseDto = new ReportDtoResponse();
+        responseDto.setProblemType(report.getProblemType());
+        responseDto.setProblemDescription(report.getProblemDescription());
+        responseDto.setReportTicketNumber(report.getReportTicketNumber());
+        responseDto.setReportTicketNumber(report.getReportTicketNumber());
 
-        return dto;
+        return responseDto;
     }
 
-    public Report toModel(ReportDTO dto){
+    public Report toResponseModel(ReportDtoResponse responseDto){
 
         Report report = new Report();
-        report.setProblemType(dto.getProblemType());
-        report.setProblemDescription(dto.getProblemDescription());
-        report.setReportTicketNumber(dto.getReportTicketNumber());
+        report.setProblemType(responseDto.getProblemType());
+        report.setProblemDescription(responseDto.getProblemDescription());
+        report.setReportTicketNumber(responseDto.getReportTicketNumber());
+        report.setReportTicketNumber(responseDto.getReportTicketNumber());
+
+        return report;
+    }
+
+    public ReportDtoRequest toRequestDto(Report report){
+
+        ReportDtoRequest requestDto = new ReportDtoRequest();
+        requestDto.setProblemType(report.getProblemType());
+        requestDto.setProblemDescription(report.getProblemDescription());
+
+        return requestDto;
+    }
+
+    public Report toRequestModel(ReportDtoRequest requestDto){
+
+        Report report = new Report();
+        report.setProblemType(requestDto.getProblemType());
+        report.setProblemDescription(requestDto.getProblemDescription());
 
         return report;
     }
