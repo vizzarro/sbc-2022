@@ -26,7 +26,7 @@ public class DaoImpl {
                     .getConnection(dbURL, username, password);
 
             // Step 2:Create a statement using connection object
-            PreparedStatement preparedStatement = connection.prepareStatement(INSERT_PERSONS_SQL));
+            PreparedStatement preparedStatement = connection.prepareStatement(INSERT_PERSONS_SQL);
             preparedStatement.setString(1, person.getName());
             preparedStatement.setString(2, person.getSurname());
             preparedStatement.setString(3, person.getFiscalCode());
@@ -67,8 +67,9 @@ public class DaoImpl {
         Person p = null;
         System.out.println(GET_PERSONS_SQL);
         // Step 1: Establishing a Connection
-        try (Connection connection = DriverManager
-                .getConnection("jdbc:mysql://localhost:3306/mysql_database?useSSL=false", "root", "root")) {
+        try {
+            Connection connection = DriverManager
+                .getConnection("jdbc:mysql://localhost:3306/mysql_database?useSSL=false", "root", "root");
 
 
             // Step 2:Create a statement using connection object
@@ -82,6 +83,7 @@ public class DaoImpl {
 
             //TODO ciclare il rs per prendere i campi e settarlo nella entity
             while (rs.next()) {
+                p = new Person();
                 p.setName();
                 p.setSurname();
                 p.setFiscalCode();
@@ -90,14 +92,14 @@ public class DaoImpl {
                 p.setBirthDate();
                 p.getCellNumber();
 
-            }
 
+            }
+            return p;
         } catch (SQLException e) {
 
             // print SQL exception information
             printSQLException(e);
         }
         return p;
-
     }
 }
