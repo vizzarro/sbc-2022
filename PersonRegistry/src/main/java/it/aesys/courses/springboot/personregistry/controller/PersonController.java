@@ -4,6 +4,7 @@ import it.aesys.courses.springboot.personregistry.models.Person;
 import it.aesys.courses.springboot.personregistry.models.PersonDTO;
 import it.aesys.courses.springboot.personregistry.request.PersonRequest;
 import it.aesys.courses.springboot.personregistry.service.PersonService;
+import it.aesys.courses.springboot.personregistry.service.PersonServiceImpl;
 import it.aesys.courses.springboot.personregistry.service.exceptions.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
@@ -16,10 +17,10 @@ import java.util.Collection;
 @RequestMapping("personregistry")
 public class PersonController {
 
-    private PersonService service;
+    private PersonServiceImpl service;
 
     @Autowired
-    public PersonController(PersonService service){
+    public PersonController(PersonServiceImpl service){
         this.service = service;
     }
 
@@ -41,11 +42,6 @@ public class PersonController {
     public Collection<PersonDTO> getAllPersons() throws ServiceException {
         return service.getAll();
     }
-
-//    @GetMapping("/{id}")
-//    public PersonDTO getById(@PathVariable("id") Integer id) throws ServiceException {
-//        return service.get(id);
-//    }
 
     @GetMapping("{fiscalCode}")
     public PersonDTO getPersonByFiscalCode(@PathVariable("fiscalCode") String fiscalCode) throws ServiceException {
