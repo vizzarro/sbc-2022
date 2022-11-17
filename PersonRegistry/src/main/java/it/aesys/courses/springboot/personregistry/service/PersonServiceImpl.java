@@ -40,10 +40,13 @@ public class PersonServiceImpl implements PersonService {
         if (personDto.getAddress() != null){
             Person newPerson = personMapperDTO.toModel(personDto);
             Address newAddress = newPerson.getAddress();
-            addressDao.create(newAddress);
-            
+            try {
+                addressDao.create(newAddress);
+            }
+            catch (DaoException ex){
+                ex.setStatusCode(500);
+            }
         }
-
 
         try {
             return personMapperDTO.toDto(personDao.create(personMapperDTO.toModel(personDto)));
