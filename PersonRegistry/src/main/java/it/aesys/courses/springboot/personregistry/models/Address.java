@@ -6,18 +6,12 @@ public class Address {
     public String civic;
     public Integer postalCode;
     public EnumAddress home;
-    public int addressId;
+    public Integer addressId;
 
-    public int getAddressId() {
-        return addressId;
-    }
+
 
     public void setAddressId(int addressId) {
         this.addressId = addressId;
-    }
-
-    public int getAddress_id() {
-        return address_id;
     }
 
     public void setAddress_id(int address_id) {
@@ -53,11 +47,15 @@ public class Address {
         this.postalCode = postalCode;
     }
 
-    public EnumAddress getHome() {
+    public String getHome() {
         return home;
     }
 
     public void setHome(EnumAddress home) {
         this.home = home;
+    }
+
+    public Integer getAddressId() {
+        return addressId;
     }
 }

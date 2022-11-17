@@ -1,6 +1,7 @@
 package it.aesys.courses.springboot.personregistry.dao.impl;
 
 import it.aesys.courses.springboot.personregistry.dao.AddressDao;
+import it.aesys.courses.springboot.personregistry.dao.exception.DaoException;
 import it.aesys.courses.springboot.personregistry.models.Address;
 import org.springframework.stereotype.Repository;
 
@@ -34,7 +35,7 @@ public class AddressDaoImpl implements AddressDao {
             preparedStatement.setString(1, address.getStreet());
             preparedStatement.setString(2, address.getCivic());
             preparedStatement.setInt(3, address.getPostalCode());
-            preparedStatement.setString(4, address.getHome().name());
+            preparedStatement.setString(4, address.getHome());
             System.out.println(preparedStatement);
             preparedStatement.execute();
 
@@ -53,6 +54,41 @@ public class AddressDaoImpl implements AddressDao {
 
     @Override
     public Address update(Address address) {
+
+
+        if (get(address.getAddressId()) != null) {
+
+            try {
+                Class.forName(DRIVER_NAME);
+                Connection connection = DriverManager
+                        .getConnection(dbURL, username, password);
+
+                // Step 2:Create a statement using connection object
+                PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_ADDRESS_SQL);
+                preparedStatement.setString(1, address.getStreet());
+                preparedStatement.setString(2, address.getCivic());
+                preparedStatement.setString(3, address.getPostalCode());
+                preparedStatement.setDate(4, address.getHome());
+
+                System.out.println(preparedStatement);
+                // Step 3: Execute the query or update query
+                preparedStatement.execute();
+
+
+                return address;
+
+            } catch (SQLException e) {
+                // print SQL exception information
+                printSQLException(e);
+                DaoException exc = new DaoException();
+                exc.setMessage("already existing");
+
+            } catch (ClassNotFoundException ex) {
+                ex.printStackTrace();
+                throw new DaoException();
+            }
+        }
+
         return null;
     }
 
