@@ -18,6 +18,7 @@ public class DaoDocumentImpl implements Dao<Document> {
 
     private static final String INSERT="";
     private static final String SELECT_ALL="SELECT * FROM library.documents";
+    private static final String FIND_BY_CF="SELECT * FROM library.documents  WHERE cf=?";
 
     private ConnectionDb connectionDB;
 
@@ -35,6 +36,27 @@ public class DaoDocumentImpl implements Dao<Document> {
     @Override
     public Optional<Document> find(Integer id) {
         return Optional.empty();
+    }
+
+    public List<Document> findByCf(String cf) throws SQLException {
+        Connection connection= connectionDB.register();
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery(FIND_BY_CF);
+        List<Document> documents = new ArrayList<>();
+        while (resultSet.next()){
+            Document document = new Document();
+            if(resultSet.getString(1).equals(cf)){
+                document.setIdDoc(resultSet.getInt("idDoc"));
+                document.setNameFile(resultSet.getString("nameFile"));
+                document.setTypeOfFile(TypeOfFile.valueOf(resultSet.getString("typeOfFile")));
+                document.setTypeOfDoc(TypeOfDoc.valueOf(resultSet.getString("typeOfDoc")));
+                document.setDataOfInput(resultSet.getDate("dataOfInput").toLocalDate());
+                document.setFile(resultSet.getString("file"));
+                document.setFiscalCode(resultSet.getString("fiscalCode"));
+                documents.add(document);
+            }
+        }
+        return documents;
     }
 
     @Override
