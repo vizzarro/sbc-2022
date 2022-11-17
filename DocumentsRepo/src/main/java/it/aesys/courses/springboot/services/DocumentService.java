@@ -1,6 +1,7 @@
 package it.aesys.courses.springboot.services;
 
 import it.aesys.courses.springboot.components.DocumentComponent;
+import it.aesys.courses.springboot.dao.impl.DaoDocumentImpl;
 import it.aesys.courses.springboot.exception.InvalidInputException;
 import it.aesys.courses.springboot.models.Document;
 import it.aesys.courses.springboot.models.dto.DocumentRequest;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -17,13 +19,17 @@ import java.util.List;
 public class DocumentService {
 
     DocumentComponent repository;
+    DaoDocumentImpl dao;
     FileUtil fileUtil;
 
     @Autowired
-    public DocumentService(DocumentComponent repository, FileUtil fileUtil) {
+    public DocumentService(DocumentComponent repository, FileUtil fileUtil, DaoDocumentImpl dao) {
         this.repository = repository;
         this.fileUtil = fileUtil;
+        this.dao = dao;
     }
+
+
 
     public Document createDocument(DocumentRequest request) throws IOException {
         if (validRequest(request)) {
@@ -36,8 +42,8 @@ public class DocumentService {
         throw new InvalidInputException("All fields are required");
     }
 
-    public List<Document> getAllDocuments() {
-        return repository.findAll();
+    public List<Document> getAllDocuments() throws SQLException {
+        return dao.findAll();
     }
 
     public List<Document> getDocumentByCf(String cf) {
