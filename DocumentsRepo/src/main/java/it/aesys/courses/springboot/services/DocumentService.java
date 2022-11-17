@@ -4,6 +4,7 @@ import it.aesys.courses.springboot.components.DocumentComponent;
 import it.aesys.courses.springboot.exception.InvalidInputException;
 import it.aesys.courses.springboot.models.Document;
 import it.aesys.courses.springboot.models.dto.DocumentRequest;
+import it.aesys.courses.springboot.utils.FileUtil;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,12 +17,12 @@ import java.util.List;
 public class DocumentService {
 
     DocumentComponent repository;
-    FileService fileService;
+    FileUtil fileUtil;
 
     @Autowired
-    public DocumentService(DocumentComponent repository, FileService fileService) {
+    public DocumentService(DocumentComponent repository, FileUtil fileUtil) {
         this.repository = repository;
-        this.fileService = fileService;
+        this.fileUtil = fileUtil;
     }
 
     public Document createDocument(DocumentRequest request) throws IOException {
@@ -29,7 +30,7 @@ public class DocumentService {
             Document document = new Document();
             BeanUtils.copyProperties(request, document);
             document.setDataOfInput(LocalDate.now());
-            document.setFile(fileService.upload(request.getFile()));
+            document.setFile(fileUtil.upload(request.getFile()));
             return (repository.addDocument(document));
         }
         throw new InvalidInputException("All fields are required");
@@ -64,7 +65,7 @@ public class DocumentService {
     public Document updateDocument(DocumentRequest request, Integer id) throws IOException {
         if (validRequest(request)) {
             Document document = repository.findById(id);
-            document.setFile(fileService.upload(request.getFile()));
+            document.setFile(fileUtil.upload(request.getFile()));
             BeanUtils.copyProperties(request, document);
             return (repository.editById(id, document));
         }
