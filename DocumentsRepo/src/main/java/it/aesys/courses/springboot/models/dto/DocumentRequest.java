@@ -18,7 +18,6 @@ public class DocumentRequest {
         this.fiscalCode = fiscalCode;
         this.file = file;
     }
-
     public DocumentRequest() {
         super();
     }
@@ -26,7 +25,6 @@ public class DocumentRequest {
     public String getNameFile() {
         return nameFile;
     }
-
     public void setNameFile(String nameFile) {
         this.nameFile = nameFile;
     }
