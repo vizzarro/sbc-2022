@@ -4,11 +4,20 @@ import it.aesys.courses.springboot.model.ProblemType;
 
 public class ReportDTO {
 
+    private String fiscalCodeNumber;
     private Integer reportTicketNumber;
     private ProblemType problemType;
     private String problemDescription;
 
     public ReportDTO() {
+    }
+
+    public String getFiscalCodeNumber() {
+        return fiscalCodeNumber;
+    }
+
+    public void setFiscalCodeNumber(String fiscalCodeNumber) {
+        this.fiscalCodeNumber = fiscalCodeNumber;
     }
 
     public Integer getReportTicketNumber() {
