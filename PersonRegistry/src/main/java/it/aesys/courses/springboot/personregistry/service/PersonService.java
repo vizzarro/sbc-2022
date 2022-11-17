@@ -72,11 +72,11 @@ public class PersonService {
 
     }
 
-    public PersonDTO update(String fiscalcode, PersonDTO personDTO) //throws ComponentException, ServiceException
+    public PersonDTO update( PersonDTO personDTO) //throws ComponentException, ServiceException
     {
 
         //       try {
-        if (personMapperDTO.toDto(personDao.get(fiscalcode) != null) {
+        if (personMapperDTO.toDto(personDao.get(personDTO.getFiscalCode())) != null) {
         Person updatedPerson = personMapperDTO.toModel(personDTO);
         personDao.update(updatedPerson);
         return personMapperDTO.toDto(updatedPerson);
