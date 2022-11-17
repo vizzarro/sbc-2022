@@ -20,7 +20,8 @@ public class PersonDaoImpl implements PersonDao {
     private static final String GET_PERSONS_SQL = "SELECT fiscalcode FROM persons WHERE fiscalcode =  ?";
 
     @Override
-    public Person create(Person person) throws SQLException {
+    public Person create(Person person) //throws SQLException
+    {
 
         System.out.println(INSERT_PERSONS_SQL);
         // Step 1: Establishing a Connection
@@ -41,6 +42,7 @@ public class PersonDaoImpl implements PersonDao {
             System.out.println(preparedStatement);
             // Step 3: Execute the query or update query
             preparedStatement.execute();
+
         } catch (SQLException e) {
             // print SQL exception information
             printSQLException(e);
