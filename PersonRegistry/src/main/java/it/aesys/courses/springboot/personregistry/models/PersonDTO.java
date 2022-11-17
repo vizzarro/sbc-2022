@@ -12,7 +12,7 @@ public class PersonDTO {
     private String surname;
     private String fiscalCode;
     private EnumGender gender;
-    private Address address;
+    private AddressDTO address;
     private Date birthDate;
 
     private String cellNumber;
@@ -23,7 +23,7 @@ public class PersonDTO {
         super();
     }
 
-    public PersonDTO(String n, String s, String fC, EnumGender g, Address a, Date bD, String cN) {
+    public PersonDTO(String n, String s, String fC, EnumGender g, AddressDTO a, Date bD, String cN) {
         this.name = n;
         this.surname = s;
         this.fiscalCode = fC;
@@ -65,11 +65,11 @@ public class PersonDTO {
         this.gender = gender;
     }
 
-    public Address getAddress() {
+    public AddressDTO getAddress() {
         return address;
     }
 
-    public void setAddress(Address address) {
+    public void setAddress(AddressDTO address) {
         this.address = address;
     }
 

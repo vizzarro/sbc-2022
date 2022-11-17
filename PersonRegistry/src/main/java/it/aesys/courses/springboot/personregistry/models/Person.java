@@ -13,13 +13,13 @@ public class Person {
     private Address address;
     private Date birthDate;
     private String cellNumber;
-    private Integer id;
+    private Integer addressId;
 
     public Person() {
         super();
     }
 
-    public Person(String n, String s, String fC, EnumGender g, Address a, Date bD, String cN, Integer id) {
+    public Person(String n, String s, String fC, EnumGender g, Address a, Date bD, String cN) {
         this.name = n;
         this.surname = s;
         this.fiscalCode = fC;
@@ -27,7 +27,6 @@ public class Person {
         this.address = a;
         this.birthDate = bD;
         this.cellNumber = cN;
-        this.id = id;
     }
 
     public EnumGender getGender() {
@@ -62,13 +61,13 @@ public class Person {
         this.cellNumber = cellNumber;
     }
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
+//    public Integer getId() {
+//        return id;
+//    }
+//
+//    public void setId(Integer id) {
+//        this.id = id;
+//    }
 
     public String getName() {
         return name;
