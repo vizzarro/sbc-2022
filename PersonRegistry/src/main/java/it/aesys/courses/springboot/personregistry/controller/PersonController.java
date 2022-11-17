@@ -33,9 +33,9 @@ public class PersonController {
     }
 
 
-    @DeleteMapping("/{id}")
-    public void deletePerson(@PathVariable("id") Integer id ) throws ServiceException, ComponentException{
-         service.delete(id);
+    @DeleteMapping("/{fiscalcode}")
+    public void deletePerson(@PathVariable("fiscalcode") String fiscalcode ) throws ServiceException, ComponentException{
+         service.delete(fiscalcode);
     }
 
     @GetMapping("all")
