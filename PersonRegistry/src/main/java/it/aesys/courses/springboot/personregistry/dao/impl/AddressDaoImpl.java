@@ -15,11 +15,14 @@ public class AddressDaoImpl implements AddressDao {
     String password = "secret";
 
     private static final String DRIVER_NAME = "com.mysql.cj.jdbc.Driver";
-
-
     private static final String INSERT_ADDRESS_SQL = "INSERT INTO address" +
             "  ( street, civic, postalCode, home ) VALUES " +
             " ( ?, ?, ?, ? )";
+    private static final String UPDATE_ADDRESS_SQL = "UPDATE address SET " +
+            "( street = ?, civic = ?, postalCode = ?, home = ?  WHERE address_id = ?)";
+    private static final String GET_ALL_ADDRESS_SQL = "SELECT * FROM address";
+    private static final String GET_ADDRESS_SQL = "SELECT address_id FROM address WHERE address_id =  ?";
+    private static final String DELETE_ADDRESS_SQL = "DELETE FROM address WHERE address_id = ?";
 
     @Override
     public Address create(Address address) {
@@ -31,8 +34,8 @@ public class AddressDaoImpl implements AddressDao {
             preparedStatement.setString(2, address.getCivic());
             preparedStatement.setInt(3, address.getPostalCode());
             preparedStatement.setString(4, address.getHome().name());
-
-            preparedStatement.executeUpdate();
+            System.out.println(preparedStatement);
+            preparedStatement.execute();
 
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);

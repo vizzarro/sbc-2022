@@ -6,6 +6,15 @@ public class Address {
     public String civic;
     public Integer postalCode;
     public EnumAddress home;
+    public int addressId;
+
+    public int getAddressId() {
+        return addressId;
+    }
+
+    public void setAddressId(int addressId) {
+        this.addressId = addressId;
+    }
 
     public Address() {
     }
