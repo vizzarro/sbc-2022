@@ -16,9 +16,10 @@ import java.util.Optional;
 @Component
 public class DaoDocumentImpl implements Dao<Document> {
 
-    private static  ConnectionDb connectionDB;
-    private static final String INSERTQUERY="";
-    private static final String SELECTALL="SELECT * FROM library.documents";
+    private static final String INSERT="";
+    private static final String SELECT_ALL="SELECT * FROM library.documents";
+
+    private ConnectionDb connectionDB;
 
     @Autowired
     public DaoDocumentImpl(ConnectionDb connectionDB){
@@ -27,11 +28,7 @@ public class DaoDocumentImpl implements Dao<Document> {
 
 
     @Override
-    public Document add(Document document) throws SQLException {
-        Connection connection= connectionDB.register();
-        Statement statement = connection.createStatement();
-        ResultSet resultSet = statement.executeQuery(SELECTALL);
-
+    public Document add(Document document){
         return null;
     }
 
@@ -44,7 +41,7 @@ public class DaoDocumentImpl implements Dao<Document> {
     public List<Document> findAll() throws SQLException {
         Connection connection= connectionDB.register();
         Statement statement = connection.createStatement();
-        ResultSet resultSet = statement.executeQuery(SELECTALL);
+        ResultSet resultSet = statement.executeQuery(SELECT_ALL);
         List<Document> documents = new ArrayList<>();
         Document document = new Document();
         while (resultSet.next()){
@@ -56,7 +53,6 @@ public class DaoDocumentImpl implements Dao<Document> {
             document.setFile(resultSet.getString("file"));
             document.setFiscalCode(resultSet.getString("fiscalCode"));
             documents.add(document);
-            System.out.println("cf: " + resultSet.getString("fiscalCode"));
         }
         return documents;
     }
@@ -67,7 +63,9 @@ public class DaoDocumentImpl implements Dao<Document> {
     }
 
     @Override
-    public void delete(Integer id) {
-
+    public void delete(Integer id) throws SQLException {
+        Connection connection= connectionDB.register();
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery("DELETE FROM library.documents WHERE idDoc = " + id);
     }
 }
