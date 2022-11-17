@@ -13,7 +13,6 @@ import org.springframework.web.client.RestTemplate;
 
 @RequestMapping(path = "/")
 @SpringBootApplication
-
 public class PersonRegistryApplication {
     public static void main(String[] args) {
 

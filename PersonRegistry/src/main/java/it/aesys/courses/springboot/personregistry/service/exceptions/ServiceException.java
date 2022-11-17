@@ -2,12 +2,19 @@ package it.aesys.courses.springboot.personregistry.service.exceptions;
 
 import it.aesys.courses.springboot.personregistry.controller.ErrorManageController;
 import it.aesys.courses.springboot.personregistry.models.mapper.ErrorDTO;
+
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
+
+import static org.springframework.web.servlet.function.RequestPredicates.path;
 
 public class ServiceException extends Exception {
 
+
+
+    String message;
     int statusCode = 0;
-    private Collection<? extends ErrorDTO> error;
 
     public int getStatusCode() {
         return statusCode;
@@ -36,11 +43,14 @@ public class ServiceException extends Exception {
         super(message, cause, enableSuppression, writableStackTrace);
     }
 
-    public String getPath() {
-        return this.getPath();
+    @Override
+    public String getMessage() {
+        return message;
     }
 
-    public Collection<? extends ErrorDTO> getErrors() {
-        return this.error;
+    public void setMessage(String message) {
+        this.message = message;
     }
+
+
 }

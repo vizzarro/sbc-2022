@@ -16,6 +16,7 @@ import org.springframework.web.client.RestTemplate;
 import javax.websocket.ClientEndpoint;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 @Service
 public class PersonService {
@@ -39,6 +40,7 @@ public class PersonService {
         } catch (ComponentException e) {
             ServiceException ex = new ServiceException();
             ex.setStatusCode(e.getStatusCode());
+            ex.setMessage("Impossible to create");
             throw ex;
         }
     }
@@ -51,6 +53,7 @@ public class PersonService {
         } catch (ComponentException e) {
             ServiceException ex = new ServiceException();
             ex.setStatusCode(e.getStatusCode());
+            ex.setMessage("Resource not found");
             throw ex;
         }
     }
@@ -79,11 +82,13 @@ public class PersonService {
             } else {
                 ServiceException exc = new ServiceException();
                 exc.setStatusCode(404);
+                exc.setMessage("Resource not found");
                 throw exc;
             }
         } catch (ComponentException e) {
             ServiceException ex = new ServiceException();
             ex.setStatusCode(e.getStatusCode());
+            ex.setMessage("Resource not found");
             throw ex;
         }
     }
@@ -97,6 +102,7 @@ public class PersonService {
         } else {
             ServiceException exc = new ServiceException();
             exc.setStatusCode(404);
+            exc.setMessage("Resource not found");
             throw exc;
         }
 
@@ -108,11 +114,16 @@ public class PersonService {
         try {
 
             PersonDTO person = personMapperDTO.toDto(personDao.getPersonByFiscalCode(fiscalCode));
-            //ARRICHIRE DATI del person con dati del documento
-            ResponseEntity<Documents> documentResponse = documentsClient.getForEntity("", Documents.class);
+            //TODO: ARRICHIRE DATI del person con dati del documento
+
+            ResponseEntity<Documents> documentResponse = documentsClient.getForEntity("http://localhost:8081/document?cf=" + fiscalCode
+                    , Documents.class);
+
+            person.setDocuments(documentResponse.getBody());
+
             if (documentResponse.getStatusCode().equals(HttpStatus.OK)) {
 
-                return personMapperDTO.toDto(personDao.getPersonByFiscalCode(fiscalCode));
+                return person;
             }
         } catch (ComponentException e) {
             throw new RuntimeException(e);

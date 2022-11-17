@@ -15,7 +15,6 @@ import java.util.Collection;
 
 @RestController
 @RequestMapping("personregistry")
-//@Profile("development")
 public class PersonController {
 
     private PersonService service;
@@ -24,6 +23,9 @@ public class PersonController {
     public PersonController(PersonService service){
         this.service = service;
     }
+
+
+
 
     @PostMapping
     public PersonDTO addPerson(@RequestBody PersonRequest personRequest) throws ServiceException, ComponentException {

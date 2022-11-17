@@ -1,29 +1,19 @@
 package it.aesys.courses.springboot.model.request;
 
-import it.aesys.courses.springboot.model.Person;
-import it.aesys.courses.springboot.model.Report;
+import it.aesys.courses.springboot.model.mapperDTO.PersonDTO;
 
 public class PersonRequest {
-
-    private Person person;
-    private Report report;
+    private PersonDTO personDto = new PersonDTO();
 
     public PersonRequest() {
+        super();
     }
 
-    public Person getPerson() {
-        return person;
+    public PersonDTO getPersonDto() {
+        return personDto;
     }
 
-    public void setPerson(Person person) {
-        this.person = person;
-    }
-
-    public Report getReport() {
-        return report;
-    }
-
-    public void setReport(Report report) {
-        this.report = report;
+    public void setPersonDto(PersonDTO personDto) {
+        this.personDto = personDto;
     }
 }
