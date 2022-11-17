@@ -1,4 +1,4 @@
-package it.aesys.courses.springboot.personregistry.daoImpl;
+package it.aesys.courses.springboot.personregistry.dao.impl;
 
 import it.aesys.courses.springboot.personregistry.dao.AddressDao;
 import it.aesys.courses.springboot.personregistry.models.Address;

@@ -34,7 +34,7 @@ public class PersonService {
         this.documentsClient = documentsClient;
     }
 
-    public PersonDTO create(PersonDTO personDto) throws ServiceException {
+    public PersonDTO create(PersonDTO personDto)  {
 
 //        try {
         return personMapperDTO.toDto(personDao.create(personMapperDTO.toModel(personDto)));
@@ -46,10 +46,10 @@ public class PersonService {
 //        }
     }
 
-    public PersonDTO get(String fiscalcode) throws ServiceException {
+//    public PersonDTO get(String fiscalcode)  {
 
 //        try {
-        return personMapperDTO.toDto(personDao.get(fiscalcode));
+//        return personMapperDTO.toDto(personDao.get(fiscalcode));
 
 //        } catch (ComponentException e) {
 //            ServiceException ex = new ServiceException();
@@ -57,7 +57,7 @@ public class PersonService {
 //            ex.setMessage("Resource not found");
 //            throw ex;
 //        }
-    }
+//    }
 
     public Collection<PersonDTO> getAll() throws ComponentException {
 
@@ -72,11 +72,21 @@ public class PersonService {
 
     }
 
-    public PersonDTO update(String fiscalcode, PersonDTO personDTO) //throws ComponentException, ServiceException
+    public PersonDTO update( PersonDTO personDTO) //throws ComponentException, ServiceException
     {
 
         //       try {
-        if (personMapperDTO.toDto(personDao.get(fiscalcode) != null) {
+<<<<<<< HEAD
+        if (personMapperDTO.toDto(personDao.get(fiscalcode)).equals("SELECT fiscalcode FROM person WHERE fiscalcode =  ?")) {
+            Person updatedPerson = personMapperDTO.toModel(personDTO);
+            personDao.update(updatedPerson);
+            return personMapperDTO.toDto(updatedPerson);
+            } else {
+                ServiceException exc = new ServiceException();
+                exc.setStatusCode(404);
+                exc.setMessage("Resource not found");
+=======
+        if (personMapperDTO.toDto(personDao.get(personDTO.getFiscalCode())) != null) {
         Person updatedPerson = personMapperDTO.toModel(personDTO);
         personDao.update(updatedPerson);
         return personMapperDTO.toDto(updatedPerson);
@@ -84,56 +94,56 @@ public class PersonService {
 //                ServiceException exc = new ServiceException();
 //                exc.setStatusCode(404);
 //                exc.setMessage("Resource not found");
+>>>>>>> 35b2ede3f0b5739f42551decdfb229dd64aa8e05
 //                throw exc;
-//            }
+            }
 //        } catch (SQLException e) {
 //            ServiceException ex = new ServiceException();
 //            ex.setStatusCode(e.getErrorCode());
 //            ex.setMessage("Resource not found");
 //            throw ex;
 //        }
+        return personDTO;
     }
 
-    }
 
-
-    public void delete(String fiscalcode) throws //ComponentException, ServiceException
+    public void delete(String fiscalcode) //throws ComponentException, ServiceException
     {
 
-        if (personMapperDTO.toDto(personDao.get(id)) != null) {
-            personDao.get(id);
-            personDao.delete(id);
+        if (personMapperDTO.toDto(personDao.get(fiscalcode)).equals("SELECT fiscalcode FROM person WHERE fiscalcode =  ?")) {
+            personDao.get(fiscalcode);
+            personDao.delete(fiscalcode);
         } else {
             ServiceException exc = new ServiceException();
             exc.setStatusCode(404);
             exc.setMessage("Resource not found");
-            throw exc;
+//            throw exc;
         }
 
     }
 
 
-    public PersonDTO getPersonFC(String fiscalCode) throws ServiceException {
+//    public PersonDTO getPersonFC(String fiscalCode) throws ServiceException {
 
-        try {
-
-            PersonDTO person = personMapperDTO.toDto(personDao.get(fiscalCode));
-            //TODO: ARRICHIRE DATI del person con dati del documento
-
-            ResponseEntity<Documents> documentResponse = documentsClient.getForEntity("http://localhost:8081/document?cf=" + fiscalCode
-                    , Documents.class);
-
-            person.setDocuments(documentResponse.getBody());
-
-            if (documentResponse.getStatusCode().equals(HttpStatus.OK)) {
-
-                return person;
-            }
-        } catch (ComponentException e) {
-            throw new RuntimeException(e);
-        }
-        return null;
-    }
+//        try {
+//
+//            PersonDTO person = personMapperDTO.toDto(personDao.get(fiscalCode));
+//            //TODO: ARRICHIRE DATI del person con dati del documento
+//
+//            ResponseEntity<Documents> documentResponse = documentsClient.getForEntity("http://localhost:8081/document?cf=" + fiscalCode
+//                    , Documents.class);
+//
+//            person.setDocuments(documentResponse.getBody());
+//
+//            if (documentResponse.getStatusCode().equals(HttpStatus.OK)) {
+//
+//                return person;
+//            }
+//        } catch (ComponentException e) {
+//            throw new RuntimeException(e);
+//        }
+//        return null;
+//    }
 }
 
 

@@ -60,9 +60,9 @@ public class DocumentService {
         throw new InvalidInputException("Invalid id");
     }
 
-    public void deleteDocument(Integer id) {
+    public void deleteDocument(Integer id) throws SQLException {
         if (id != null) {
-            repository.deleteById(id);
+            dao.delete(id);
         } else {
             throw new InvalidInputException("Invalid Id");
         }

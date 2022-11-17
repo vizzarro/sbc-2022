@@ -28,7 +28,6 @@ public class DocumentController {
     public Document findDocument(@PathVariable Integer id) {
         return service.getDocumentById(id);
     }
-
     @GetMapping
     public List<Document> findDocuments(@RequestParam(required = false) String cf) throws SQLException {
         if (cf!=null) {
@@ -42,7 +41,7 @@ public class DocumentController {
     }
 
     @DeleteMapping("/{id}")
-    public void deleteDocument(@PathVariable Integer id) {
+    public void deleteDocument(@PathVariable Integer id) throws SQLException {
         service.deleteDocument(id);
     }
 
