@@ -1,7 +1,9 @@
 package it.aesys.courses.springboot.personregistry.service;
 
+import it.aesys.courses.springboot.personregistry.dao.AddressDao;
 import it.aesys.courses.springboot.personregistry.dao.PersonDao;
 import it.aesys.courses.springboot.personregistry.dao.exception.DaoException;
+import it.aesys.courses.springboot.personregistry.dao.impl.AddressDaoImpl;
 import it.aesys.courses.springboot.personregistry.dao.impl.PersonDaoImpl;
 import it.aesys.courses.springboot.personregistry.models.Address;
 import it.aesys.courses.springboot.personregistry.models.Person;
@@ -11,31 +13,43 @@ import it.aesys.courses.springboot.personregistry.models.mapper.PersonMapperDTO;
 
 import it.aesys.courses.springboot.personregistry.service.exceptions.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.batch.BatchDataSourceScriptDatabaseInitializer;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
+import java.util.function.BiConsumer;
 
 @Service
 public class PersonServiceImpl implements PersonService {
-    private PersonMapperDTO personMapperDTO;
-    private PersonDao personDao;
-    private RestTemplate documentsClient;
+    private final PersonMapperDTO personMapperDTO;
+    private final PersonDao personDao;
 
-    
+    private final AddressDao addressDao;
+    private final RestTemplate documentsClient;
+
+
 
     @Autowired
-    public PersonServiceImpl(PersonMapperDTO personMapperDTO, PersonDaoImpl personDao, RestTemplate documentsClient) {
+    public PersonServiceImpl(PersonMapperDTO personMapperDTO, PersonDaoImpl personDao, AddressDaoImpl addressDao, RestTemplate documentsClient) {
         this.personMapperDTO = personMapperDTO;
         this.personDao = personDao;
+        this.addressDao = addressDao;
         this.documentsClient = documentsClient;
     }
 
     public PersonDTO create(PersonDTO personDto) throws ServiceException {
 
         try {
-            personDao.create(personMapperDTO.toModel(personDto));
+
+            //Address address = addressDao.create(personMapperDTO.toModel(personDto).getAddress());
+            Integer addressId = addressDao.createAddress(personMapperDTO.toModel(personDto).getAddress());
+            Person person = personMapperDTO.toModel(personDto);
+            //person.setAddressId(address.addressId);
+            person.setAddressId(addressId);
+            personDao.create(person);
             return personDto;
 
         } catch (DaoException e) {
@@ -49,14 +63,20 @@ public class PersonServiceImpl implements PersonService {
     public PersonDTO get(String fiscalcode) throws ServiceException {
 
         try {
-            return personMapperDTO.toDto(personDao.get(fiscalcode));
+            if (fiscalcode != null) {
 
+                Person person = personDao.get(fiscalcode);
+                person.setAddress(addressDao.getAddress(person.getAddressId()));
+                return personMapperDTO.toDto(person);
+            }
         } catch (DaoException e) {
             ServiceException ex = new ServiceException();
 //            ex.setStatusCode(e.getStatusCode());
             ex.setMessage("Resource not found");
             throw ex;
         }
+        //TODO implementare eccezzione
+        return null;
     }
 
     public Collection<PersonDTO> getAll() throws ServiceException {
@@ -65,13 +85,35 @@ public class PersonServiceImpl implements PersonService {
         Collection<PersonDTO> allPersonsDto = new ArrayList<>();
 
         Collection<Person> allPersons = null;
+
+        Collection<Address> allAddress = null;
+
+        Collection<Person> allPersonsWithAddress = new ArrayList<>();
         try {
             allPersons = personDao.getAll();
         } catch (DaoException e) {
             throw new ServiceException(e);
         }
 
-        allPersons.forEach(x -> allPersonsDto.add(personMapperDTO.toDto(x)));
+        try {
+            allAddress = addressDao.getAll();
+        } catch (DaoException e) {
+            throw new ServiceException(e);
+        }
+        for (Person person : allPersons){
+            for (Address address : allAddress){
+                if (address.getAddressId() == person.getAddressId()){
+                    person.setAddress(address);
+                    allPersonsWithAddress.add(person);
+                }
+            }
+        }
+
+//        BiConsumer<Collection<Person>, Collection<Address>> mergeBiConsumer;
+//
+//        allPersons.forEach( mergeBiConsumer(p , a) -> p.setAddress() );
+
+        allPersonsWithAddress.forEach(x -> allPersonsDto.add(personMapperDTO.toDto(x)));
 
         return allPersonsDto;
 
@@ -83,6 +125,8 @@ public class PersonServiceImpl implements PersonService {
 
             if ( personDao.get(fiscalcode) != null) {
                 Person updatedPerson = personMapperDTO.toModel(personDTO);
+                Address address = addressDao.create(updatedPerson.getAddress());
+                updatedPerson.setAddressId(address.getAddressId());
                 personDao.update(updatedPerson);
                 return personMapperDTO.toDto(updatedPerson);
                 }
@@ -105,7 +149,8 @@ public class PersonServiceImpl implements PersonService {
     public void delete(String fiscalcode) throws ServiceException {
         try {
             if (personDao.get(fiscalcode) != null) {
-
+                Person personToDelete = personDao.get(fiscalcode);
+                addressDao.deleteAddress(personToDelete.getAddressId());
                 personDao.delete(fiscalcode);
             } else {
                 ServiceException exc = new ServiceException();

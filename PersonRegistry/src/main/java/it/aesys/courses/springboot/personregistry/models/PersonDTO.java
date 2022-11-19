@@ -3,6 +3,7 @@ package it.aesys.courses.springboot.personregistry.models;
 import it.aesys.courses.springboot.personregistry.models.mapper.DocumentDTO;
 import it.aesys.courses.springboot.personregistry.models.mapper.Documents;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -13,7 +14,7 @@ public class PersonDTO {
     private String fiscalCode;
     private EnumGender gender;
     private AddressDTO address;
-    private Date birthDate;
+    private LocalDate birthDate;
 
     private String cellNumber;
 
@@ -23,7 +24,7 @@ public class PersonDTO {
         super();
     }
 
-    public PersonDTO(String n, String s, String fC, EnumGender g, AddressDTO a, Date bD, String cN) {
+    public PersonDTO(String n, String s, String fC, EnumGender g, AddressDTO a, LocalDate bD, String cN) {
         this.name = n;
         this.surname = s;
         this.fiscalCode = fC;
@@ -73,11 +74,11 @@ public class PersonDTO {
         this.address = address;
     }
 
-    public Date getBirthDate() {
+    public LocalDate getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(Date birthDate) {
+    public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
     }
 

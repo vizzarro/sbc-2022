@@ -2,6 +2,7 @@ package it.aesys.courses.springboot.personregistry.models;
 
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
 import java.util.Date;
 @Component
 public class Person {
@@ -11,15 +12,17 @@ public class Person {
     private String fiscalCode;
     private EnumGender gender;
     private Address address;
-    private Date birthDate;
+    private LocalDate birthDate;
     private String cellNumber;
     private Integer addressId;
+
+
 
     public Person() {
         super();
     }
 
-    public Person(String n, String s, String fC, EnumGender g, Address a, Date bD, String cN) {
+    public Person(String n, String s, String fC, EnumGender g, Address a, LocalDate bD, String cN) {
         this.name = n;
         this.surname = s;
         this.fiscalCode = fC;
@@ -45,11 +48,11 @@ public class Person {
         this.address = address;
     }
 
-    public Date getBirthDate() {
+    public LocalDate getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(Date birthDate) {
+    public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
     }
 
@@ -59,6 +62,14 @@ public class Person {
 
     public void setCellNumber(String cellNumber) {
         this.cellNumber = cellNumber;
+    }
+
+    public Integer getAddressId() {
+        return addressId;
+    }
+
+    public void setAddressId(Integer addressId) {
+        this.addressId = addressId;
     }
 
 //    public Integer getId() {

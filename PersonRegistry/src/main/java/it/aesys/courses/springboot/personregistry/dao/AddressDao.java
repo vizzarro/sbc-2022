@@ -9,4 +9,6 @@ public interface AddressDao extends Dao<Address> {
     void deleteAddress(Integer index) throws DaoException;
 
     Address getAddress(Integer index) throws DaoException;
+
+    Integer createAddress(Address address) throws  DaoException;
 }

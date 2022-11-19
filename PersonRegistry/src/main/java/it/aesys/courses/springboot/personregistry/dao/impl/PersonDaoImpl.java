@@ -13,21 +13,28 @@ import java.util.List;
 @Repository
 public class PersonDaoImpl implements PersonDao {
 
-    String dbURL = "jdbc:mysql://192.168.130.6:3306/";
-    String username = "user_library";
-    String password = "password";
+//    String dbURL = "jdbc:mysql://192.168.130.6:3306/";
+//    String username = "user_library";
+//    String password = "password";
+//TODO SOSTITUIRE I DATI CON DATABASE LOCALE
+
+   String dbURL = "jdbc:mysql://127.0.0.1:3306/librarydb";
+   String username = "root";
+   String password = "Admin";
+
+
     private static final String DRIVER_NAME = "com.mysql.cj.jdbc.Driver";
 
     private static final String INSERT_PERSONS_SQL = "INSERT INTO person" +
-            "  ( name, surname, fiscalcode, gender, address, birthdate, cellnumber, ) VALUES " +
-            " ( ?, ?, ?, ? , ? , ? , ?);";
+            "  ( name, surname, fiscalcode, gender, address_id, birth_date, cell_number ) VALUES " +
+            " ( ?, ?, ?, ? , ? , ?, ?);";
     private static final String GET_PERSONS_SQL = "SELECT fiscalcode FROM person WHERE fiscalcode =  ?";
 
     private static final String GET_ALL_SQL = "SELECT fiscalcode FROM person";
 
 
     private static final String UPDATE_PERSONS_SQL = "UPDATE person SET " +
-            "( name = ?, surname = ?, fiscalcode = ?, gender = ?, address = ? ,birthdate = ?, cellnumber = ?  WHERE fiscalcode = ?)";
+            "( name = ?, surname = ?, fiscalcode = ?, gender = ?, address_id = ? ,birth_date = ?, cell_number = ?  WHERE fiscalcode = ?)";
 
 
     private static final String DELETE_PERSONS_SQL = "DELETE FROM person WHERE fiscalcode = ?";
@@ -50,7 +57,8 @@ public class PersonDaoImpl implements PersonDao {
             preparedStatement.setString(2, person.getSurname());
             preparedStatement.setString(3, person.getFiscalCode());
             preparedStatement.setString(4, person.getGender().name());
-            preparedStatement.setDate(6, (Date) person.getBirthDate());
+            preparedStatement.setInt(5, person.getAddressId());
+            preparedStatement.setDate(6, Date.valueOf(person.getBirthDate()));
             preparedStatement.setString(7, person.getCellNumber());
 
             System.out.println(preparedStatement);
@@ -107,7 +115,7 @@ public class PersonDaoImpl implements PersonDao {
                 preparedStatement.setString(2, person.getSurname());
 
                 preparedStatement.setString(4, person.getGender().name());
-                preparedStatement.setDate(6, (Date) person.getBirthDate());
+                preparedStatement.setDate(6, Date.valueOf(person.getBirthDate()));
                 preparedStatement.setString(7, person.getCellNumber());
 
                 System.out.println(preparedStatement);
@@ -128,7 +136,7 @@ public class PersonDaoImpl implements PersonDao {
                 throw new DaoException();
             }
         }
-
+        //TODO Gestire eccezzione non può ritornare null
         return null;
     }
 
@@ -190,8 +198,8 @@ public class PersonDaoImpl implements PersonDao {
                 p.setSurname(rs.getString("surname"));
                 p.setFiscalCode(rs.getString("fiscalcode"));
                 p.setGender(EnumGender.valueOf(rs.getString("gender")));
-
-                p.setBirthDate(rs.getDate("birth_date"));
+                p.setAddressId(rs.getInt("address_id"));
+                p.setBirthDate(rs.getDate("birth_date").toLocalDate());
                 p.setCellNumber(rs.getString("cellnumber"));
 
             }
@@ -234,7 +242,8 @@ public class PersonDaoImpl implements PersonDao {
                 p.setSurname(rs.getString("surname"));
                 p.setFiscalCode(rs.getString("fiscalcode"));
                 p.setGender(EnumGender.valueOf(rs.getString("gender")));
-                p.setBirthDate(rs.getDate("birth_date"));
+                p.setAddressId(rs.getInt("address_id"));
+                p.setBirthDate(rs.getDate("birth_date").toLocalDate());
                 p.setCellNumber(rs.getString("cellnumber"));
                 personList.add(p);
             }

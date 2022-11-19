@@ -1,15 +1,9 @@
-<<<<<<< HEAD
-dirocco:
-=======
+
 caterina:
->>>>>>> bdac998dc98b97f04b40282a78e8c3a76dc222c8
     config:
-<<<<<<< HEAD
         version: 1.0.3
-=======
-        version: 1.0.1
+
 vervenna:
     config:
         version: 1.0.1
         appName: Test Environment lesson by Vervenna
->>>>>>> e8e0d8377a7a7e4f8cd614be68e029801ac5a513

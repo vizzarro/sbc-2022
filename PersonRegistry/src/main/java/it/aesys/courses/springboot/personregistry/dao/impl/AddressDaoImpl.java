@@ -17,9 +17,13 @@ import java.util.List;
 public class AddressDaoImpl implements AddressDao {
 
 
-    String dbURL = "jdbc:mysql://192.168.130.6:3306/";
-    String username = "user_library";
-    String password = "password";
+//    String dbURL = "jdbc:mysql://192.168.130.6:3306/";
+//    String username = "user_library";
+//    String password = "password";
+//TODO SOSTITUIRE I DATI CON DATABASE LOCALE
+    String dbURL = "jdbc:mysql://127.0.0.1:3306/librarydb";
+    String username = "root";
+    String password = "Admin";
 
     private static final String DRIVER_NAME = "com.mysql.cj.jdbc.Driver";
     private static final String INSERT_ADDRESS_SQL = "INSERT INTO address" +
@@ -32,11 +36,13 @@ public class AddressDaoImpl implements AddressDao {
     private static final String DELETE_ADDRESS_SQL = "DELETE FROM address WHERE address_id = ?";
 
     @Override
-    public Address create(Address address) {
+    public Integer createAddress(Address address) {
+        PreparedStatement preparedStatement = null;
+        Integer addressId = null;
         try {
             Class.forName(DRIVER_NAME);
             Connection connection = DriverManager.getConnection(dbURL, username, password);
-            PreparedStatement preparedStatement = connection.prepareStatement(INSERT_ADDRESS_SQL, Statement.RETURN_GENERATED_KEYS);
+            preparedStatement = connection.prepareStatement(INSERT_ADDRESS_SQL, Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setString(1, address.getStreet());
             preparedStatement.setString(2, address.getCivic());
             preparedStatement.setInt(3, address.getPostalCode());
@@ -46,8 +52,11 @@ public class AddressDaoImpl implements AddressDao {
 
            ResultSet rs = preparedStatement.getGeneratedKeys();
            while (rs.next()){
-               address.setAddressId(rs.getInt(1));
+
+               addressId = (rs.getInt(1));
            }
+
+
 
         } catch (ClassNotFoundException e) {
             DaoException exc = new DaoException();
@@ -56,8 +65,15 @@ public class AddressDaoImpl implements AddressDao {
             DaoException exc = new DaoException();
             exc.setMessage("not found");;
         }
-        return address;
+        if (addressId != null) {
+            return addressId;
+        }
+        else
+            //TODO throw new SQLException();
+        return null;
     }
+
+
 
     @Override
     public Address update(Address address) throws DaoException {
@@ -186,6 +202,8 @@ public class AddressDaoImpl implements AddressDao {
 
     }
 
+
+
     @Override
     public List<Address> getAll() throws DaoException {
 
@@ -259,4 +277,11 @@ public class AddressDaoImpl implements AddressDao {
 
         return null;
     }
+    @Override
+    public Address create(Address address) throws DaoException {
+        // VECCHIO CREATE, SPERIMENTO CON RETURN INTEGER
+        return null;
+    }
+
+
 }
