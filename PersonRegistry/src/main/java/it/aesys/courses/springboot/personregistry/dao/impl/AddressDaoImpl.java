@@ -30,7 +30,7 @@ public class AddressDaoImpl implements AddressDao {
     private static final String UPDATE_ADDRESS_SQL = "UPDATE address SET " +
             "( street = ?, civic = ?, postalCode = ?, home = ?  WHERE address_id = ?)";
     private static final String GET_ALL_ADDRESS_SQL = "";
-    private static final String GET_ADDRESS_SQL = "SELECT address_id FROM address WHERE address_id =  ?";
+    private static final String GET_ADDRESS_SQL = "SELECT * FROM address WHERE address_id =  ?";
     private static final String DELETE_ADDRESS_SQL = "DELETE FROM address WHERE address_id = ?";
 
     @Override
@@ -95,7 +95,6 @@ public class AddressDaoImpl implements AddressDao {
                 // Step 3: Execute the query or update query
                 preparedStatement.execute();
 
-
                 return address;
 
             } catch (SQLException e) {
@@ -112,9 +111,7 @@ public class AddressDaoImpl implements AddressDao {
                 throw exc;
             }
         }
-        DaoException excep = new DaoException();
-        excep.setMessage("Address is null!");
-        throw excep;
+       return address;
     }
 
 

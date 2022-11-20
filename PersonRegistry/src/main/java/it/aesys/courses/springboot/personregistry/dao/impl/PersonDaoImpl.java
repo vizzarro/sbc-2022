@@ -27,7 +27,7 @@ public class PersonDaoImpl implements PersonDao {
     private static final String INSERT_PERSONS_SQL = "INSERT INTO person" +
             "  ( name, surname, fiscalcode, gender, address_id, birth_date, cell_number ) VALUES " +
             " ( ?, ?, ?, ? , ? , ?, ?);";
-    private static final String GET_PERSONS_SQL = "SELECT fiscalcode FROM person WHERE fiscalcode =  ?";
+    private static final String GET_PERSONS_SQL = "SELECT * FROM librarydb.person as p, librarydb.address as a WHERE fiscalcode =  ? AND p.address_id = a.address_id";
 
     //GET ALL CORRETTA, CONTROLLARE, LA JOIN DA SOLO UN RECORD
 
@@ -41,11 +41,10 @@ public class PersonDaoImpl implements PersonDao {
 
 
 
-    private static final String UPDATE_PERSONS_SQL = "UPDATE person SET " +
-            "( name = ?, surname = ?, fiscalcode = ?, gender = ?, address_id = ? ,birth_date = ?, cell_number = ?  WHERE fiscalcode = ?)";
+    private static final String UPDATE_PERSONS_SQL = "UPDATE librarydb.person SET " +
+            " name = ?, surname = ?, fiscalcode = ?, gender = ?, address_id = ? , birth_date = ? , cell_number = ?  WHERE fiscalcode = ? ";
 
-
-    private static final String DELETE_PERSONS_SQL = "DELETE FROM person WHERE fiscalcode = ?";
+    private static final String DELETE_PERSONS_SQL = "DELETE  FROM librarydb.person WHERE fiscalcode = ?";
 
 
     @Override
@@ -120,10 +119,15 @@ public class PersonDaoImpl implements PersonDao {
                 PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_PERSONS_SQL);
                 preparedStatement.setString(1, person.getName());
                 preparedStatement.setString(2, person.getSurname());
-
+                preparedStatement.setString(3, person.getFiscalCode());
+                //ABBIAMO SCELTO DI NON AGGIORNARE IL CODICEFISCALE.
                 preparedStatement.setString(4, person.getGender().name());
+                preparedStatement.setInt(5, person.getAddressId());
                 preparedStatement.setDate(6, Date.valueOf(person.getBirthDate()));
                 preparedStatement.setString(7, person.getCellNumber());
+                preparedStatement.setString(8, person.getFiscalCode());
+
+
 
                 System.out.println(preparedStatement);
                 // Step 3: Execute the query or update query
@@ -207,7 +211,13 @@ public class PersonDaoImpl implements PersonDao {
                 p.setGender(EnumGender.valueOf(rs.getString("gender")));
                 p.setAddressId(rs.getInt("address_id"));
                 p.setBirthDate(rs.getDate("birth_date").toLocalDate());
-                p.setCellNumber(rs.getString("cellnumber"));
+                p.setCellNumber(rs.getString("cell_number"));
+                Address a = new Address();
+                a.setStreet(rs.getString("street"));
+                a.setCivic(rs.getString("civic"));
+                a.setPostalCode(rs.getInt("postalcode"));
+                a.setHome(EnumAddress.valueOf(rs.getString("home")) );
+                p.setAddress(a);
 
             }
 

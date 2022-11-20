@@ -51,7 +51,7 @@ public class PersonServiceImpl implements PersonService {
             //person.setAddressId(address.addressId);
             person.setAddressId(addressId);
             personDao.create(person);
-            return personDto;
+            return personMapperDTO.toDto(person);
 
         } catch (DaoException e) {
             ServiceException ex = new ServiceException();
@@ -67,7 +67,7 @@ public class PersonServiceImpl implements PersonService {
             if (fiscalcode != null) {
 
                 Person person = personDao.get(fiscalcode);
-                person.setAddress(addressDao.getAddress(person.getAddressId()));
+                //person.setAddress(addressDao.getAddress(person.getAddressId()));
                 return personMapperDTO.toDto(person);
             }
         } catch (DaoException e) {
@@ -95,7 +95,8 @@ public class PersonServiceImpl implements PersonService {
 
         }
         allPersons.forEach( p -> allPersonsDto.add(personMapperDTO.toDto(p)));
-
+//
+//          MODO POCO EFFICENTE DI FARLO, ORA HO CAMBIATO METODO
 //        Collection<Person> allPersonsWithAddress = new ArrayList<>();
 //        try {
 //            allPersons = personDao.getAll();
@@ -117,11 +118,6 @@ public class PersonServiceImpl implements PersonService {
 //                }
 //            }
 //        }
-
-//        BiConsumer<Collection<Person>, Collection<Address>> mergeBiConsumer;
-//
-//        allPersons.forEach( mergeBiConsumer(p , a) -> p.setAddress() );
-
 //        allPersonsWithAddress.forEach(x -> allPersonsDto.add(personMapperDTO.toDto(x)));
 
         return allPersonsDto;
@@ -133,10 +129,14 @@ public class PersonServiceImpl implements PersonService {
         try {
 
             if ( personDao.get(fiscalcode) != null) {
+                Person personToUpdate = personDao.get(fiscalcode);
                 Person updatedPerson = personMapperDTO.toModel(personDTO);
-                Address address = addressDao.create(updatedPerson.getAddress());
-                updatedPerson.setAddressId(address.getAddressId());
+                updatedPerson.setAddressId(personToUpdate.getAddressId());
+                Address updatedAddress = updatedPerson.getAddress();
+                updatedAddress.setAddressId(personToUpdate.getAddressId());
+                addressDao.update(updatedAddress);
                 personDao.update(updatedPerson);
+
                 return personMapperDTO.toDto(updatedPerson);
                 }
             else {
@@ -159,8 +159,10 @@ public class PersonServiceImpl implements PersonService {
         try {
             if (personDao.get(fiscalcode) != null) {
                 Person personToDelete = personDao.get(fiscalcode);
-                addressDao.deleteAddress(personToDelete.getAddressId());
+                Integer addressToDelete = personToDelete.getAddressId();
+
                 personDao.delete(fiscalcode);
+                addressDao.deleteAddress(addressToDelete);
             } else {
                 ServiceException exc = new ServiceException();
                 exc.setStatusCode(404);
