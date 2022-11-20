@@ -21,9 +21,7 @@ public class AddressDaoImpl implements AddressDao {
 //    String username = "user_library";
 //    String password = "password";
 //TODO SOSTITUIRE I DATI CON DATABASE LOCALE
-    String dbURL = "jdbc:mysql://127.0.0.1:3306/librarydb";
-    String username = "root";
-    String password = "Admin";
+
 
     private static final String DRIVER_NAME = "com.mysql.cj.jdbc.Driver";
     private static final String INSERT_ADDRESS_SQL = "INSERT INTO address" +
