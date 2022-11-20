@@ -2,6 +2,8 @@ package it.aesys.courses.springboot.personregistry.dao.impl;
 
 import it.aesys.courses.springboot.personregistry.dao.PersonDao;
 import it.aesys.courses.springboot.personregistry.dao.exception.DaoException;
+import it.aesys.courses.springboot.personregistry.models.Address;
+import it.aesys.courses.springboot.personregistry.models.EnumAddress;
 import it.aesys.courses.springboot.personregistry.models.EnumGender;
 import it.aesys.courses.springboot.personregistry.models.Person;
 import it.aesys.courses.springboot.personregistry.service.exceptions.ServiceException;
@@ -17,7 +19,9 @@ public class PersonDaoImpl implements PersonDao {
 //    String username = "user_library";
 //    String password = "password";
 //TODO SOSTITUIRE I DATI CON DATABASE LOCALE
-
+    String dbURL = "jdbc:mysql://127.0.0.1:3306/librarydb";
+    String username = "root";
+    String password = "Admin";
 
 
     private static final String DRIVER_NAME = "com.mysql.cj.jdbc.Driver";
@@ -27,7 +31,16 @@ public class PersonDaoImpl implements PersonDao {
             " ( ?, ?, ?, ? , ? , ?, ?);";
     private static final String GET_PERSONS_SQL = "SELECT fiscalcode FROM person WHERE fiscalcode =  ?";
 
-    private static final String GET_ALL_SQL = "SELECT fiscalcode FROM person";
+    //GET ALL CORRETTA, CONTROLLARE, LA JOIN DA SOLO UN RECORD
+
+    private static final String GET_ALL_SQL ="SELECT * FROM librarydb.address as a, librarydb.person as p "+
+"WHERE  p.address_id = a.address_id";
+//JOIN
+//            "SELECT *\n" +
+//                    "from librarydb.person as p\n" +
+//                    "inner join librarydb.address as a\n" +
+//                    "on a.address_id=p.address_idn";
+
 
 
     private static final String UPDATE_PERSONS_SQL = "UPDATE person SET " +
@@ -57,7 +70,6 @@ public class PersonDaoImpl implements PersonDao {
             preparedStatement.setInt(5, person.getAddressId());
             preparedStatement.setDate(6, Date.valueOf(person.getBirthDate()));
             preparedStatement.setString(7, person.getCellNumber());
-
             System.out.println(preparedStatement);
             // Step 3: Execute the query or update query
             preparedStatement.execute();
@@ -241,7 +253,13 @@ public class PersonDaoImpl implements PersonDao {
                 p.setGender(EnumGender.valueOf(rs.getString("gender")));
                 p.setAddressId(rs.getInt("address_id"));
                 p.setBirthDate(rs.getDate("birth_date").toLocalDate());
-                p.setCellNumber(rs.getString("cellnumber"));
+                p.setCellNumber(rs.getString("cell_number"));
+                Address a = new Address();
+                a.setStreet(rs.getString("street"));
+                a.setCivic(rs.getString("civic"));
+                a.setPostalCode(rs.getInt("postalcode"));
+                a.setHome(EnumAddress.valueOf(rs.getString("home")) );
+                p.setAddress(a);
                 personList.add(p);
             }
 

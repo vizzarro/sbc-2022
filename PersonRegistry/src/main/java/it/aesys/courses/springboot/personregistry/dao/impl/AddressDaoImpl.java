@@ -21,7 +21,9 @@ public class AddressDaoImpl implements AddressDao {
 //    String username = "user_library";
 //    String password = "password";
 //TODO SOSTITUIRE I DATI CON DATABASE LOCALE
-
+    String dbURL = "jdbc:mysql://127.0.0.1:3306/librarydb";
+    String username = "root";
+    String password = "Admin";
 
     private static final String DRIVER_NAME = "com.mysql.cj.jdbc.Driver";
     private static final String INSERT_ADDRESS_SQL = "INSERT INTO address" +
@@ -29,7 +31,7 @@ public class AddressDaoImpl implements AddressDao {
             " ( ?, ?, ?, ? )";
     private static final String UPDATE_ADDRESS_SQL = "UPDATE address SET " +
             "( street = ?, civic = ?, postalCode = ?, home = ?  WHERE address_id = ?)";
-    private static final String GET_ALL_ADDRESS_SQL = "SELECT * FROM address";
+    private static final String GET_ALL_ADDRESS_SQL = "";
     private static final String GET_ADDRESS_SQL = "SELECT address_id FROM address WHERE address_id =  ?";
     private static final String DELETE_ADDRESS_SQL = "DELETE FROM address WHERE address_id = ?";
 

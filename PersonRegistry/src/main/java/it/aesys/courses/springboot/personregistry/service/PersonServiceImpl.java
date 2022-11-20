@@ -17,6 +17,7 @@ import org.springframework.boot.autoconfigure.batch.BatchDataSourceScriptDatabas
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -83,37 +84,45 @@ public class PersonServiceImpl implements PersonService {
 
 
         Collection<PersonDTO> allPersonsDto = new ArrayList<>();
-
         Collection<Person> allPersons = null;
 
-        Collection<Address> allAddress = null;
-
-        Collection<Person> allPersonsWithAddress = new ArrayList<>();
-        try {
+        try{
             allPersons = personDao.getAll();
-        } catch (DaoException e) {
-            throw new ServiceException(e);
-        }
 
-        try {
-            allAddress = addressDao.getAll();
-        } catch (DaoException e) {
+        }
+        catch ( DaoException e){
             throw new ServiceException(e);
+
         }
-        for (Person person : allPersons){
-            for (Address address : allAddress){
-                if (address.getAddressId() == person.getAddressId()){
-                    person.setAddress(address);
-                    allPersonsWithAddress.add(person);
-                }
-            }
-        }
+        allPersons.forEach( p -> allPersonsDto.add(personMapperDTO.toDto(p)));
+
+//        Collection<Person> allPersonsWithAddress = new ArrayList<>();
+//        try {
+//            allPersons = personDao.getAll();
+//        } catch (DaoException e) {
+//            throw new ServiceException(e);
+//        }
+
+//        try {
+//            allAddress = addressDao.getAll();
+//        } catch (DaoException e) {
+//            throw new ServiceException(e);
+//        }
+//        for (Person person : allPersons){
+//            for (Address address : allAddress){
+//                if (address.getAddressId() == person.getAddressId()){
+//                    person.setAddress(address);
+//                    allPersonsWithAddress.add(person);
+//                    allAddress.remove(address);
+//                }
+//            }
+//        }
 
 //        BiConsumer<Collection<Person>, Collection<Address>> mergeBiConsumer;
 //
 //        allPersons.forEach( mergeBiConsumer(p , a) -> p.setAddress() );
 
-        allPersonsWithAddress.forEach(x -> allPersonsDto.add(personMapperDTO.toDto(x)));
+//        allPersonsWithAddress.forEach(x -> allPersonsDto.add(personMapperDTO.toDto(x)));
 
         return allPersonsDto;
 
