@@ -12,5 +12,5 @@ public interface ReportService {
     ReportDtoRequest create(ReportDtoRequest dto) throws BadInputException;
     List<Report> getPersonHistory(String fiscalCodeNumber) throws PersonHistoryNotFoundException;
     void delete (Integer reportTicketNumber) throws BadInputException;
-    ReportDtoResponse update(Integer reportTicketNumber, ReportDtoResponse updatedDto) throws BadInputException;
+    ReportDtoResponse update(Integer reportTicketNumber, ReportDtoRequest updatedDto) throws BadInputException;
 }

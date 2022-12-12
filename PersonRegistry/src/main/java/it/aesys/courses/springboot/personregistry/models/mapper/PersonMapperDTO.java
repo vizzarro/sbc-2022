@@ -23,7 +23,10 @@ public class PersonMapperDTO {
         dto.setSurname(person.getSurname());
         dto.setFiscalCode(person.getFiscalCode());
         dto.setGender(person.getGender());
-        dto.setAddress(addressMapperDTO.toDto(person.getAddress()));
+        if (person.getAddress() != null) {
+            dto.setAddress(addressMapperDTO.toDto(person.getAddress()));
+        }
+
         dto.setBirthDate(person.getBirthDate());
         dto.setCellNumber(person.getCellNumber());
 
@@ -38,7 +41,9 @@ public class PersonMapperDTO {
         p.setSurname(dto.getSurname());
         p.setFiscalCode(dto.getFiscalCode());
         p.setGender(dto.getGender());
-        p.setAddress(addressMapperDTO.toModel(dto.getAddress()));
+        if (dto.getAddress() != null) {
+            p.setAddress(addressMapperDTO.toModel(dto.getAddress()));
+        }
         p.setBirthDate(dto.getBirthDate());
         p.setCellNumber(dto.getCellNumber());
 

@@ -1,10 +1,23 @@
 package it.aesys.courses.springboot.model;
 
-public class Report {
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name="report")
+
+public class Report {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="report_ticket_number")
     private Integer reportTicketNumber;
+    @Column(name="problem_type")
     private ProblemType problemType;
+    @Column(name="problem_description", columnDefinition="enum('NONPAYMENT','PROPERTY_DAMAGED','FAILURE_TO_RETURN','OTHER')")
+    @Enumerated(EnumType.STRING)
     private String problemDescription;
+    @Column(name="fiscal_code_number")
     private String fiscalCodeNumber;
 
     public Report() {

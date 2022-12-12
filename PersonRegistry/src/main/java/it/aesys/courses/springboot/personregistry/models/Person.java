@@ -2,20 +2,31 @@ package it.aesys.courses.springboot.personregistry.models;
 
 import org.springframework.stereotype.Component;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Date;
-@Component
+
+@Entity
+@Table(name = "person")
 public class Person {
-
+    @Column(name = "name")
     private String name;
+    @Column(name = "surname")
     private String surname;
+    @Id
+    @Column(name = "fiscalcode")
     private String fiscalCode;
+    @Column(name = "gender", columnDefinition = "enum('M','F')")
+    @Enumerated(EnumType.STRING)
     private EnumGender gender;
+    @Column(name = "address")
     private Address address;
+    @Column(name = "birth_date")
     private LocalDate birthDate;
+    @Column(name = "cell_number")
     private String cellNumber;
+    @Column(name = "address_id")
     private Integer addressId;
-
 
 
     public Person() {
@@ -72,17 +83,7 @@ public class Person {
         this.addressId = addressId;
     }
 
-//    public Integer getId() {
-//        return id;
-//    }
-//
-//    public void setId(Integer id) {
-//        this.id = id;
-//    }
-
-    public String getName() {
-        return name;
-    }
+    public String getName(){return name;}
 
     public void setName(String name) {
         this.name = name;

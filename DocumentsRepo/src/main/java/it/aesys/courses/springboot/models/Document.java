@@ -1,14 +1,26 @@
 package it.aesys.courses.springboot.models;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 
+@Entity
+@Table(name="document")
 public class Document {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="id_doc")
     private Integer idDoc;
+    @Column(name="name_file")
     private String nameFile;
+    @Column(name="data_of_input")
     private LocalDate dataOfInput;
+    @Column(name="type_of_file", columnDefinition = "enum('PNG','JPEG','PDF')")
     private TypeOfFile typeOfFile;
+    @Column(name="type_of_doc", columnDefinition = "enum('ID_CARD', 'DRIVER_LICENSE')")
     private TypeOfDoc typeOfDoc;
+    @Column(name="file",columnDefinition = "TEXT")
     private String file;
+    @Column(name="fiscal_code")
     private String fiscalCode;
 
     public Document() {

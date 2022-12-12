@@ -7,6 +7,7 @@ import it.aesys.courses.springboot.model.mapperDTO.ReportDtoRequest;
 import it.aesys.courses.springboot.model.mapperDTO.ReportDtoResponse;
 import it.aesys.courses.springboot.model.request.ReportRequest;
 import it.aesys.courses.springboot.model.request.ReportResponse;
+import it.aesys.courses.springboot.service.ReportService;
 import it.aesys.courses.springboot.service.impl.ReportServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -17,7 +18,7 @@ import java.util.List;
 @RequestMapping("report")
 public class ReportController {
 
-    private ReportServiceImpl service;
+    private ReportService service;
 
     @Autowired
     public ReportController(ReportServiceImpl service) {
@@ -40,7 +41,7 @@ public class ReportController {
     }
 
     @PutMapping("{reportTicketNumber}")
-    public ReportDtoResponse update(@PathVariable("reportTicketNumber") Integer reportTicketNumber, @RequestBody ReportResponse response) throws BadInputException {
-        return service.update(reportTicketNumber, response.getReportDtoResponse());
+    public ReportDtoResponse update(@PathVariable("reportTicketNumber") Integer reportTicketNumber, @RequestBody ReportRequest request) throws BadInputException {
+        return service.update(reportTicketNumber, request.getReportDtoRequest());
     }
 }

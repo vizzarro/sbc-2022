@@ -7,29 +7,37 @@ import it.aesys.courses.springboot.model.Report;
 import it.aesys.courses.springboot.model.mapperDTO.ReportDtoRequest;
 import it.aesys.courses.springboot.model.mapperDTO.ReportDtoResponse;
 import it.aesys.courses.springboot.model.mapperDTO.ReportMapperDTO;
+import it.aesys.courses.springboot.repository.BlackBookRepository;
 import it.aesys.courses.springboot.service.ReportService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import javax.swing.text.html.Option;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ReportServiceImpl implements ReportService {
-    private ReportDao reportDao;
+    //private ReportDao reportDao;
+
+
+    BlackBookRepository blackBookRepository;
 
     private ReportMapperDTO mapper;
 
     @Autowired
-    public ReportServiceImpl(ReportDao reportDao, ReportMapperDTO mapper) {
-        this.reportDao = reportDao;
+    public ReportServiceImpl(BlackBookRepository blackBookRepository, ReportMapperDTO mapper) {
+        this.blackBookRepository = blackBookRepository;
         this.mapper = mapper;
     }
 
 
     @Override
+    @Transactional
     public ReportDtoRequest create(ReportDtoRequest dto) throws BadInputException {
         if(dto.getFiscalCodeNumber().length() == 16 && dto.getProblemDescription().length() < 100) {
-            return this.mapper.toRequestDto(this.reportDao.addReport(this.mapper.toRequestModel(dto)));
+            return this.mapper.toRequestDto(this.blackBookRepository.save(this.mapper.toRequestModel(dto)));
         } else {
             throw new BadInputException("Bad Input.");
         }
@@ -37,30 +45,42 @@ public class ReportServiceImpl implements ReportService {
 
     @Override
     public List<Report> getPersonHistory(String fiscalCodeNumber) throws PersonHistoryNotFoundException {
-        if(reportDao.getReport(fiscalCodeNumber).isEmpty()) {
-            return this.reportDao.getReport(fiscalCodeNumber);
-        } else {
+        List<Report> personHistory = blackBookRepository.findAllByFiscalCodeNumber(fiscalCodeNumber);
+
+        if(personHistory.isEmpty()) {
             throw new PersonHistoryNotFoundException("No history availible, required person is clean!");
         }
+        return personHistory;
     }
 
 
     @Override
+    @Transactional
     public void delete(Integer reportTicketNumber) throws BadInputException {
-        if (reportDao.getReportByTicket(reportTicketNumber) != null) {
-            this.reportDao.deleteReport(reportTicketNumber);
-        } else {
+
+        Optional<Report> reportToBeDeleted = blackBookRepository.findById(reportTicketNumber);
+
+        if (reportToBeDeleted.isEmpty()) {
             throw new BadInputException("Invalid Input: Ticket not found");
         }
+        blackBookRepository.delete(reportToBeDeleted.get());
     }
 
 
     @Override
-    public ReportDtoResponse update(Integer reportTicketNumber, ReportDtoResponse updatedDto) throws BadInputException {
-        if(reportDao.getReportByTicket(updatedDto.getReportTicketNumber()) != null) {
-            return this.mapper.toResponseDto(this.reportDao.updateReport(this.mapper.toResponseModel(updatedDto)));
-        } else {
+    public ReportDtoResponse update(Integer reportTicketNumber, ReportDtoRequest updatedDto) throws BadInputException {
+
+        Optional<Report> reportOptional = blackBookRepository.findById(reportTicketNumber);
+
+        if(reportOptional.isEmpty()) {
             throw new BadInputException("Invalid Input: ticket not found");
         }
+    Report oldReport = reportOptional.get();
+    Report reportToUpdate= mapper.toRequestModel(updatedDto);
+    reportToUpdate.setReportTicketNumber(oldReport.getReportTicketNumber());
+
+    Report report = blackBookRepository.save(reportToUpdate);
+    return mapper.toResponseDto(report);
+
     }
 }

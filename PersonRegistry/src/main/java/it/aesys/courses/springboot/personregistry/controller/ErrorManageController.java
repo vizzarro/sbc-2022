@@ -34,4 +34,14 @@ public class ErrorManageController {
 
     }
 
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<ApiErrorDTO> handleGenericException(Exception e, WebRequest request) {
+        System.out.println("Errore: " + e);
+        ApiErrorDTO error = new ApiErrorDTO();
+        error.setStatusCode(500);
+        error.setMessage("Generic Error");
+        error.setPath(request.getContextPath());
+        return ResponseEntity.internalServerError().body(error);
+    }
+
 }

@@ -1,5 +1,6 @@
 package it.aesys.courses.springboot.personregistry.controller;
 
+import it.aesys.courses.springboot.personregistry.dao.exception.DaoException;
 import it.aesys.courses.springboot.personregistry.models.Person;
 import it.aesys.courses.springboot.personregistry.models.PersonDTO;
 import it.aesys.courses.springboot.personregistry.request.PersonRequest;
@@ -17,7 +18,7 @@ import java.util.Collection;
 @RequestMapping("personregistry")
 public class PersonController {
 
-    private PersonServiceImpl service;
+    private PersonService service;
 
     @Autowired
     public PersonController(PersonServiceImpl service){
@@ -26,9 +27,8 @@ public class PersonController {
 
 
 
-
     @PostMapping
-    public PersonDTO addPerson(@RequestBody PersonRequest personRequest) throws ServiceException {
+    public PersonDTO addPerson(@RequestBody PersonRequest personRequest){
         return service.create(personRequest.getPersonDTO());
     }
 
@@ -39,7 +39,7 @@ public class PersonController {
     }
 
     @GetMapping("all")
-    public Collection<PersonDTO> getAllPersons() throws ServiceException {
+    public Collection<PersonDTO> getAllPersons() {
         return service.getAll();
     }
 

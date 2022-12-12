@@ -1,11 +1,23 @@
 package it.aesys.courses.springboot.personregistry.models;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name="Address")
 public class Address {
 
+    @Column(name="street")
     public String street;
+    @Column(name="civic")
     public String civic;
+    @Column(name="postalcode")
     public Integer postalCode;
+    @Column(name = "home", columnDefinition = "enum('RESIDENCE','DOMICILE')")
+    @Enumerated(EnumType.STRING)
     public EnumAddress home;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="address_id")
     public Integer addressId;
 
     public void setAddressId(Integer addressId) {
