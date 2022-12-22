@@ -12,7 +12,7 @@ public class ReportMapperDTO {
         responseDto.setProblemType(report.getProblemType());
         responseDto.setProblemDescription(report.getProblemDescription());
         responseDto.setReportTicketNumber(report.getReportTicketNumber());
-        responseDto.setReportTicketNumber(report.getReportTicketNumber());
+        responseDto.setFiscalCodeNumber(report.getFiscalCodeNumber());
 
         return responseDto;
     }
@@ -23,7 +23,7 @@ public class ReportMapperDTO {
         report.setProblemType(responseDto.getProblemType());
         report.setProblemDescription(responseDto.getProblemDescription());
         report.setReportTicketNumber(responseDto.getReportTicketNumber());
-        report.setReportTicketNumber(responseDto.getReportTicketNumber());
+        report.setFiscalCodeNumber(responseDto.getFiscalCodeNumber());
 
         return report;
     }

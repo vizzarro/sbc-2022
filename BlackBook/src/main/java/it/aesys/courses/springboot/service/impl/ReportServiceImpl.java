@@ -36,7 +36,7 @@ public class ReportServiceImpl implements ReportService {
     @Override
     @Transactional
     public ReportDtoRequest create(ReportDtoRequest dto) throws BadInputException {
-        if(dto.getFiscalCodeNumber().length() == 16 && dto.getProblemDescription().length() < 100) {
+        if(dto.getFiscalCodeNumber().length() == 16 && dto.getProblemDescription().length() < 100 && (dto.getFiscalCodeNumber() != null)){
             return this.mapper.toRequestDto(this.blackBookRepository.save(this.mapper.toRequestModel(dto)));
         } else {
             throw new BadInputException("Bad Input.");

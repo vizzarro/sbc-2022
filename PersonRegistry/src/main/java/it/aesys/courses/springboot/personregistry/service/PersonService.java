@@ -11,5 +11,4 @@ public interface PersonService {
     public Collection<PersonDTO> getAll();
     public PersonDTO update(String fiscalcode, PersonDTO personDTO) throws ServiceException;
     public void delete (String fiscalcode) throws ServiceException;
-
 }

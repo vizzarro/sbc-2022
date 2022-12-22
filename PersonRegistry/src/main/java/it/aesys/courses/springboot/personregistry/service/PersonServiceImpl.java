@@ -6,7 +6,6 @@ import it.aesys.courses.springboot.personregistry.models.Person;
 import it.aesys.courses.springboot.personregistry.models.PersonDTO;
 import it.aesys.courses.springboot.personregistry.models.mapper.DocumentDTO;
 import it.aesys.courses.springboot.personregistry.models.mapper.PersonMapperDTO;
-
 import it.aesys.courses.springboot.personregistry.repository.PersonRepository;
 import it.aesys.courses.springboot.personregistry.service.exceptions.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,7 +42,7 @@ public class PersonServiceImpl implements PersonService {
         this.personMapperDTO = personMapperDTO;
         this.personRepository = personRepository;
         this.restTemplate = restTemplate;
-    }
+     }
 
     @Transactional
     public PersonDTO create(PersonDTO personDto) {
@@ -136,9 +135,4 @@ public class PersonServiceImpl implements PersonService {
         }
     }
 
-
 }
-
-
-
-

@@ -1,5 +1,6 @@
 package it.aesys.courses.springboot.models;
 
+import javax.annotation.security.DenyAll;
 import javax.persistence.*;
 import java.time.LocalDate;
 
@@ -15,10 +16,17 @@ public class Document {
     @Column(name="data_of_input")
     private LocalDate dataOfInput;
     @Column(name="type_of_file", columnDefinition = "enum('PNG','JPEG','PDF')")
+    @Enumerated(EnumType.STRING)
     private TypeOfFile typeOfFile;
     @Column(name="type_of_doc", columnDefinition = "enum('ID_CARD', 'DRIVER_LICENSE')")
+    @Enumerated(EnumType.STRING)
     private TypeOfDoc typeOfDoc;
-    @Column(name="file",columnDefinition = "TEXT")
+    /*
+      @Lob
+    @Column(columnDefinition = "BLOB")
+    private byte[] file;
+     */
+    @Column(name="file",columnDefinition = "LONGTEXT")
     private String file;
     @Column(name="fiscal_code")
     private String fiscalCode;

@@ -12,7 +12,7 @@ public class Address {
     public String civic;
     @Column(name="postalcode")
     public Integer postalCode;
-    @Column(name = "home", columnDefinition = "enum('RESIDENCE','DOMICILE')")
+    @Column(name ="home", columnDefinition = "enum('RESIDENCE','DOMICILE')")
     @Enumerated(EnumType.STRING)
     public EnumAddress home;
     @Id

@@ -1,4 +1,4 @@
-package it.aesys.courses.springboot.personregistry.dao.impl;
+/*package it.aesys.courses.springboot.personregistry.dao.impl;
 
 import it.aesys.courses.springboot.personregistry.dao.PersonDao;
 import it.aesys.courses.springboot.personregistry.dao.exception.DaoException;
@@ -282,3 +282,4 @@ public class PersonDaoImpl implements PersonDao {
         return personList;
     }
 }
+*/

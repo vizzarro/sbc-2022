@@ -1,4 +1,4 @@
-package it.aesys.courses.springboot.personregistry.dao.impl;
+/*package it.aesys.courses.springboot.personregistry.dao.impl;
 
 import it.aesys.courses.springboot.personregistry.dao.AddressDao;
 import it.aesys.courses.springboot.personregistry.dao.Dao;
@@ -21,7 +21,9 @@ public class AddressDaoImpl implements AddressDao {
 //    String username = "user_library";
 //    String password = "password";
 //TODO SOSTITUIRE I DATI CON DATABASE LOCALE
-
+//
+//
+//Adesso usiamo Spring Data JPA lo lascio per storico
 
     private static final String DRIVER_NAME = "com.mysql.cj.jdbc.Driver";
     private static final String INSERT_ADDRESS_SQL = "INSERT INTO address" +
@@ -280,3 +282,4 @@ public class AddressDaoImpl implements AddressDao {
 
 
 }
+*/

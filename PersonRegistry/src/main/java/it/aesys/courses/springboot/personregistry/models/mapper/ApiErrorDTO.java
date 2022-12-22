@@ -11,7 +11,7 @@ public class ApiErrorDTO {
     private List<ErrorDTO> errors;
 
     public ApiErrorDTO() {
-        errors = new ArrayList<>();
+         errors = new ArrayList<>();
     }
 
     public ApiErrorDTO(Integer statusCode, String message, String path, List<ErrorDTO> errors) {

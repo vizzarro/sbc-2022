@@ -12,10 +12,11 @@ public class Report {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="report_ticket_number")
     private Integer reportTicketNumber;
-    @Column(name="problem_type")
-    private ProblemType problemType;
-    @Column(name="problem_description", columnDefinition="enum('NONPAYMENT','PROPERTY_DAMAGED','FAILURE_TO_RETURN','OTHER')")
+    @Column(name="problem_type", columnDefinition="enum('NONPAYMENT','PROPERTY_DAMAGED','FAILURE_TO_RETURN','OTHER')")
     @Enumerated(EnumType.STRING)
+    private ProblemType problemType;
+    @Column(name="problem_description")
+
     private String problemDescription;
     @Column(name="fiscal_code_number")
     private String fiscalCodeNumber;
