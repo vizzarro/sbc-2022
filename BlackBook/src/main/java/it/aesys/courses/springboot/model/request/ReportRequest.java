@@ -1,6 +1,5 @@
 package it.aesys.courses.springboot.model.request;
-/*
-//NON SERVE
+
 import it.aesys.courses.springboot.model.mapperDTO.ReportDtoRequest;
 import it.aesys.courses.springboot.model.mapperDTO.ReportDtoResponse;
 import it.aesys.courses.springboot.model.mapperDTO.ReportMapperDTO;
@@ -21,4 +20,3 @@ public class ReportRequest {
         this.reportDtoRequest = reportDtoRequest;
     }
 }
-*/

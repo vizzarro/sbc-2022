@@ -1,19 +1,27 @@
 package it.aesys.courses.springboot.personregistry.models;
 
+import it.aesys.courses.springboot.personregistry.CustomValidators.FiscalCodeCheckAnnotation;
 import org.hibernate.annotations.Cascade;
 import org.springframework.stereotype.Component;
+import org.springframework.validation.annotation.Validated;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
 @Table(name = "person")
 public class Person {
+    @NotNull(message = "The name field can't be null")
     @Column(name = "name")
     private String name;
+    @NotNull(message = "The surname field can't be null")
+
     @Column(name = "surname")
     private String surname;
+    @NotNull(message = "The fiscalcode field can't be null")
+    @FiscalCodeCheckAnnotation
     @Id
     @Column(name = "fiscalcode")
     private String fiscalCode;

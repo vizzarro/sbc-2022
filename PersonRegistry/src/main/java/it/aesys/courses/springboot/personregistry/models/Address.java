@@ -3,7 +3,7 @@ package it.aesys.courses.springboot.personregistry.models;
 import javax.persistence.*;
 
 @Entity
-@Table(name="Address")
+@Table(name="address")
 public class Address {
 
     @Column(name="street")

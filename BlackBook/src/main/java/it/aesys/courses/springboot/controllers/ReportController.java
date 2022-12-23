@@ -6,6 +6,7 @@ import it.aesys.courses.springboot.model.Report;
 import it.aesys.courses.springboot.model.mapperDTO.ReportDtoRequest;
 import it.aesys.courses.springboot.model.mapperDTO.ReportDtoResponse;
 
+import it.aesys.courses.springboot.model.request.ReportRequest;
 import it.aesys.courses.springboot.service.ReportService;
 import it.aesys.courses.springboot.service.impl.ReportServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,8 +26,8 @@ public class ReportController {
     }
 
     @PostMapping
-    public ReportDtoRequest create(@RequestBody ReportDtoRequest request) throws BadInputException {
-        return service.create(request);
+    public ReportDtoRequest create(@RequestBody ReportRequest request) throws BadInputException {
+        return service.create(request.getReportDtoRequest());
     }
 
     @GetMapping("{fiscalCodeNumber}")
@@ -40,7 +41,7 @@ public class ReportController {
     }
 
     @PutMapping("{reportTicketNumber}")
-    public ReportDtoResponse update(@PathVariable("reportTicketNumber") Integer reportTicketNumber, @RequestBody ReportDtoRequest request) throws BadInputException {
-        return service.update(reportTicketNumber, request);
+    public ReportDtoResponse update(@PathVariable("reportTicketNumber") Integer reportTicketNumber, @RequestBody ReportRequest request) throws BadInputException {
+        return service.update(reportTicketNumber, request.getReportDtoRequest());
     }
 }
